@@ -6,11 +6,11 @@ Date: 2017/1/13
 Time: 09:34-->
 <template>
 <div>
-<m-s-grid />
+<ms-grid />
 </div>
 </template>
 <script>
-    import {MSGrid} from "../../../src/index";
+    import {MsGrid} from "../../../src/index";
     export default {
       data(){
         return {
@@ -34,7 +34,7 @@ Time: 09:34-->
         }
       },
       components: {
-        MSGrid
+        MsGrid
       }
     }
 </script>

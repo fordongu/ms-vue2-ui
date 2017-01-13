@@ -6,8 +6,8 @@
  * Time: 10:20
  */
 'use strict';
-import {MSGrid} from "./packages/grid/index";
+import {MsGrid} from "./packages/grid/index";
 
 module.exports = {
-    MSGrid
+    MsGrid
 }
