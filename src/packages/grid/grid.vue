@@ -5,7 +5,7 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:30-->
 <template>
-  <div>
+  <div class="ms-grid">
     <ms-grid-center :tree-structure="treeStructure"
                     :data="dataData "
                     :origin-columns="columns"
