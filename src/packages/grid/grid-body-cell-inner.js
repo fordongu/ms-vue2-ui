@@ -7,7 +7,7 @@
  */
 'use strict';
 export default {
-
+    name:'ms-grid-body-cell-inner',
     template:'<div></div>',
     props:{
 

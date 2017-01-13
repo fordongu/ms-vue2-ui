@@ -7,7 +7,9 @@ Time: 09:30-->
 <template>
   <div>
     <ms-grid-center :tree-structure="treeStructure"
-                    :data="dataCompute " :columns="columns" />
+                    :data="dataCompute "
+                    :columns="columns"
+                    :center-columns="centerColumnsData" />
   </div>
 </template>
 <script>
@@ -37,6 +39,13 @@ Time: 09:30-->
           }
         }
       },
+      data(){
+        return {
+          leftColumnsData:[],
+          centerColumnsData:[],
+          rightColumnsData:[]
+        }
+      },
       computed:{
         dataCompute:function() {
            let me = this;
@@ -44,6 +53,20 @@ Time: 09:30-->
             return me.dataFormat(me.data);
           }
           return me.data;
+        }
+      },
+      beforeCreate(){
+        let me = this;
+        //me.columnsSplit();
+      },
+      created(){
+          let me = this;
+          me.columnsSplit();
+      },
+      methods:{
+        columnsSplit:function(){
+          let me = this;
+          me.centerColumnsData = me.columns;
         }
       },
       components: {

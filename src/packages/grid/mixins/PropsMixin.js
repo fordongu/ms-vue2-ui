@@ -25,6 +25,24 @@ export default {
             default:function() {
                 return [];
             }
+        },
+        centerColumns:{
+            type:Array,
+            default(){
+                return [];
+            }
+        },
+        leftColumns:{
+            type:Array,
+            default:function () {
+                return [];
+            }
+        },
+        rightColumns:{
+            type:Array,
+            default(){
+                return [];
+            }
         }
     }
 }

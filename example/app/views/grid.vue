@@ -30,23 +30,23 @@ Time: 09:34-->
               age:20,
               sex:'男'
             }
+          ],
+          columns:[
+            {
+              text:'姓名',
+              dataIndex:'name',
+              flex:1
+            },
+            {
+              text:'年龄',
+              dataIndex:'age'
+            },
+            {
+              text:'性别',
+              dataIndex:'sex'
+            }
           ]
-        },
-        columns:[
-          {
-            text:'姓名',
-            dataIndex:'name',
-            flex:1
-          },
-          {
-            text:'年龄',
-            dataIndex:'age'
-          },
-          {
-            text:'性别',
-            dataIndex:'sex'
-          }
-        ]
+        }
       },
       components: {
         MsGrid

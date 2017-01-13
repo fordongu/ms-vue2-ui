@@ -11,6 +11,10 @@ Time: 09:32-->
 </template>
 <script>
     export default {
+      name:'ms-grid-body',
+      props:{
+
+      },
       components: {
       }
     }

@@ -9,6 +9,7 @@ Time: 09:48-->
 </template>
 <script>
     export default {
+      name:'ms-grid-body-cell',
       components: {
       }
     }
