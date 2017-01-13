@@ -33,8 +33,21 @@ export default {
             });
             return tmp;
         },
-        columnsFormat:function () {
-
+        columnsFormat:function (columns,parent) {
+            let me = this;
+            let tmp = [];
+            _.forEach(columns,function (column) {
+                if(parent){
+                    Vue.set(column,'_parent',parent);
+                }
+                if(column.columns && column.columns.length>0 ){
+                    let children = me.columnsFormat(column.columns,column);
+                    tmp = _.concat(tmp,children);
+                }else{
+                    tmp.push(column);
+                }
+            });
+            return tmp;
         }
     }
 }

@@ -6,7 +6,7 @@ Date: 2017/1/13
 Time: 09:34-->
 <template>
 <div>
-<ms-grid :data="data" :columns="columns" />
+<ms-grid :tree-structure=true :data="data" :columns="columns" />
 </div>
 </template>
 <script>
@@ -21,12 +21,31 @@ Time: 09:34-->
               sex:'男'
             },
             {
-              name:'A',
+              name:'B',
               age:20,
-              sex:'男'
+              sex:'男',
+              children:[
+                {
+                  name:'D',
+                  age:32,
+                  sex:'女',
+                  children:[
+                    {
+                      name:'F',
+                      age:23,
+                      sex:'男'
+                    }
+                  ]
+                },
+                {
+                  name:'E',
+                  age:33,
+                  sex:'女'
+                }
+              ]
             },
             {
-              name:'A',
+              name:'C',
               age:20,
               sex:'男'
             }

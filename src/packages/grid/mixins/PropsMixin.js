@@ -20,28 +20,40 @@ export default {
                 return [];
             }
         },
+        record:{
+            type:Object,
+            default() {
+                return {};
+            }
+        },
+        originColumns:{
+            type:Array,
+            default:function() {
+                return [];
+            }
+        },
         columns:{
             type:Array,
             default:function() {
                 return [];
             }
         },
-        centerColumns:{
-            type:Array,
-            default(){
-                return [];
+        column:{
+            type:Object,
+            default() {
+                return {};
             }
         },
-        leftColumns:{
-            type:Array,
-            default:function () {
-                return [];
+        rowIndex:{
+            type:Number,
+            default(){
+                return 0;
             }
         },
-        rightColumns:{
-            type:Array,
+        cellIndex:{
+            type:Number,
             default(){
-                return [];
+                return 0;
             }
         }
     }

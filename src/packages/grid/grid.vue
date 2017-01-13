@@ -7,15 +7,17 @@ Time: 09:30-->
 <template>
   <div>
     <ms-grid-center :tree-structure="treeStructure"
-                    :data="dataCompute "
-                    :columns="columns"
-                    :center-columns="centerColumnsData" />
+                    :data="dataData "
+                    :origin-columns="columns"
+                    :columns="centerColumnsData"  />
   </div>
 </template>
 <script>
+    import Vue from "vue";
     import MethodsMixin from "./mixins/MethodsMixin";
 
     import MsGridCenter from "./grid-center.vue";
+    import bus from "./GridEvents";
     export default {
       name:'ms-grid',
       mixins:[MethodsMixin],
@@ -40,7 +42,9 @@ Time: 09:30-->
         }
       },
       data(){
+        let me = this;
         return {
+          dataData:[],
           leftColumnsData:[],
           centerColumnsData:[],
           rightColumnsData:[]
@@ -49,6 +53,7 @@ Time: 09:30-->
       computed:{
         dataCompute:function() {
            let me = this;
+           debugger
           if(me.treeStructure){
             return me.dataFormat(me.data);
           }
@@ -61,13 +66,25 @@ Time: 09:30-->
       },
       created(){
           let me = this;
+          me.dataData = me.dataFormat(me.data);
           me.columnsSplit();
+
+          bus.$on('ms-children-expand-toggle',function(rowIndex){
+            let record = me.dataData[rowIndex];
+            debugger
+            record._expanded = !record._expanded;
+          //  me.dataData.push({name:'G',age:32,sex:"dd"});
+            //  Vue.set(me.dataData[rowIndex],'_expanded',!record._expanded);
+          });
+          bus.$on('show-children',function(rowIndex,show){
+            Vue.set(me.dataData[rowIndex],'_show',show);
+          });
       },
       methods:{
         columnsSplit:function(){
           let me = this;
           me.centerColumnsData = me.columns;
-        }
+        },
       },
       components: {
         MsGridCenter
