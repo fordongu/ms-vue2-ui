@@ -19,6 +19,12 @@ export default {
             default:function () {
                 return [];
             }
+        },
+        columns:{
+            type:Array,
+            default:function() {
+                return [];
+            }
         }
     }
 }

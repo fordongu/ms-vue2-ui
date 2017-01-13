@@ -6,7 +6,7 @@ Date: 2017/1/13
 Time: 09:34-->
 <template>
 <div>
-<ms-grid />
+<ms-grid :data="data" :columns="columns" />
 </div>
 </template>
 <script>
@@ -31,7 +31,22 @@ Time: 09:34-->
               sex:'男'
             }
           ]
-        }
+        },
+        columns:[
+          {
+            text:'姓名',
+            dataIndex:'name',
+            flex:1
+          },
+          {
+            text:'年龄',
+            dataIndex:'age'
+          },
+          {
+            text:'性别',
+            dataIndex:'sex'
+          }
+        ]
       },
       components: {
         MsGrid
