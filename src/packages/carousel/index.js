@@ -6,3 +6,7 @@
  * Time: 23:54
  */
 'use strict';
+import MsCarousel from "./carousel.vue";
+module.exports = {
+    MsCarousel
+}

@@ -8,8 +8,10 @@ Time: 23:53-->
 
 </template>
 <script>
+import {MsCarousel} from "../../../src/index";
     export default {
       components: {
+        MsCarousel
       }
     }
 </script>
