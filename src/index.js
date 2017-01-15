@@ -7,7 +7,10 @@
  */
 'use strict';
 import {MsGrid} from "./packages/grid/index";
+import {Carousel,CarouselItem} from "./packages/carousel/index";
 
 module.exports = {
-    MsGrid
+    MsGrid,
+    Carousel,
+    CarouselItem
 }

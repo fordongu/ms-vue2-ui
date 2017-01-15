@@ -5,14 +5,16 @@ User: Bane.Shi
 Date: 2017/1/14
 Time: 23:53-->
 <template>
-  <div class="carousel">
+  <div class="">
     <carousel>
-
+      <carousel-item v-for="(item,index) in data" :item="item">
+        sssss
+      </carousel-item>
     </carousel>
 </div>
 </template>
 <script>
-    import {Carousel} from "../../../src/index";
+    import {Carousel,CarouselItem} from "../../../src/index";
   //  let CarouselItem = Carousel.CarouselItem
     export default {
         data(){
@@ -28,7 +30,8 @@ Time: 23:53-->
             }
         },
       components: {
-        Carousel
+        Carousel,
+        CarouselItem
       }
     }
 </script>

@@ -7,7 +7,8 @@
  */
 'use strict';
 import Carousel from "./carousel.vue";
-//import CarouselItem from "./carousel-item.vue";
+import CarouselItem from "./carousel-item.vue";
 module.exports = {
-    Carousel
+    Carousel,
+    CarouselItem
 }

@@ -23,6 +23,18 @@ Time: 11:37-->
 
             }
         },
+        beforeCreate(){
+            let me = this;
+
+        },
+        created(){
+            let me = this;
+           // me.$parent.data.push(me.item);
+            debugger
+        },
+        mounted(){
+            debugger;
+        },
         components:{
 
         }
