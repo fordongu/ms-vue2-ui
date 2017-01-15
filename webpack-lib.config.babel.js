@@ -27,7 +27,8 @@ let config = {
     },
     entry:{
         'js/index'  : './src/index.js',
-/*        'css/theme-default/style':'./src/packages/theme-default/style.scss'*/
+        'js/style'  : './src/style.js',
+/*        'css/theme-default/style.css':'./src/packages/theme-default/style.scss'*/
     },
     output:{
         path: path.resolve(__dirname,'lib'),
@@ -47,8 +48,8 @@ let config = {
                     plugins:['transform-runtime']
                 },
             },
-            {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?name=css/[name].[ext") },
-            {test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader","css!sass?sourceMap?name=css/[name].[ext") },
+            {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?name=css/[name].[ext]") },
+            {test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader","css!sass?sourceMap?name=css/[name].[ext]") },
             {test: /\.(png|jpg|gif)$/,loader: "url?limit=2500" },
             {test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/, loader: "file-loader?name=fonts/[name].[ext]" },
             //  {test: require.resolve('jquery'), loader: 'expose?window.jquery'},
@@ -72,7 +73,7 @@ let config = {
             $ : 'jquery',
             jQuery : 'jquery',
         }),
-        new ExtractTextPlugin('style.css',{
+        new ExtractTextPlugin('css/theme-default/style.css',{
             allChunks: true
         })
     ],

@@ -8,7 +8,7 @@
 'use strict';
 import "bootstrap/dist/css/bootstrap.css"
 
-import "../../src/packages/theme-default/style.scss";
+import "../../src/scss/theme-default/style.scss";
 
 import Vue from "vue";
 import VueRouter from 'vue-router';
