@@ -10,7 +10,7 @@ Time: 11:37-->
     </div>
 </template>
 <script>
-
+    import bus from "./CarouselEvents";
     export default{
         name:'ms-carousel-item',
         props:{
@@ -20,7 +20,8 @@ Time: 11:37-->
         },
         data(){
             return{
-
+                index:0,
+                currentIndex:0
             }
         },
         beforeCreate(){
@@ -29,7 +30,8 @@ Time: 11:37-->
         },
         created(){
             let me = this;
-           // me.$parent.data.push(me.item);
+            me.index = me.$parent.data.length;
+            me.$parent.data.push(me.item);
             debugger
         },
         mounted(){
