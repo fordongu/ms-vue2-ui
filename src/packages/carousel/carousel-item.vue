@@ -41,7 +41,6 @@ Time: 11:37-->
             });
             me.index = me.$parent.data.length;
             me.$parent.data.push(me.item);
-            debugger
         },
         mounted(){
             debugger;

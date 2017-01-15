@@ -71,7 +71,6 @@ Time: 12:20-->
                 handler:function(newVal, oldVal){
                     let me = this;
                     if(newVal != oldVal){
-                    debugger
                         bus.$emit('ms-carousel-select-item',newVal);
                     }
                 }
