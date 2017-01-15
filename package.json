@@ -2,7 +2,7 @@
   "name": "ms-vue2-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "start.js",
+  "main": "lib/js/index.js",
   "dependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
@@ -38,7 +38,7 @@
   },
   "scripts": {
     "start": "babel-node start.js",
-    "build": "webpack  --watch --progres",
+    "build": "webpack --config webpack-lib.config.babel.js  --progres",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bane.Shi",
