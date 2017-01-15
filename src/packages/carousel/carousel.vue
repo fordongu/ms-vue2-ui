@@ -16,11 +16,11 @@ Time: 12:20-->
         <div class="carousel-inner" role="listbox">
             <slot></slot>
         </div>
-        <a class="left carousel-control"  role="button" data-slide="prev" @click="prev">
+        <a v-if="arrowShow" class="left carousel-control"  role="button" data-slide="prev" @click="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control"  role="button" data-slide="next" @click="next">
+        <a v-if="arrowShow" class="right carousel-control"  role="button" data-slide="next" @click="next">
             <span class="glyphicon glyphicon-chevron-right"></span>
             <span class="sr-only">Next</span>
         </a>
@@ -43,6 +43,12 @@ Time: 12:20-->
                 default(){
                     return true;
                 }
+            },
+            arrow:{
+                type:String,
+                default(){
+                    return "always";
+                }
             }
         },
         data(){
@@ -52,7 +58,13 @@ Time: 12:20-->
             }
         },
         computed:{
-
+            arrowShow:function() {
+                let me = this;
+                if(me.arrow=="never"){
+                    return false;
+                }
+                return true;
+            }
         },
         watch:{
             'currentIndex':{
