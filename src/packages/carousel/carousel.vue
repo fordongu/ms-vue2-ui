@@ -5,7 +5,7 @@ User: Bane.Shi
 Date: 2017/1/15
 Time: 12:20-->
 <template>
-    <div class="carousel slide" data-ride="carousel">
+    <div class="ms-carousel carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <ms-carousel-indicator v-for="(item,index) in data"
                                    :item="item"
