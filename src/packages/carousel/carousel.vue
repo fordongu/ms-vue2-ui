@@ -10,9 +10,7 @@ Time: 23:58-->
 
     </ol>
     <div class="carousel-inner" role="listbox">
-      <div v-for="(item,index) in data" class="item">
-        <slot></slot>
-      </div>
+      <slot></slot>
     </div>
     <a class="left carousel-control" role="button" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left"></span>

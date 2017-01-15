@@ -6,7 +6,8 @@
  * Time: 23:54
  */
 'use strict';
-import MsCarousel from "./carousel.vue";
+import Carousel from "./carousel.vue";
+//import CarouselItem from "./carousel-item.vue";
 module.exports = {
-    MsCarousel
+    Carousel
 }
