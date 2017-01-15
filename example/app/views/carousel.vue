@@ -5,6 +5,7 @@ User: Bane.Shi
 Date: 2017/1/14
 Time: 23:53-->
 <template>
+<<<<<<< HEAD
 <<<<<<< HEAD:example/app/views/carousel.vue
 
 =======
@@ -40,6 +41,32 @@ Time: 23:53-->
 >>>>>>> feature/grid:src/packages/grid/grid-center.vue
       components: {
         MsGridBody
+=======
+<div class="carousel">
+    <carousel>
+
+    </carousel>
+</div>
+</template>
+<script>
+    import {Carousel} from "../../../src/index";
+  //  let CarouselItem = Carousel.CarouselItem
+    export default {
+        data(){
+            return {
+                data:[
+                    {
+                        pic:'s'
+                    },
+                    {
+                        pic:'ddd'
+                    }
+                ]
+            }
+        },
+      components: {
+        Carousel
+>>>>>>> feature/carousel
       }
     }
 </script>
