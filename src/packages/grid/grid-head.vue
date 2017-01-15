@@ -9,6 +9,7 @@ Time: 09:31-->
 </template>
 <script>
     export default {
+      name:'ms-grid-head',
       components: {
       }
     }
