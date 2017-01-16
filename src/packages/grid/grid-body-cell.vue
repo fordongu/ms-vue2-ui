@@ -60,7 +60,6 @@ Time: 09:48-->
       methods:{
         childrenExpandToggle:function(){
           let me = this;
-          debugger
           bus.$emit('ms-children-expand-toggle',me.rowIndex);
         }
       },

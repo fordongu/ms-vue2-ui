@@ -6,7 +6,7 @@ Date: 2017/1/13
 Time: 09:32-->
 <template>
 <div>
-  <table>
+  <table class="table">
     <tbody>
       <tr v-for="(record,index) in data"
           is="ms-grid-body-row"
@@ -33,7 +33,6 @@ Time: 09:32-->
       watch:{
         'data':{
           handler:function(){
-          debugger
           },
           deep: true
         }
@@ -42,7 +41,6 @@ Time: 09:32-->
 
       },
       mounted(){
-      debugger
       },
       components: {
         MsGridBodyRow

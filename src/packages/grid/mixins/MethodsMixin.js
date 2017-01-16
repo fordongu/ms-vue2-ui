@@ -33,7 +33,7 @@ export default {
             });
             return tmp;
         },
-        columnsFormat:function (columns,parent) {
+        columnsLeafs:function (columns,parent) {
             let me = this;
             let tmp = [];
             _.forEach(columns,function (column) {
@@ -48,6 +48,7 @@ export default {
                 }
             });
             return tmp;
-        }
+        },
+
     }
 }

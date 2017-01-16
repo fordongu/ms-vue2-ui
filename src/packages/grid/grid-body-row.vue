@@ -37,13 +37,12 @@ Time: 09:33-->
           let me = this;
           let record = me.record;
           let show = (record._parent?(record._parent._expanded && record._parent._show):true);
-          debugger
           bus.$emit('show-children',me.rowIndex,show);
           return show;
         }
       },
       beforeUpdate(){
-        debugger
+
       },
       watch:{
 

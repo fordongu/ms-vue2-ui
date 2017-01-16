@@ -10,6 +10,17 @@ export default {
     name:'ms-grid-body-cell-inner',
     template:'<div></div>',
     props:{
-
+        "_column":{
+            type:Object,
+            default(){
+                return {};
+            }
+        },
+        "_record":{
+            type:Object,
+            default(){
+                return {};
+            }
+        }
     }
 }

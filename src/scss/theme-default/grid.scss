@@ -1,13 +1,38 @@
 .ms-grid{
+  .ms-grid-center{
+
+  }
+
   table{
-    tr{
-      td{
-        .ms-space{
-          display: inline-block;
-          width: 14px;
-          height: 14px;
+    &.ms-grid-head{
+      margin: {
+        bottom: 0px;
+      };
+      thead{
+        tr{
+          td{
+            vertical-align: middle;
+            border: {
+              bottom: {
+                width: 1px;
+              };
+            };
+          }
+        }
+      }
+    }
+    tbody{
+      tr{
+        td{
+          .ms-space{
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+          }
         }
       }
     }
   }
+
+
 }
