@@ -6,11 +6,16 @@ Date: 2017/1/15
 Time: 12:45-->
 <template>
     <div :class="gridClass">
-        <ms-grid-head :column-heads="columnHeads"
-                      :max-column-level="maxColumnLevel" />
+        <ms-grid-head :head-columns="headColumns"
+                      :cols="leafColumns"
+                      :max-column-level="maxColumnLevel"
+                      :rest-width="restWidthData"
+                      :flex-count="flexCountCompute" />
         <ms-grid-body :tree-structure="treeStructure"
                       :data="data"
-                      :columns="columns" />
+                      :columns="leafColumns"
+                      :rest-width="restWidthData"
+                      :flex-count="flexCountCompute"  />
     </div>
 </template>
 <script>
@@ -32,7 +37,9 @@ Time: 12:45-->
         },
         data(){
             return{
-                maxColumnLevel:1
+                maxColumnLevel:1,
+                restWidthData:0,
+                flexCountData:0
             }
         },
         computed:{
@@ -46,7 +53,7 @@ Time: 12:45-->
                     return "ms-grid-center";
                 }
             },
-            columnHeads:function(){
+            headColumns:function(){
                 let me = this;
                 let columnsObject = me.columnsHeadFormat(me.columns);
                 let objectCount = _.keys(columnsObject).length;
@@ -55,11 +62,24 @@ Time: 12:45-->
                     result.push(columnsObject[i]);
                 }
                 return result;
+            },
+            leafColumns:function(){
+                let me = this;
+                return me.columnsLeafs(me.columns);
+            },
+            flexCountCompute:function(){
+                let me = this;
+                return me.getFlexCount(me.leafColumns);
             }
         },
         created(){
             let me = this;
 
+        },
+        mounted(){
+            let me = this;
+            let width = me.$el.clientWidth;
+            me.restWidthData = me.getRestWidth(me.leafColumns,width);
         },
         methods:{
             columnsHeadFormat:function (columns,parent,level) {
@@ -104,6 +124,28 @@ Time: 12:45-->
                     }
                 });
                 return tmp;
+            },
+            getRestWidth:function(columns,width){
+                let widthDistribution = 0;
+                _.forEach(columns,function(column){
+                    if(column.width){
+                        widthDistribution += column.width;
+                    }
+                });
+                return width - widthDistribution;
+            },
+            getFlexCount:function(columns){
+                let flexCount = 0;
+                _.forEach(columns,function(column){
+                    if(!column.width){
+                       if(column.flex){
+                            flexCount += column.flex
+                       }else {
+                            flexCount += 1;
+                       }
+                    }
+                });
+                return flexCount;
             }
         },
         components:{

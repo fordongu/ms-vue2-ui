@@ -6,7 +6,7 @@ Date: 2017/1/13
 Time: 09:30-->
 <template>
   <div class="ms-grid">
-    <ms-grid-center :tree-structure="treeStructure"
+    <ms-grid-scope :tree-structure="treeStructure"
                     :data="dataData "
                     :origin-columns="columns"
                     :columns="centerColumnsData"  />
@@ -16,7 +16,7 @@ Time: 09:30-->
     import Vue from "vue";
     import MethodsMixin from "./mixins/MethodsMixin";
 
-    import MsGridCenter from "./grid-center.vue";
+    import MsGridScope from "./grid-scope.vue";
     import bus from "./GridEvents";
     export default {
       name:'ms-grid',
@@ -71,10 +71,7 @@ Time: 09:30-->
 
           bus.$on('ms-children-expand-toggle',function(rowIndex){
             let record = me.dataData[rowIndex];
-            debugger
             record._expanded = !record._expanded;
-          //  me.dataData.push({name:'G',age:32,sex:"dd"});
-            //  Vue.set(me.dataData[rowIndex],'_expanded',!record._expanded);
           });
           bus.$on('show-children',function(rowIndex,show){
             Vue.set(me.dataData[rowIndex],'_show',show);
@@ -87,7 +84,7 @@ Time: 09:30-->
         },
       },
       components: {
-        MsGridCenter
+        MsGridScope
       }
     }
 </script>

@@ -7,10 +7,10 @@ Time: 09:31-->
 <template>
   <table class="ms-grid-head table table-bordered" >
     <colgroup>
-
+      <ms-grid-col v-for="(col,index) in cols" :col="col" :flex-count="flexCount" :rest-width="restWidth" />
     </colgroup>
     <thead>
-      <tr v-for="(columnRow,rowIndex) in columnHeads">
+      <tr v-for="(columnRow,rowIndex) in headColumns">
         <td v-for="(column,cellIndex) in columnRow"
             is="ms-grid-head-item"
             :column="column"
@@ -22,13 +22,23 @@ Time: 09:31-->
 </template>
 <script>
     import MsGridHeadItem from "./grid-head-item.vue";
+    import MsGridCol from "./grid-col.vue";
     export default {
       name:'ms-grid-head',
       props:{
-        columnHeads:{
+        headColumns:{
+          type:Array
+        },
+        cols:{
           type:Array
         },
         maxColumnLevel:{
+          type:Number
+        },
+        restWidth:{
+          type:Number
+        },
+        flexCount:{
           type:Number
         }
       },
@@ -36,7 +46,8 @@ Time: 09:31-->
 
       },
       components: {
-        MsGridHeadItem
+        MsGridHeadItem,
+        MsGridCol
       }
     }
 </script>

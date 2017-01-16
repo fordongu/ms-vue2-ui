@@ -7,6 +7,9 @@ Time: 09:32-->
 <template>
 <div>
   <table class="table">
+    <colgroup>
+      <ms-grid-col v-for="(col,index) in columns" :col="col" :flex-count="flexCount" :rest-width="restWidth" />
+    </colgroup>
     <tbody>
       <tr v-for="(record,index) in data"
           is="ms-grid-body-row"
@@ -24,6 +27,7 @@ Time: 09:32-->
     import MethodsMixin from "./mixins/MethodsMixin";
 
     import MsGridBodyRow from "./grid-body-row.vue";
+    import MsGridCol from "./grid-col.vue";
     export default {
       name:'ms-grid-body',
       mixins:[PropsMixin,MethodsMixin],
@@ -43,7 +47,8 @@ Time: 09:32-->
       mounted(){
       },
       components: {
-        MsGridBodyRow
+        MsGridBodyRow,
+        MsGridCol
       }
     }
 </script>

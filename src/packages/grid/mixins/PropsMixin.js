@@ -55,6 +55,12 @@ export default {
             default(){
                 return 0;
             }
+        },
+        restWidth:{
+
+        },
+        flexCount:{
+
         }
     }
 }
