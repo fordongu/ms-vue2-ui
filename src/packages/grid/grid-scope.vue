@@ -25,6 +25,8 @@ Time: 12:45-->
 
     import MsGridHead from "./grid-head.vue";
     import MsGridBody from "./grid-body.vue";
+
+    import bus from "./GridEvents";
     export default{
         mixins:[PropsMixin,MethodsMixin],
         props:{
@@ -33,11 +35,22 @@ Time: 12:45-->
                 default(){
                     return "center";
                 }
+            },
+            width:{
+                type:Number,
+                default(){
+                    return 200;
+                }
+            },
+            maxColumnLevel:{
+                type:Number,
+                default(){
+                    return 1;
+                }
             }
         },
         data(){
             return{
-                maxColumnLevel:1,
                 restWidthData:0,
                 flexCountData:0
             }
@@ -70,6 +83,8 @@ Time: 12:45-->
             flexCountCompute:function(){
                 let me = this;
                 return me.getFlexCount(me.leafColumns);
+            },
+            restWidthCompute:function(){
             }
         },
         created(){
@@ -93,9 +108,7 @@ Time: 12:45-->
                     if(level){
                         _level = level+1;
                     }
-                    if(me.maxColumnLevel < _level) {
-                        me.maxColumnLevel = _level
-                    }
+                    bus.$emit('ms-grid-max-level',_level);
                     Vue.set(column,'_level',_level);
                     Vue.set(column,'_leafCount',0);
                     if(column.columns && column.columns.length>0 ){

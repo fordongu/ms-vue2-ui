@@ -9,7 +9,8 @@ Time: 09:30-->
     <ms-grid-scope :tree-structure="treeStructure"
                     :data="dataData "
                     :origin-columns="columns"
-                    :columns="centerColumnsData"  />
+                    :columns="centerColumnsData"
+                    :max-column-level="maxColumnLevel" />
   </div>
 </template>
 <script>
@@ -40,11 +41,18 @@ Time: 09:30-->
             return [];
           }
         },
-        height:{}
+        height:{},
+        columnMinWidth:{
+          type:Number,
+          default(){
+            return 100;
+          }
+        }
       },
       data(){
         let me = this;
         return {
+          maxColumnLevel:1,
           dataData:[],
           leftColumnsData:[],
           centerColumnsData:[],
@@ -69,7 +77,11 @@ Time: 09:30-->
           let me = this;
           me.dataData = me.dataFormat(me.data);
           me.columnsSplit();
-
+          bus.$on('ms-grid-max-level',function(level){
+            if(me.maxColumnLevel<level){
+              me.maxColumnLevel = level;
+            }
+          });
           bus.$on('ms-children-expand-toggle',function(rowIndex){
             let record = me.dataData[rowIndex];
             record._expanded = !record._expanded;
