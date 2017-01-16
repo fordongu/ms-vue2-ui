@@ -108,12 +108,14 @@ Time: 12:45-->
                     if(level){
                         _level = level+1;
                     }
-                    bus.$emit('ms-grid-max-level',_level);
+
                     Vue.set(column,'_level',_level);
                     Vue.set(column,'_leafCount',0);
+                    bus.$emit('ms-grid-max-level',_level); //传递头部层级
                     if(column.columns && column.columns.length>0 ){
                         column._leafCount = column.columns.length;
                         let children = me.headColumnsFormat(column.columns,column,_level);
+                        //此处是用一个json object 存放columns，用层级作key
                         if(tmp[_level+1]){
                             tmp[_level+1] = _.concat(tmp[_level+1],children[[_level+1]]);
                         }else {
