@@ -55,7 +55,7 @@ Time: 12:45-->
             },
             headColumns:function(){
                 let me = this;
-                let columnsObject = me.columnsHeadFormat(me.columns);
+                let columnsObject = me.headColumnsFormat(me.columns);
                 let objectCount = _.keys(columnsObject).length;
                 let result  = [];
                 for(var i=1;i<=objectCount;i++){
@@ -82,10 +82,9 @@ Time: 12:45-->
             me.restWidthData = me.getRestWidth(me.leafColumns,width);
         },
         methods:{
-            columnsHeadFormat:function (columns,parent,level) {
+            headColumnsFormat:function (columns,parent,level) {
                 let me = this;
                 let tmp = {};
-                debugger
                 _.forEach(columns,function (column) {
                     if(parent){
                         Vue.set(column,'_parent',parent);
@@ -101,13 +100,13 @@ Time: 12:45-->
                     Vue.set(column,'_leafCount',0);
                     if(column.columns && column.columns.length>0 ){
                         column._leafCount = column.columns.length;
-                        let children = me.columnsHeadFormat(column.columns,column,_level);
+                        let children = me.headColumnsFormat(column.columns,column,_level);
                         if(tmp[_level+1]){
-                            tmp[_level+1] = _.concat(tmp[_level+1],children);
+                            tmp[_level+1] = _.concat(tmp[_level+1],children[[_level+1]]);
                         }else {
-                            tmp[_level+1] = children;
+                            tmp[_level+1] = children[_level+1];
                         }
-                        _.forEach(children,function(child){
+                        _.forEach(children[_level+1],function(child){
                             if(child._leafCount==0){
                                 column._leafCount++;
                             }else {

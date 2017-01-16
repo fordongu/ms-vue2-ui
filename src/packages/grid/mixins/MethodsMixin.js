@@ -41,7 +41,7 @@ export default {
                     Vue.set(column,'_parent',parent);
                 }
                 if(column.columns && column.columns.length>0 ){
-                    let children = me.columnsFormat(column.columns,column);
+                    let children = me.columnsLeafs(column.columns,column);
                     tmp = _.concat(tmp,children);
                 }else{
                     tmp.push(column);

@@ -57,12 +57,17 @@ Time: 09:34-->
               flex:1
             },
             {
-              text:'年龄',
-              dataIndex:'age'
-            },
-            {
-              text:'性别',
-              dataIndex:'sex'
+              text:'测试',
+              columns:[
+                {
+                  text:'年龄',
+                  dataIndex:'age'
+                },
+                {
+                  text:'性别',
+                  dataIndex:'sex'
+                }
+              ]
             }
           ]
         }

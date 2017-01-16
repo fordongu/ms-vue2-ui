@@ -39,7 +39,8 @@ Time: 09:30-->
           default:function() {
             return [];
           }
-        }
+        },
+        height:{}
       },
       data(){
         let me = this;

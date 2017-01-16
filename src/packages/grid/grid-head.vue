@@ -5,11 +5,12 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:31-->
 <template>
-  <table class="ms-grid-head table table-bordered" >
-    <colgroup>
-      <ms-grid-col v-for="(col,index) in cols" :col="col" :flex-count="flexCount" :rest-width="restWidth" />
-    </colgroup>
-    <thead>
+  <div>
+    <table class="ms-grid-head table table-bordered" >
+      <colgroup>
+        <ms-grid-col v-for="(col,index) in cols" :col="col" :flex-count="flexCount" :rest-width="restWidth" />
+      </colgroup>
+      <thead>
       <tr v-for="(columnRow,rowIndex) in headColumns">
         <td v-for="(column,cellIndex) in columnRow"
             is="ms-grid-head-item"
@@ -17,8 +18,9 @@ Time: 09:31-->
             :max-column-level="maxColumnLevel">
         </td>
       </tr>
-    </thead>
-  </table>
+      </thead>
+    </table>
+  </div>
 </template>
 <script>
     import MsGridHeadItem from "./grid-head-item.vue";
