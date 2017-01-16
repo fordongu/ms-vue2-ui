@@ -8,11 +8,9 @@
 'use strict';
 import Grid from "../views/grid.vue";
 import Carousel from "../views/carousel.vue";
-const Bar = { template: '<div>bar</div>' }
 
 export default [
     { path:'/',component: require("../views/index.vue")},
-    { path: '/foo', component: Bar },
     { path: '/grid', component: Grid },
     { path: '/carousel', component: Carousel }
 ]
