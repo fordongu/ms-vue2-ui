@@ -40,6 +40,12 @@ export default {
                 return "center";
             }
         },
+        hasLeft:{
+            type:Boolean,
+            default(){
+                return false;
+            }
+        },
         treeStructure:{
             type:Boolean,
             default:function() {

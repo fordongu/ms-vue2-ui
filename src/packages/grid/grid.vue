@@ -26,9 +26,10 @@ Time: 09:30-->
                      :height="heightCompute"
                      :width="centerWidthCompute"
                      :left="centerLeft"
+                     :has-left="hasLeftData"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
-                     :ms-grid-id="msGridId"/>
+                     :ms-grid-id="msGridId" />
       <ms-grid-scope :tree-structure="treeStructure"
                      position="right"
                      :data="dataData "
@@ -107,7 +108,8 @@ Time: 09:30-->
           leftWidthData:0,
           centerWidthData:0,
           rightWidthData:0,
-          centerLeft:0
+          centerLeft:0,
+          hasLeftData:false
         }
       },
       computed:{
@@ -168,7 +170,6 @@ Time: 09:30-->
         let me = this;
         if(me.componentReady != undefined){
             me.componentReady = true;
-           // let gridWidth = me.$el.clientWidth;
         }
       },
       methods:{
@@ -176,6 +177,9 @@ Time: 09:30-->
           let me = this;
           me.centerColumnsData = _.cloneDeep(me.columns);
           me.leftColumnsData = _.cloneDeep(me.columns);
+          if(me.leftColumnsData && me.leftColumnsData.length>0){
+            me.hasLeftData = true;
+          }
           me.rightColumnsData = _.cloneDeep(me.columns);
         },
       },
