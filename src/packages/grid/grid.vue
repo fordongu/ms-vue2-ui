@@ -6,14 +6,14 @@ Date: 2017/1/13
 Time: 09:30-->
 <template>
   <div class="ms-grid">
-    <div>
+    <div style="position:relative;">
       <ms-grid-scope :tree-structure="treeStructure" position="left"
                      :data="dataData "
                      :origin-columns="columns"
                      :columns="leftColumnsData"
                      :max-column-level="maxColumnLevel"
                      :height="heightCompute"
-                     :width="centerWidthData"
+                     :width="leftWidthData"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
                      :ms-grid-id="msGridId"/>
@@ -23,7 +23,7 @@ Time: 09:30-->
                      :columns="centerColumnsData"
                      :max-column-level="maxColumnLevel"
                      :height="heightCompute"
-                     :width="centerWidthData"
+                     :width="centerWidthCompute"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
                      :ms-grid-id="msGridId"/>
@@ -85,18 +85,20 @@ Time: 09:30-->
         let me = this;
         return {
           msGridId:_.uniqueId("ms_grid_"),
+          componentReady:false,
           maxColumnLevel:1,
           dataData:[],
           leftColumnsData:[],
           centerColumnsData:[],
           rightColumnsData:[],
-          centerWidthData:0
+          leftWidthData:0,
+          centerWidthData:0,
+          rightWidthData:0
         }
       },
       computed:{
         dataCompute:function() {
-           let me = this;
-           debugger
+          let me = this;
           if(me.treeStructure){
             return me.dataFormat(me.data);
           }
@@ -106,6 +108,13 @@ Time: 09:30-->
           let me = this;
           if(me.scrollY){
             return me.height;
+          }
+        },
+        centerWidthCompute:function(){
+          let me = this;
+          if(me.componentReady){
+              let gridWidth = me.$el.clientWidth;
+              return gridWidth-me.leftWidthData-me.rightWidthData;
           }
         }
       },
@@ -122,6 +131,16 @@ Time: 09:30-->
               me.maxColumnLevel = level;
             }
           });
+          bus.$on('ms-grid-scope-width-compute',function(gridId,position,gridScopeWidth){
+            if(me.msGridId == gridId){
+              if(position == "left"){
+                me.leftWidthData = gridScopeWidth;
+              }
+              if(position == "right"){
+                me.rightWidthData = gridScopeWidth;
+              }
+            }
+          });
           bus.$on('ms-children-expand-toggle',function(rowIndex){
             let record = me.dataData[rowIndex];
             record._expanded = !record._expanded;
@@ -132,8 +151,10 @@ Time: 09:30-->
       },
       mounted(){
         let me = this;
-        me.centerWidthData = me.$el.clientWidth;
-
+        if(me.componentReady != undefined){
+            me.componentReady = true;
+           // let gridWidth = me.$el.clientWidth;
+        }
       },
       methods:{
         columnsSplit:function(){

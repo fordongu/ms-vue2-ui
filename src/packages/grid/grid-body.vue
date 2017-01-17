@@ -37,6 +37,7 @@ Time: 09:32-->
       },
       data(){
         return {
+          msGridBodyId:_.uniqueId("ms_grid_body_"),
           bodyStyleData:{}
         }
       },
@@ -44,7 +45,13 @@ Time: 09:32-->
         heightStyleCompute:function(){
           let me = this;
           if( me.componentReady && me.scrollY ){
-            return {height:me.height+"px",overflowY:'auto'};
+            let style = {height:me.height+"px"};
+            if(me.position == "center"){
+              Object.assign(style,{overflowY:'auto'});
+            }else {
+              Object.assign(style,{overflowY:'hidden'});
+            }
+            return style;
           }
         },
         widthStyleCompute:function(){
@@ -62,7 +69,14 @@ Time: 09:32-->
         }
       },
       created(){
-
+        let me = this;
+        bus.$on('ms-grid-body-scroll',function(gridId,e){
+           if(me.msGridId == gridId){
+              if(e.target!=me.$el){
+                me.$el.scrollTop = e.target.scrollTop;
+              }
+           }
+        });
       },
       mounted(){
         let me = this;

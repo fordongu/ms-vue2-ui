@@ -34,6 +34,12 @@ export default {
         width:{
 
         },
+        position:{
+            type:String,
+            default(){
+                return "center";
+            }
+        },
         treeStructure:{
             type:Boolean,
             default:function() {

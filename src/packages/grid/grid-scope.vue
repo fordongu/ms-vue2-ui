@@ -7,20 +7,26 @@ Time: 12:45-->
 <template>
     <div :class="gridClass">
         <div >
-            <ms-grid-head ref="ms_grid_head" :head-columns="headColumns"
+            <ms-grid-head ref="ms_grid_head"
+                          :position="position"
+                          :head-columns="headColumns"
                           :cols="leafColumnsCompute"
                           :width="innerWidthData"
-                          :max-column-level="maxColumnLevel" :scroll-x="scrollX" :ms-grid-id="msGridId"
+                          :max-column-level="maxColumnLevel"
+                          :scroll-x="scrollX"
+                          :ms-grid-id="msGridId"
             />
         </div>
         <div>
             <ms-grid-body :tree-structure="treeStructure"
                           :data="data"
+                          :position="position"
                           :columns="leafColumnsCompute"
                           :width="innerWidthData"
                           :height="bodyHeightCompute"
                           :scrollY="scrollY"
-                          :scrollX="scrollX" :ms-grid-id="msGridId" />
+                          :scrollX="scrollX"
+                          :ms-grid-id="msGridId" />
         </div>
     </div>
 </template>
@@ -37,12 +43,6 @@ Time: 12:45-->
     export default{
         mixins:[PropsMixin,MethodsMixin,LifecycleMixin],
         props:{
-            position:{
-                type:String,
-                default(){
-                    return "center";
-                }
-            },
             width:{
                 type:Number,
                 default(){
@@ -128,6 +128,7 @@ Time: 12:45-->
                         }
                     });
                     me.innerWidthData = allocatedWidthCount + unAllocatedWidthCount;
+                    bus.$emit('ms-grid-scope-width-compute',me.msGridId,me.position,me.innerWidthData);
                 }
                 return leafs;
             }
