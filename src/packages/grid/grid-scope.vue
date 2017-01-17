@@ -6,7 +6,8 @@ Date: 2017/1/15
 Time: 12:45-->
 <template>
     <div :class="gridClass">
-        <ms-grid-head :head-columns="headColumns"
+        <ms-grid-head ref="ms_grid_head"
+                      :head-columns="headColumns"
                       :cols="leafColumns"
                       :max-column-level="maxColumnLevel"
                       :rest-width="restWidthData"
@@ -15,20 +16,22 @@ Time: 12:45-->
                       :data="data"
                       :columns="leafColumns"
                       :rest-width="restWidthData"
-                      :flex-count="flexCountCompute"  />
+                      :flex-count="flexCountCompute"
+                      :height="bodyHeightCompute" :scroll="scroll" />
     </div>
 </template>
 <script>
     import Vue from "vue";
     import PropsMixin from "./mixins/PropsMixin";
     import MethodsMixin from "./mixins/MethodsMixin";
+    import LifecycleMixin from "./mixins/LifecycleMixin";
 
     import MsGridHead from "./grid-head.vue";
     import MsGridBody from "./grid-body.vue";
 
     import bus from "./GridEvents";
     export default{
-        mixins:[PropsMixin,MethodsMixin],
+        mixins:[PropsMixin,MethodsMixin,LifecycleMixin],
         props:{
             position:{
                 type:String,
@@ -52,10 +55,18 @@ Time: 12:45-->
         data(){
             return{
                 restWidthData:0,
-                flexCountData:0
+                flexCountData:0,
+                bodyHeightData:0
             }
         },
         computed:{
+            bodyHeightCompute:function(){
+                let me = this;
+                if(me.componentReady && me.scroll){
+                    let headHeight = me.$refs.ms_grid_head.$el.clientHeight;
+                    return me.height-headHeight;
+                }
+            },
             gridClass:function(){
                 let me = this;
                 if(me.position == "left"){
@@ -89,12 +100,13 @@ Time: 12:45-->
         },
         created(){
             let me = this;
-
+            debugger
         },
         mounted(){
             let me = this;
             let width = me.$el.clientWidth;
             me.restWidthData = me.getRestWidth(me.leafColumns,width);
+            //me.bodyHeightData = me.getBodyHeight();
         },
         methods:{
             headColumnsFormat:function (columns,parent,level) {

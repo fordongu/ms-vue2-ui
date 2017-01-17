@@ -7,7 +7,18 @@
  */
 'use strict';
 export default {
+    data(){
+        return {
+            componentReady:false
+        }
+    },
     props:{
+        scroll:{
+            type:Boolean,
+            default(){
+                return false;
+            }
+        },
         treeStructure:{
             type:Boolean,
             default:function() {
@@ -55,6 +66,9 @@ export default {
             default(){
                 return 0;
             }
+        },
+        height:{
+
         },
         restWidth:{
 

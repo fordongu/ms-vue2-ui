@@ -6,11 +6,14 @@ Date: 2017/1/13
 Time: 09:30-->
 <template>
   <div class="ms-grid">
-    <ms-grid-scope :tree-structure="treeStructure"
-                    :data="dataData "
-                    :origin-columns="columns"
-                    :columns="centerColumnsData"
-                    :max-column-level="maxColumnLevel" />
+    <div>
+      <ms-grid-scope :tree-structure="treeStructure"
+                     :data="dataData "
+                     :origin-columns="columns"
+                     :columns="centerColumnsData"
+                     :max-column-level="maxColumnLevel"
+                     :height="heightCompute" :scroll="scroll"/>
+    </div>
   </div>
 </template>
 <script>
@@ -41,7 +44,15 @@ Time: 09:30-->
             return [];
           }
         },
-        height:{},
+        height:{
+          type:Number
+        },
+        scroll:{
+          type:Boolean,
+          default(){
+            return false;
+          }
+        },
         columnMinWidth:{
           type:Number,
           default(){
@@ -67,6 +78,12 @@ Time: 09:30-->
             return me.dataFormat(me.data);
           }
           return me.data;
+        },
+        heightCompute:function(){
+          let me = this;
+          if(me.scroll){
+            return 300;
+          }
         }
       },
       beforeCreate(){

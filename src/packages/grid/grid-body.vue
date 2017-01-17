@@ -5,7 +5,7 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:32-->
 <template>
-<div>
+<div :style="[heightStyleCompute]">
   <table class="table">
     <colgroup>
       <ms-grid-col v-for="(col,index) in columns" :col="col" :flex-count="flexCount" :rest-width="restWidth" />
@@ -25,14 +25,29 @@ Time: 09:32-->
 <script>
     import PropsMixin from "./mixins/PropsMixin";
     import MethodsMixin from "./mixins/MethodsMixin";
+    import LifecycleMixin from "./mixins/LifecycleMixin";
 
     import MsGridBodyRow from "./grid-body-row.vue";
     import MsGridCol from "./grid-col.vue";
     export default {
       name:'ms-grid-body',
-      mixins:[PropsMixin,MethodsMixin],
+      mixins:[PropsMixin,MethodsMixin,LifecycleMixin],
       props:{
 
+      },
+      data(){
+        return {
+          bodyStyleData:{}
+        }
+      },
+      computed:{
+        heightStyleCompute:function(){
+          let me = this;
+          debugger;
+          if( me.componentReady && me.scroll ){
+            return {height:me.height+"px",overflowY:'auto'};
+          }
+        }
       },
       watch:{
         'data':{
@@ -41,10 +56,15 @@ Time: 09:32-->
           deep: true
         }
       },
-      methods:{
-
+      created(){
+        debugger
       },
       mounted(){
+        let me = this;
+    //    me.getBodyHeightStyle();
+      },
+      methods:{
+
       },
       components: {
         MsGridBodyRow,
