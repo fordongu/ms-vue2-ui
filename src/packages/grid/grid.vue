@@ -6,8 +6,9 @@ Date: 2017/1/13
 Time: 09:30-->
 <template>
   <div class="ms-grid">
-    <div style="position:relative;">
-      <ms-grid-scope :tree-structure="treeStructure" position="left"
+    <div class="ms-grid-box">
+      <ms-grid-scope :tree-structure="treeStructure"
+                     position="left"
                      :data="dataData "
                      :origin-columns="columns"
                      :columns="leftColumnsData"
@@ -24,6 +25,18 @@ Time: 09:30-->
                      :max-column-level="maxColumnLevel"
                      :height="heightCompute"
                      :width="centerWidthCompute"
+                     :left="centerLeft"
+                     :scrollX="scrollX"
+                     :scrollY="scrollY"
+                     :ms-grid-id="msGridId"/>
+      <ms-grid-scope :tree-structure="treeStructure"
+                     position="right"
+                     :data="dataData "
+                     :origin-columns="columns"
+                     :columns="rightColumnsData"
+                     :max-column-level="maxColumnLevel"
+                     :height="heightCompute"
+                     :width="rightWidthData"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
                      :ms-grid-id="msGridId"/>
@@ -93,7 +106,8 @@ Time: 09:30-->
           rightColumnsData:[],
           leftWidthData:0,
           centerWidthData:0,
-          rightWidthData:0
+          rightWidthData:0,
+          centerLeft:0
         }
       },
       computed:{
@@ -135,6 +149,7 @@ Time: 09:30-->
             if(me.msGridId == gridId){
               if(position == "left"){
                 me.leftWidthData = gridScopeWidth;
+                me.centerLeft = gridScopeWidth;
               }
               if(position == "right"){
                 me.rightWidthData = gridScopeWidth;
@@ -161,6 +176,7 @@ Time: 09:30-->
           let me = this;
           me.centerColumnsData = _.cloneDeep(me.columns);
           me.leftColumnsData = _.cloneDeep(me.columns);
+          me.rightColumnsData = _.cloneDeep(me.columns);
         },
       },
       components: {

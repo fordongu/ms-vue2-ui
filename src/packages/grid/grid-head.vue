@@ -68,7 +68,7 @@ Time: 09:31-->
       mounted(){
         let me = this;
         bus.$on('ms-grid-body-scroll',function(gridId,e){
-          if(gridId == me.msGridId){
+          if(gridId==me.msGridId && me.$el){
             me.$el.scrollLeft = e.target.scrollLeft;
           }
         });

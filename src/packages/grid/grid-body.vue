@@ -6,7 +6,7 @@ Date: 2017/1/13
 Time: 09:32-->
 <template>
 <div :style="[heightStyleCompute]" ref="ms_grid_body" @scroll="scroll">
-  <table class="table" :style="[widthStyleCompute]" ref="ms_grid_body_table">
+  <table class="ms-grid-body table" :style="[widthStyleCompute]" ref="ms_grid_body_table">
     <colgroup>
       <ms-grid-col v-for="(col,index) in columns" :col="col" />
     </colgroup>
@@ -16,7 +16,8 @@ Time: 09:32-->
           :tree-structure="treeStructure"
           :record="record"
           :row-index="index"
-          :columns="columns" :ms-grid-id="msGridId" >
+          :columns="columns"
+          :ms-grid-id="msGridId" >
       </tr>
     </tbody>
   </table>
@@ -72,7 +73,7 @@ Time: 09:32-->
         let me = this;
         bus.$on('ms-grid-body-scroll',function(gridId,e){
            if(me.msGridId == gridId){
-              if(e.target!=me.$el){
+              if(e.target!=me.$el && me.$el ){
                 me.$el.scrollTop = e.target.scrollTop;
               }
            }

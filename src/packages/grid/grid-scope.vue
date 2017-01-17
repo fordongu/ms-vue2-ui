@@ -5,7 +5,7 @@ User: Bane.Shi
 Date: 2017/1/15
 Time: 12:45-->
 <template>
-    <div :class="gridClass">
+    <div :class="gridClass" :style="[styleCompute]">
         <div >
             <ms-grid-head ref="ms_grid_head"
                           :position="position"
@@ -60,6 +60,12 @@ Time: 12:45-->
               default(){
                 return 100;
               }
+            },
+            left:{
+              type:Number,
+              default(){
+                return 0;
+              }
             }
         },
         data(){
@@ -71,6 +77,12 @@ Time: 12:45-->
             }
         },
         computed:{
+            styleCompute:function(){
+                let me = this;
+                if(me.left){
+                    return {left:me.left+"px"};
+                }
+            },
             bodyHeightCompute:function(){
                 let me = this;
                 if(me.componentReady && me.scrollY){
