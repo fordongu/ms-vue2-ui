@@ -5,10 +5,10 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:32-->
 <template>
-<div :style="[heightStyleCompute]">
-  <table class="table">
+<div :style="[heightStyleCompute]" ref="ms_grid_body">
+  <table class="table" :style="[widthStyleCompute]" ref="ms_grid_body_table">
     <colgroup>
-      <ms-grid-col v-for="(col,index) in columns" :col="col" :flex-count="flexCount" :rest-width="restWidth" />
+      <ms-grid-col v-for="(col,index) in columns" :col="col" />
     </colgroup>
     <tbody>
       <tr v-for="(record,index) in data"
@@ -33,7 +33,6 @@ Time: 09:32-->
       name:'ms-grid-body',
       mixins:[PropsMixin,MethodsMixin,LifecycleMixin],
       props:{
-
       },
       data(){
         return {
@@ -43,9 +42,14 @@ Time: 09:32-->
       computed:{
         heightStyleCompute:function(){
           let me = this;
-          debugger;
-          if( me.componentReady && me.scroll ){
+          if( me.componentReady && me.scrollY ){
             return {height:me.height+"px",overflowY:'auto'};
+          }
+        },
+        widthStyleCompute:function(){
+          let me = this;
+          if( me.componentReady && me.scrollX ){
+            return {width:me.width+"px"};
           }
         }
       },
@@ -57,11 +61,12 @@ Time: 09:32-->
         }
       },
       created(){
-        debugger
+
       },
       mounted(){
         let me = this;
     //    me.getBodyHeightStyle();
+
       },
       methods:{
 

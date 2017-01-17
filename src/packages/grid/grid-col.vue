@@ -33,11 +33,7 @@ Time: 10:34-->
           if(me.col.width){
             return me.col.width;
           }else {
-            if(me.col.flex){
-              return (me.col.flex/me.flexCount) * me.restWidth;
-            }else {
-              return (1/me.flexCount) * me.restWidth;
-            }
+            return me.col._width;
           }
         }
       },

@@ -12,7 +12,10 @@ Time: 09:30-->
                      :origin-columns="columns"
                      :columns="centerColumnsData"
                      :max-column-level="maxColumnLevel"
-                     :height="heightCompute" :scroll="scroll"/>
+                     :height="heightCompute"
+                     :width="centerWidthData"
+                     :scrollX="scrollX"
+                     :scrollY="scrollY"/>
     </div>
   </div>
 </template>
@@ -47,7 +50,13 @@ Time: 09:30-->
         height:{
           type:Number
         },
-        scroll:{
+        scrollX:{
+          type:Boolean,
+          default(){
+            return false;
+          }
+        },
+        scrollY:{
           type:Boolean,
           default(){
             return false;
@@ -67,7 +76,8 @@ Time: 09:30-->
           dataData:[],
           leftColumnsData:[],
           centerColumnsData:[],
-          rightColumnsData:[]
+          rightColumnsData:[],
+          centerWidthData:0
         }
       },
       computed:{
@@ -81,8 +91,8 @@ Time: 09:30-->
         },
         heightCompute:function(){
           let me = this;
-          if(me.scroll){
-            return 300;
+          if(me.scrollY){
+            return me.height;
           }
         }
       },
@@ -106,6 +116,10 @@ Time: 09:30-->
           bus.$on('show-children',function(rowIndex,show){
             Vue.set(me.dataData[rowIndex],'_show',show);
           });
+      },
+      mounted(){
+        let me = this;
+        me.centerWidthData = me.$el.clientWidth;
       },
       methods:{
         columnsSplit:function(){

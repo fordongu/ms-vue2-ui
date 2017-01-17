@@ -13,11 +13,23 @@ export default {
         }
     },
     props:{
-        scroll:{
+        scrollY:{
             type:Boolean,
             default(){
                 return false;
             }
+        },
+        scrollX:{
+            type:Boolean,
+            default(){
+                return false;
+            }
+        },
+        height:{
+
+        },
+        width:{
+
         },
         treeStructure:{
             type:Boolean,
@@ -67,14 +79,6 @@ export default {
                 return 0;
             }
         },
-        height:{
 
-        },
-        restWidth:{
-
-        },
-        flexCount:{
-
-        }
     }
 }

@@ -6,18 +6,22 @@ Date: 2017/1/15
 Time: 12:45-->
 <template>
     <div :class="gridClass">
-        <ms-grid-head ref="ms_grid_head"
-                      :head-columns="headColumns"
-                      :cols="leafColumns"
-                      :max-column-level="maxColumnLevel"
-                      :rest-width="restWidthData"
-                      :flex-count="flexCountCompute" />
-        <ms-grid-body :tree-structure="treeStructure"
-                      :data="data"
-                      :columns="leafColumns"
-                      :rest-width="restWidthData"
-                      :flex-count="flexCountCompute"
-                      :height="bodyHeightCompute" :scroll="scroll" />
+        <div >
+            <ms-grid-head ref="ms_grid_head" :head-columns="headColumns"
+                          :cols="leafColumnsCompute"
+                          :width="innerWidthData"
+                          :max-column-level="maxColumnLevel" :scroll-x="scrollX"
+            />
+        </div>
+        <div>
+            <ms-grid-body :tree-structure="treeStructure"
+                          :data="data"
+                          :columns="leafColumnsCompute"
+                          :width="innerWidthData"
+                          :height="bodyHeightCompute"
+                          :scrollY="scrollY"
+                          :scrollX="scrollX" />
+        </div>
     </div>
 </template>
 <script>
@@ -50,19 +54,26 @@ Time: 12:45-->
                 default(){
                     return 1;
                 }
+            },
+            columnMinWidth:{
+              type:Number,
+              default(){
+                return 100;
+              }
             }
         },
         data(){
             return{
                 restWidthData:0,
                 flexCountData:0,
-                bodyHeightData:0
+                bodyHeightData:0,
+                innerWidthData:0
             }
         },
         computed:{
             bodyHeightCompute:function(){
                 let me = this;
-                if(me.componentReady && me.scroll){
+                if(me.componentReady && me.scrollY){
                     let headHeight = me.$refs.ms_grid_head.$el.clientHeight;
                     return me.height-headHeight;
                 }
@@ -87,25 +98,53 @@ Time: 12:45-->
                 }
                 return result;
             },
-            leafColumns:function(){
+            leafColumnsCompute:function(){
                 let me = this;
-                return me.columnsLeafs(me.columns);
+                let leafs = me.columnsLeafs(me.columns);
+                if(me.componentReady){
+                    let restWidth = me.getRestWidth(leafs,me.width);
+                    let flexCount = me.getFlexCount(leafs);
+                    let allocatedWidthCount = 0;
+                    let unAllocatedWidthCount = 0;
+                    _.forEach(leafs,function(leaf){
+                        if(leaf.width){
+                            allocatedWidthCount += leaf.width;
+                        }else {
+                            let flex = 1;
+                            if(leaf.flex){
+                                flex = leaf.flex;
+                            }
+                            let width = (flex/flexCount) * restWidth;
+                            if(width < me.columnMinWidth){
+                                width = me.columnMinWidth;
+                            }
+                            unAllocatedWidthCount += width;
+                            Vue.set(leaf,'_width',width);
+                        }
+                    });
+                    me.innerWidthData = allocatedWidthCount + unAllocatedWidthCount;
+                }
+                return leafs;
             },
             flexCountCompute:function(){
                 let me = this;
-                return me.getFlexCount(me.leafColumns);
+                return me.getFlexCount(me.leafColumnsCompute);
             },
             restWidthCompute:function(){
+                let me = this;
+                if( me.componentReady){
+                  let width = me.width;
+                  return me.getRestWidth(me.leafColumnsCompute,width);
+                }
             }
         },
         created(){
             let me = this;
-            debugger
         },
         mounted(){
             let me = this;
-            let width = me.$el.clientWidth;
-            me.restWidthData = me.getRestWidth(me.leafColumns,width);
+           // let width = me.$el.clientWidth;
+            //me.restWidthData = me.getRestWidth(me.leafColumns,width);
             //me.bodyHeightData = me.getBodyHeight();
         },
         methods:{

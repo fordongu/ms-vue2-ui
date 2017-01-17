@@ -6,7 +6,7 @@ Date: 2017/1/13
 Time: 09:34-->
 <template>
 <div>
-<ms-grid :tree-structure=true :data="data" :columns="columns" :height=200 :scroll=true />
+<ms-grid :tree-structure=true :data="data" :columns="columns" :height=200 :scroll-x=true :scroll-y=true />
 </div>
 </template>
 <script>
@@ -86,11 +86,13 @@ Time: 09:34-->
               columns:[
                 {
                   text:'年龄',
-                  dataIndex:'age'
+                  dataIndex:'age',
+                  width:600
                 },
                 {
                   text:'性别',
-                  dataIndex:'sex'
+                  dataIndex:'sex',
+                  width:1000
                 }
               ]
             }
