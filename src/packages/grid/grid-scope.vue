@@ -83,7 +83,7 @@ Time: 12:45-->
                 if(me.position == "left"){
                     return "ms-grid-left";
                 }else if(me.position == "right"){
-
+                    return "ms-grid-right";
                 }else {
                     return "ms-grid-center";
                 }
@@ -110,12 +110,17 @@ Time: 12:45-->
                         if(leaf.width){
                             allocatedWidthCount += leaf.width;
                         }else {
-                            let flex = 1;
-                            if(leaf.flex){
-                                flex = leaf.flex;
-                            }
-                            let width = (flex/flexCount) * restWidth;
-                            if(width < me.columnMinWidth){
+                            let width = 0;
+                            if(me.position == "center"){
+                                let flex = 1;
+                                if(leaf.flex){
+                                    flex = leaf.flex;
+                                }
+                                width = (flex/flexCount) * restWidth;
+                                if(width < me.columnMinWidth){
+                                    width = me.columnMinWidth;
+                                }
+                            }else {
                                 width = me.columnMinWidth;
                             }
                             unAllocatedWidthCount += width;

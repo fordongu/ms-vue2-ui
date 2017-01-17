@@ -7,6 +7,16 @@ Time: 09:30-->
 <template>
   <div class="ms-grid">
     <div>
+      <ms-grid-scope :tree-structure="treeStructure" position="left"
+                     :data="dataData "
+                     :origin-columns="columns"
+                     :columns="leftColumnsData"
+                     :max-column-level="maxColumnLevel"
+                     :height="heightCompute"
+                     :width="centerWidthData"
+                     :scrollX="scrollX"
+                     :scrollY="scrollY"
+                     :ms-grid-id="msGridId"/>
       <ms-grid-scope :tree-structure="treeStructure"
                      :data="dataData "
                      :origin-columns="columns"
@@ -15,7 +25,9 @@ Time: 09:30-->
                      :height="heightCompute"
                      :width="centerWidthData"
                      :scrollX="scrollX"
-                     :scrollY="scrollY" :ms-grid-id="msGridId"/>
+                     :scrollY="scrollY"
+                     :ms-grid-id="msGridId"/>
+
     </div>
   </div>
 </template>
@@ -121,11 +133,13 @@ Time: 09:30-->
       mounted(){
         let me = this;
         me.centerWidthData = me.$el.clientWidth;
+
       },
       methods:{
         columnsSplit:function(){
           let me = this;
           me.centerColumnsData = _.cloneDeep(me.columns);
+          me.leftColumnsData = _.cloneDeep(me.columns);
         },
       },
       components: {

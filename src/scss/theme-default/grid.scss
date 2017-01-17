@@ -1,4 +1,11 @@
 .ms-grid{
+  .ms-grid-left{
+    display: inline-block;
+    float: left;
+    border:{
+      right: 1px #1000ff solid;
+    };
+  }
   .ms-grid-center{
 
   }

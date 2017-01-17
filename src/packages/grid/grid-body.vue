@@ -49,7 +49,7 @@ Time: 09:32-->
         },
         widthStyleCompute:function(){
           let me = this;
-          if( me.componentReady && me.scrollX ){
+          if( me.componentReady && me.scrollX  ){
             return {width:me.width+"px",overflowX:'auto'};
           }
         }
