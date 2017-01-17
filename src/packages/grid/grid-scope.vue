@@ -10,7 +10,7 @@ Time: 12:45-->
             <ms-grid-head ref="ms_grid_head" :head-columns="headColumns"
                           :cols="leafColumnsCompute"
                           :width="innerWidthData"
-                          :max-column-level="maxColumnLevel" :scroll-x="scrollX"
+                          :max-column-level="maxColumnLevel" :scroll-x="scrollX" :ms-grid-id="msGridId"
             />
         </div>
         <div>
@@ -20,7 +20,7 @@ Time: 12:45-->
                           :width="innerWidthData"
                           :height="bodyHeightCompute"
                           :scrollY="scrollY"
-                          :scrollX="scrollX" />
+                          :scrollX="scrollX" :ms-grid-id="msGridId" />
         </div>
     </div>
 </template>
@@ -81,7 +81,7 @@ Time: 12:45-->
             gridClass:function(){
                 let me = this;
                 if(me.position == "left"){
-
+                    return "ms-grid-left";
                 }else if(me.position == "right"){
 
                 }else {
@@ -125,17 +125,6 @@ Time: 12:45-->
                     me.innerWidthData = allocatedWidthCount + unAllocatedWidthCount;
                 }
                 return leafs;
-            },
-            flexCountCompute:function(){
-                let me = this;
-                return me.getFlexCount(me.leafColumnsCompute);
-            },
-            restWidthCompute:function(){
-                let me = this;
-                if( me.componentReady){
-                  let width = me.width;
-                  return me.getRestWidth(me.leafColumnsCompute,width);
-                }
             }
         },
         created(){

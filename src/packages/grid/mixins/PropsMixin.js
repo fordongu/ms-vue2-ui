@@ -13,6 +13,9 @@ export default {
         }
     },
     props:{
+        msGridId:{
+
+        },
         scrollY:{
             type:Boolean,
             default(){

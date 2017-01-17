@@ -15,7 +15,7 @@ Time: 09:30-->
                      :height="heightCompute"
                      :width="centerWidthData"
                      :scrollX="scrollX"
-                     :scrollY="scrollY"/>
+                     :scrollY="scrollY" :ms-grid-id="msGridId"/>
     </div>
   </div>
 </template>
@@ -72,6 +72,7 @@ Time: 09:30-->
       data(){
         let me = this;
         return {
+          msGridId:_.uniqueId("ms_grid_"),
           maxColumnLevel:1,
           dataData:[],
           leftColumnsData:[],
@@ -102,7 +103,7 @@ Time: 09:30-->
       },
       created(){
           let me = this;
-          me.dataData = me.dataFormat(me.data);
+          me.dataData = _.cloneDeep(me.dataFormat(me.data));
           me.columnsSplit();
           bus.$on('ms-grid-max-level',function(level){
             if(me.maxColumnLevel<level){
@@ -113,7 +114,7 @@ Time: 09:30-->
             let record = me.dataData[rowIndex];
             record._expanded = !record._expanded;
           });
-          bus.$on('show-children',function(rowIndex,show){
+          bus.$on('show-children',function(gridId,rowIndex,show){
             Vue.set(me.dataData[rowIndex],'_show',show);
           });
       },
@@ -124,7 +125,7 @@ Time: 09:30-->
       methods:{
         columnsSplit:function(){
           let me = this;
-          me.centerColumnsData = me.columns;
+          me.centerColumnsData = _.cloneDeep(me.columns);
         },
       },
       components: {

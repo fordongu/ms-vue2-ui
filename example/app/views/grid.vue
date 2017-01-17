@@ -7,6 +7,7 @@ Time: 09:34-->
 <template>
 <div>
 <ms-grid :tree-structure=true :data="data" :columns="columns" :height=200 :scroll-x=true :scroll-y=true />
+  <ms-grid :tree-structure=true :data="data" :columns="columns" :height=200 :scroll-x=true :scroll-y=true />
 </div>
 </template>
 <script>

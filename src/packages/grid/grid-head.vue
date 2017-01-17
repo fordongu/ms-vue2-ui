@@ -5,8 +5,8 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:31-->
 <template>
-  <div :style="[widthStyleCompute]">
-    <table class="ms-grid-head table table-bordered" >
+  <div :style="[scrollStyleCompute]" >
+    <table class="ms-grid-head table table-bordered" :style="[widthStyleCompute]" >
       <colgroup>
         <ms-grid-col v-for="(col,index) in cols" :col="col"  />
       </colgroup>
@@ -29,6 +29,8 @@ Time: 09:31-->
 
     import MsGridHeadItem from "./grid-head-item.vue";
     import MsGridCol from "./grid-col.vue";
+
+    import bus from "./GridEvents";
     export default {
       name:'ms-grid-head',
       mixins:[PropsMixin,MethodsMixin,LifecycleMixin],
@@ -49,10 +51,27 @@ Time: 09:31-->
           if( me.componentReady && me.scrollX ){
             return {width:me.width+"px"};
           }
+        },
+        scrollStyleCompute:function(){
+          let me = this;
+          if( me.componentReady && me.scrollX ){
+            return {overflowX:'hidden'};
+          }
         }
+      },
+      created(){
+
       },
       methods:{
 
+      },
+      mounted(){
+        let me = this;
+        bus.$on('ms-grid-body-scroll',function(gridId,e){
+          if(gridId == me.msGridId){
+            me.$el.scrollLeft = e.target.scrollLeft;
+          }
+        });
       },
       components: {
         MsGridHeadItem,

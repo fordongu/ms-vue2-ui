@@ -5,7 +5,7 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:32-->
 <template>
-<div :style="[heightStyleCompute]" ref="ms_grid_body">
+<div :style="[heightStyleCompute]" ref="ms_grid_body" @scroll="scroll">
   <table class="table" :style="[widthStyleCompute]" ref="ms_grid_body_table">
     <colgroup>
       <ms-grid-col v-for="(col,index) in columns" :col="col" />
@@ -16,7 +16,7 @@ Time: 09:32-->
           :tree-structure="treeStructure"
           :record="record"
           :row-index="index"
-          :columns="columns" >
+          :columns="columns" :ms-grid-id="msGridId" >
       </tr>
     </tbody>
   </table>
@@ -29,6 +29,7 @@ Time: 09:32-->
 
     import MsGridBodyRow from "./grid-body-row.vue";
     import MsGridCol from "./grid-col.vue";
+    import bus from "./GridEvents";
     export default {
       name:'ms-grid-body',
       mixins:[PropsMixin,MethodsMixin,LifecycleMixin],
@@ -49,7 +50,7 @@ Time: 09:32-->
         widthStyleCompute:function(){
           let me = this;
           if( me.componentReady && me.scrollX ){
-            return {width:me.width+"px"};
+            return {width:me.width+"px",overflowX:'auto'};
           }
         }
       },
@@ -69,7 +70,10 @@ Time: 09:32-->
 
       },
       methods:{
-
+        scroll:function(e){
+          let me = this;
+          bus.$emit('ms-grid-body-scroll',me.msGridId,e);
+        }
       },
       components: {
         MsGridBodyRow,

@@ -13,7 +13,7 @@ Time: 09:33-->
         :row-index="rowIndex"
         :cell-index="index"
         :record="record"
-        :column="column" >
+        :column="column" :ms-grid-id="msGridId" >
     </td>
   </tr>
 </template>
@@ -37,7 +37,7 @@ Time: 09:33-->
           let me = this;
           let record = me.record;
           let show = (record._parent?(record._parent._expanded && record._parent._show):true);
-          bus.$emit('show-children',me.rowIndex,show);
+          bus.$emit('show-children',me.msGridId,me.rowIndex,show);
           return show;
         }
       },
