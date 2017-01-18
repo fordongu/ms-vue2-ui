@@ -7,7 +7,8 @@ Time: 09:30-->
 <template>
   <div class="ms-grid">
     <div class="ms-grid-box">
-      <ms-grid-scope :tree-structure="treeStructure"
+      <ms-grid-scope v-if="hasLeftCompute"
+                     :tree-structure="treeStructure"
                      position="left"
                      :data="dataData "
                      :origin-columns="columns"
@@ -26,11 +27,12 @@ Time: 09:30-->
                      :height="heightCompute"
                      :width="centerWidthCompute"
                      :left="centerLeft"
-                     :has-left="hasLeftData"
+                     :has-left="hasLeftCompute"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
                      :ms-grid-id="msGridId" />
-      <ms-grid-scope :tree-structure="treeStructure"
+      <ms-grid-scope v-if="hasRightCompute"
+                     :tree-structure="treeStructure"
                      position="right"
                      :data="dataData "
                      :origin-columns="columns"
@@ -109,7 +111,8 @@ Time: 09:30-->
           centerWidthData:0,
           rightWidthData:0,
           centerLeft:0,
-          hasLeftData:false
+          hasLeftData:false,
+          gridWidth:0
         }
       },
       computed:{
@@ -129,9 +132,23 @@ Time: 09:30-->
         centerWidthCompute:function(){
           let me = this;
           if(me.componentReady){
-              let gridWidth = me.$el.clientWidth;
-              return gridWidth-me.leftWidthData-me.rightWidthData;
+              //let gridWidth = me.$el.clientWidth;
+              return me.gridWidth-me.leftWidthData-me.rightWidthData;
           }
+        },
+        hasLeftCompute:function(){
+          let me = this;
+          if(me.leftColumnsData && me.leftColumnsData.length>0){
+            return true;
+          }
+          return false;
+        },
+        hasRightCompute:function(){
+          let me = this;
+          if(me.rightColumnsData && me.rightColumnsData.length>0){
+            return true;
+          }
+          return false;
         }
       },
       beforeCreate(){
@@ -168,9 +185,13 @@ Time: 09:30-->
       },
       mounted(){
         let me = this;
+        me.gridWidth = me.$el.clientWidth;
         if(me.componentReady != undefined){
             me.componentReady = true;
         }
+        $(window).resize(function(){
+          me.gridWidth = me.$el.clientWidth;
+        });
       },
       methods:{
         columnsSplit:function(){

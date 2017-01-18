@@ -13,17 +13,21 @@ Time: 09:32-->
     <tbody>
       <tr v-for="(record,index) in data"
           is="ms-grid-body-row"
+          :position="position"
           :tree-structure="treeStructure"
           :record="record"
           :row-index="index"
           :columns="columns"
-          :ms-grid-id="msGridId" >
+          :ms-grid-id="msGridId"
+          :has-left="hasLeft">
       </tr>
     </tbody>
   </table>
 </div>
 </template>
 <script>
+    import Vue from "vue";
+
     import PropsMixin from "./mixins/PropsMixin";
     import MethodsMixin from "./mixins/MethodsMixin";
     import LifecycleMixin from "./mixins/LifecycleMixin";
@@ -39,7 +43,8 @@ Time: 09:32-->
       data(){
         return {
           msGridBodyId:_.uniqueId("ms_grid_body_"),
-          bodyStyleData:{}
+          bodyStyleData:{},
+          needScrollSpace:false
         }
       },
       computed:{
@@ -58,7 +63,13 @@ Time: 09:32-->
         widthStyleCompute:function(){
           let me = this;
           if( me.componentReady && me.scrollX  ){
-            return {width:me.width+"px",overflowX:'auto'};
+            let style = {};
+            if(me.needScrollSpace){
+              Object.assign(style,{width:(me.width-15)+"px"});
+            }else {
+              Object.assign(style,{width:me.width+"px"});
+            }
+            return Object.assign(style,{overflowX:'auto'});
           }
         }
       },
@@ -82,12 +93,23 @@ Time: 09:32-->
       mounted(){
         let me = this;
     //    me.getBodyHeightStyle();
-
+              Vue.nextTick(function(){
+                  me.checkScrollSpace();
+              });
       },
       methods:{
         scroll:function(e){
           let me = this;
           bus.$emit('ms-grid-body-scroll',me.msGridId,e);
+        },
+        checkScrollSpace:function(){
+          let me = this;
+          if(me.componentReady && me.scrollY){
+              if(me.$el.offsetWidth > me.$refs.ms_grid_body_table.offsetWidth){
+                me.needScrollSpace = true;
+                bus.$emit('ms-grid-scroll-space',me.msGridId,me.needScrollSpace);
+              }
+          }
         }
       },
       components: {

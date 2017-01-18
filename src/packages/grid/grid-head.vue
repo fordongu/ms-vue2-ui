@@ -45,11 +45,22 @@ Time: 09:31-->
           type:Number
         }
       },
+      data(){
+        return {
+          needScrollSpace:false
+        }
+      },
       computed:{
         widthStyleCompute:function(){
           let me = this;
           if( me.componentReady && me.scrollX ){
-            return {width:me.width+"px"};
+            let style = {};
+            if(me.needScrollSpace){
+              Object.assign(style,{width:(me.width-15)+"px"});
+            }else {
+              Object.assign(style,{width:me.width+"px"});
+            }
+            return style;
           }
         },
         scrollStyleCompute:function(){
@@ -60,7 +71,12 @@ Time: 09:31-->
         }
       },
       created(){
-
+        let me = this;
+        bus.$on('ms-grid-scroll-space',function(gridId,needSpace){
+           if(me.msGridId == gridId && me.position == "center"){
+            me.needScrollSpace = needSpace;
+           }
+        })
       },
       methods:{
 

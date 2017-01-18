@@ -9,11 +9,12 @@ Time: 09:33-->
     <td v-for="(column,index) in columns"
         key="index"
         is="ms-grid-body-cell"
+        :position="position"
         :tree-structure="treeStructure"
         :row-index="rowIndex"
         :cell-index="index"
         :record="record"
-        :column="column" :ms-grid-id="msGridId" >
+        :column="column" :ms-grid-id="msGridId" :has-left="hasLeft" >
     </td>
   </tr>
 </template>

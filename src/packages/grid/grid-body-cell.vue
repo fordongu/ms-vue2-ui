@@ -38,7 +38,11 @@ Time: 09:48-->
         },
         spaceIconShow:function(){
           let me = this;
-          if(me.treeStructure && me.cellIndex==0){
+          if(
+            me.treeStructure && me.cellIndex==0
+            && ((!me.hasLeft && me.position=="center") || me.position=="left")
+            && me.position!="right"
+          ){
             return true;
           }
           return false;
@@ -48,7 +52,10 @@ Time: 09:48-->
           if(me.treeStructure
           && me.cellIndex==0
           && me.record.children
-          && me.record.children.length>0){
+          && me.record.children.length>0
+          && ((!me.hasLeft && me.position=="center") || me.position=="left")
+          && me.position!="right"
+          ){
             return true;
           }
           return false;

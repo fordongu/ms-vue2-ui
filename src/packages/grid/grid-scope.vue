@@ -26,7 +26,8 @@ Time: 12:45-->
                           :height="bodyHeightCompute"
                           :scrollY="scrollY"
                           :scrollX="scrollX"
-                          :ms-grid-id="msGridId" />
+                          :ms-grid-id="msGridId"
+                          :has-left="hasLeft" />
         </div>
     </div>
 </template>
