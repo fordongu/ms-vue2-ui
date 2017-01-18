@@ -87,9 +87,12 @@ Time: 12:45-->
         computed:{
             styleCompute:function(){
                 let me = this;
+                let style = {};
+                Object.assign(style,{width:me.width+"px"});
                 if(me.left){
-                    return {left:me.left+"px"};
+                    Object.assign(style,{left:me.left+"px"});
                 }
+                return style;
             },
             bodyHeightCompute:function(){
                 let me = this;

@@ -5,12 +5,13 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:32-->
 <template>
-<div class="ms-grid-body" :style="[heightStyleCompute]" ref="ms_grid_body" @scroll="scroll">
-  <table class="table" :style="[widthStyleCompute]" ref="ms_grid_body_table">
-    <colgroup>
-      <ms-grid-col v-for="(col,index) in columns" :col="col" />
-    </colgroup>
-    <tbody>
+<div class="ms-grid-body" :style="[divStyleCompute]" ref="ms_grid_body" @scroll="scroll">
+  <div ref="ms_grid_body_inner">
+    <table class="table" :style="[tableStyleCompute]" >
+      <colgroup>
+        <ms-grid-col v-for="(col,index) in columns" :col="col" />
+      </colgroup>
+      <tbody>
       <tr v-for="(record,index) in data"
           is="ms-grid-body-row"
           :position="position"
@@ -21,8 +22,9 @@ Time: 09:32-->
           :ms-grid-id="msGridId"
           :has-left="hasLeft">
       </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>
 </template>
 <script>
@@ -48,26 +50,35 @@ Time: 09:32-->
         }
       },
       computed:{
-        heightStyleCompute:function(){
+        divStyleCompute:function(){
           let me = this;
-          if( me.componentReady && me.scrollY ){
+          if( me.componentReady){
             let style = {height:me.height+"px"};
-            if(me.position == "center"){
-              Object.assign(style,{overflowY:'auto'});
-            }else {
-              Object.assign(style,{overflowY:'hidden'});
+            if(me.scrollY){
+              if(me.position == "center"){
+                Object.assign(style,{overflowY:'auto'});
+              }else {
+                Object.assign(style,{overflowY:'hidden'});
+              }
+            }
+            if(me.scrollY && me.position=="center"){
+              Object.assign(style,{overflowX:'auto'});
+            }else{
+              Object.assign(style,{overflowX:'hidden'});
             }
             return style;
           }
         },
-        widthStyleCompute:function(){
+        tableStyleCompute:function(){
           let me = this;
-          if( me.componentReady && me.scrollX  ){
+          if( me.componentReady){
             let style = {};
-            if(me.needScrollSpace){
-              Object.assign(style,{width:(me.width-15)+"px"});
-            }else {
-              Object.assign(style,{width:me.width+"px"});
+            if(me.scrollX){
+              if(me.needScrollSpace){
+                Object.assign(style,{width:(me.width-15)+"px"});
+              }else {
+                Object.assign(style,{width:me.width+"px"});
+              }
             }
             return Object.assign(style,{overflowX:'auto'});
           }
@@ -105,7 +116,7 @@ Time: 09:32-->
         checkScrollSpace:function(){
           let me = this;
           if(me.componentReady && me.scrollY){
-              if(me.$el.offsetWidth > me.$refs.ms_grid_body_table.offsetWidth){
+              if(me.$el.offsetWidth > me.$refs.ms_grid_body_inner.offsetWidth){
                 me.needScrollSpace = true;
                 bus.$emit('ms-grid-scroll-space',me.msGridId,me.needScrollSpace);
               }

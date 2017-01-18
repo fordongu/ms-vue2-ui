@@ -11,7 +11,7 @@ Time: 09:34-->
          :data="data"
          :columns="columns"
          :height=200
-         :scroll-x=true
+         :scroll-x=false
          :scroll-y=true />
 
 </div>
@@ -96,10 +96,12 @@ Time: 09:34-->
                 {
                   text:'年龄',
                   dataIndex:'age',
+                  width:700
                 },
                 {
                   text:'性别',
                   dataIndex:'sex',
+                  width:700
                 }
               ]
             }

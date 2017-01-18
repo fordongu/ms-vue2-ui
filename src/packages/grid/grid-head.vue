@@ -5,25 +5,27 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:31-->
 <template>
-  <div class="ms-grid-head" :class="{'ms-scroll-space':needScrollSpace}" :style="[scrollStyleCompute]" >
-    <table class="table table-bordered" :style="[widthStyleCompute]" >
-      <colgroup>
-        <ms-grid-col v-for="(col,index) in cols" :col="col"  />
-      </colgroup>
-      <thead>
-      <tr v-for="(columnRow,rowIndex) in headColumns"
-          is="ms-grid-head-row"
-          :head-columns="headColumns"
-          :head-row-index="rowIndex"
-          :column-row="columnRow"
-          :max-column-level="maxColumnLevel"
-          :max-head-height="maxHeadHeight"
-          :ms-grid-id="msGridId"
-          :ms-grid-head-id="msGridHeadId"
-          :allocated-height="allocatedHeight">
-      </tr>
-      </thead>
-    </table>
+  <div class="ms-grid-head"  :style="[elStyleCompute]" >
+    <div :class="{'ms-scroll-space':needScrollSpace}" :style="[divInnerStyleCompute]">
+      <table class="table table-bordered" :style="[widthStyleCompute]" >
+        <colgroup>
+          <ms-grid-col v-for="(col,index) in cols" :col="col"  />
+        </colgroup>
+        <thead>
+        <tr v-for="(columnRow,rowIndex) in headColumns"
+            is="ms-grid-head-row"
+            :head-columns="headColumns"
+            :head-row-index="rowIndex"
+            :column-row="columnRow"
+            :max-column-level="maxColumnLevel"
+            :max-head-height="maxHeadHeight"
+            :ms-grid-id="msGridId"
+            :ms-grid-head-id="msGridHeadId"
+            :allocated-height="allocatedHeight">
+        </tr>
+        </thead>
+      </table>
+    </div>
   </div>
 </template>
 <script>
@@ -79,6 +81,29 @@ Time: 09:31-->
           let me = this;
           if( me.componentReady && me.scrollX ){
             return {overflowX:'hidden'};
+          }
+        },
+        elStyleCompute:function(){
+          let me = this;
+          if( me.componentReady){
+            let style = {};
+            if( me.scrollX ){
+              Object.assign(style,{overflowX:'hidden'});
+            }
+            return style;
+          }
+        },
+        divInnerStyleCompute:function(){
+          let me = this;
+          if(me.componentReady){
+            let style = {};
+            if(me.scrollX){
+              Object.assign(style,{width:me.width+"px"});
+            }else {
+//TODO
+              Object.assign(style,{width:me.width+"px"});
+            }
+            return style;
           }
         }
       },
