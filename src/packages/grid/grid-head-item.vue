@@ -15,6 +15,9 @@ Time: 14:04-->
       name:'ms-grid-head-item',
       mixins:[PropsMixin,MethodsMixin,LifecycleMixin],
       props:{
+        columnRow:{
+          type:Array
+        },
         column:{
           type:Object
         },
@@ -58,10 +61,9 @@ Time: 14:04-->
               !me.column.columns
               || me.column.columns.length==0
             ){
-              let levelDifference = (me.maxColumnLevel - me.column._level);
-              if(levelDifference>0){
-                let trHeight = me.maxHeadHeight - me.allocatedHeight;
-                return {height:trHeight+"px"};
+              if(me.maxColumnLevel > me.column._level ){
+                  let tdHeight = me.maxHeadHeight- me.allocatedHeight;
+                  return {height:tdHeight+'px'};
               }
             }
           }

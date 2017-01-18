@@ -61,6 +61,7 @@ Time: 09:31-->
         return {
           msGridHeadId:_.uniqueId("ms_grid_head_"),
           allocatedHeight:0,
+          headRowsHeight:0, //所有头部行的高度
           needScrollSpace:false
         }
       },
@@ -100,8 +101,8 @@ Time: 09:31-->
             if(me.scrollX){
               Object.assign(style,{width:me.width+"px"});
             }else {
-//TODO
-              Object.assign(style,{width:me.width+"px"});
+              let elWidth = me.$el.clientWidth;
+              Object.assign(style,{width:elWidth+"px"});
             }
             return style;
           }
@@ -119,9 +120,14 @@ Time: 09:31-->
             me.$el.scrollLeft = e.target.scrollLeft;
           }
         });
-        bus.$on('ms-grid-head-row-ready',function(gridId,gridHeadId,height){
+        bus.$on('ms-grid-head-row-ready',function(gridId,gridHeadId,isLastRow,height){
             if(gridId==me.msGridId && gridHeadId==me.msGridHeadId){
-                me.allocatedHeight += height;
+                me.headRowsHeight += height;
+                if(isLastRow){
+                  bus.$emit('ms-grid-head-height',gridId,me.headRowsHeight);
+                }else{
+                  me.allocatedHeight += height;
+                }
             }
         });
       },
@@ -130,8 +136,7 @@ Time: 09:31-->
       },
       mounted(){
         let me = this;
-
-        bus.$emit('ms-grid-head-height',me.msGridId,me.$el.clientHeight);
+        //bus.$emit('ms-grid-head-height',me.msGridId,me.$el.clientHeight);
       },
       components: {
         MsGridHeadRow,

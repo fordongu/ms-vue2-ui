@@ -8,6 +8,7 @@ Time: 16:25-->
   <tr>
     <td v-for="(column,cellIndex) in columnRow"
         is="ms-grid-head-item"
+        :column-row="columnRow"
         :column="column"
         :max-column-level="maxColumnLevel"
         :max-head-height="maxHeadHeight"
@@ -17,6 +18,7 @@ Time: 16:25-->
   </tr>
 </template>
 <script>
+    import Vue from "vue";
     import PropsMixin from "./mixins/PropsMixin";
     import MethodsMixin from "./mixins/MethodsMixin";
     import LifecycleMixin from "./mixins/LifecycleMixin";
@@ -58,9 +60,22 @@ Time: 16:25-->
       },
       mounted(){
         let me = this;
-        let columnsRowCount = me.headColumns.length;
-        if(me.headRowIndex < columnsRowCount-1){
-          bus.$emit('ms-grid-head-row-ready',me.msGridId,me.msGridHeadId,me.$el.clientHeight);
+
+        me.setRowHeight();
+       // bus.$emit('ms-grid-head-row-ready',me.msGridId,me.msGridHeadId,isLastRow,me.$el.clientHeight);
+      },
+      methods:{
+        setRowHeight:function(){
+           let me = this;
+           debugger
+           //Vue.set(me.columnRow,'_height',me.$el.clientHeight);
+
+            let columnsRowCount = me.headColumns.length;
+            let isLastRow = false;
+            if(me.headRowIndex == columnsRowCount-1){
+              isLastRow = true;
+            }
+           bus.$emit('ms-grid-head-row-ready',me.msGridId,me.msGridHeadId,isLastRow,me.$el.clientHeight);
         }
       },
       components: {

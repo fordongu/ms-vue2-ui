@@ -181,6 +181,7 @@ Time: 09:30-->
               }
             }
           });
+
           bus.$on('ms-grid-scope-width-compute',function(gridId,position,gridScopeWidth){
             if(me.msGridId == gridId){
               if(position == "left"){
