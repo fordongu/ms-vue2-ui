@@ -5,8 +5,8 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:32-->
 <template>
-<div :style="[heightStyleCompute]" ref="ms_grid_body" @scroll="scroll">
-  <table class="ms-grid-body table" :style="[widthStyleCompute]" ref="ms_grid_body_table">
+<div class="ms-grid-body" :style="[heightStyleCompute]" ref="ms_grid_body" @scroll="scroll">
+  <table class="table" :style="[widthStyleCompute]" ref="ms_grid_body_table">
     <colgroup>
       <ms-grid-col v-for="(col,index) in columns" :col="col" />
     </colgroup>

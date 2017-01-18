@@ -13,6 +13,7 @@ Time: 12:45-->
                           :cols="leafColumnsCompute"
                           :width="innerWidthData"
                           :max-column-level="maxColumnLevel"
+                          :max-head-height="maxHeadHeight"
                           :scroll-x="scrollX"
                           :ms-grid-id="msGridId"
             />
@@ -56,6 +57,12 @@ Time: 12:45-->
                     return 1;
                 }
             },
+            maxHeadHeight:{
+                type:Number,
+                default(){
+                    return 0;
+                }
+            },
             columnMinWidth:{
               type:Number,
               default(){
@@ -87,8 +94,8 @@ Time: 12:45-->
             bodyHeightCompute:function(){
                 let me = this;
                 if(me.componentReady && me.scrollY){
-                    let headHeight = me.$refs.ms_grid_head.$el.clientHeight;
-                    return me.height-headHeight;
+                   // let headHeight = me.$refs.ms_grid_head.$el.clientHeight;
+                    return me.height-me.maxHeadHeight;
                 }
             },
             gridClass:function(){
@@ -154,6 +161,7 @@ Time: 12:45-->
            // let width = me.$el.clientWidth;
             //me.restWidthData = me.getRestWidth(me.leafColumns,width);
             //me.bodyHeightData = me.getBodyHeight();
+
         },
         methods:{
             headColumnsFormat:function (columns,parent,level) {

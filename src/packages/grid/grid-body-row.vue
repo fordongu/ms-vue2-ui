@@ -14,7 +14,9 @@ Time: 09:33-->
         :row-index="rowIndex"
         :cell-index="index"
         :record="record"
-        :column="column" :ms-grid-id="msGridId" :has-left="hasLeft" >
+        :column="column"
+        :ms-grid-id="msGridId"
+        :has-left="hasLeft" >
     </td>
   </tr>
 </template>
@@ -30,6 +32,11 @@ Time: 09:33-->
     export default {
       name:'ms-grid-body-row',
       mixins:[PropsMixin,MethodsMixin,LifecycleMixin],
+      props:{
+        msGridHeadId:{
+          type:String
+        }
+      },
       data(){
         return {}
       },

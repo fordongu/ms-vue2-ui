@@ -6,7 +6,7 @@ Date: 2017/1/13
 Time: 09:30-->
 <template>
   <div class="ms-grid">
-    <div class="ms-grid-box">
+    <div class="ms-grid-box" :style="[boxHeightCompute]">
       <ms-grid-scope v-if="hasLeftCompute"
                      :tree-structure="treeStructure"
                      position="left"
@@ -14,16 +14,19 @@ Time: 09:30-->
                      :origin-columns="columns"
                      :columns="leftColumnsData"
                      :max-column-level="maxColumnLevel"
+                     :max-head-height="maxHeadHeight"
                      :height="heightCompute"
                      :width="leftWidthData"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
                      :ms-grid-id="msGridId"/>
-      <ms-grid-scope :tree-structure="treeStructure"
+      <ms-grid-scope ref="ms_grid_scope_center"
+                     :tree-structure="treeStructure"
                      :data="dataData "
                      :origin-columns="columns"
                      :columns="centerColumnsData"
                      :max-column-level="maxColumnLevel"
+                     :max-head-height="maxHeadHeight"
                      :height="heightCompute"
                      :width="centerWidthCompute"
                      :left="centerLeft"
@@ -38,6 +41,7 @@ Time: 09:30-->
                      :origin-columns="columns"
                      :columns="rightColumnsData"
                      :max-column-level="maxColumnLevel"
+                     :max-head-height="maxHeadHeight"
                      :height="heightCompute"
                      :width="rightWidthData"
                      :scrollX="scrollX"
@@ -103,6 +107,7 @@ Time: 09:30-->
           msGridId:_.uniqueId("ms_grid_"),
           componentReady:false,
           maxColumnLevel:1,
+          maxHeadHeight:0,
           dataData:[],
           leftColumnsData:[],
           centerColumnsData:[],
@@ -112,7 +117,8 @@ Time: 09:30-->
           rightWidthData:0,
           centerLeft:0,
           hasLeftData:false,
-          gridWidth:0
+          gridWidth:0,
+          boxHeight:0
         }
       },
       computed:{
@@ -128,6 +134,10 @@ Time: 09:30-->
           if(me.scrollY){
             return me.height;
           }
+        },
+        boxHeightCompute:function(){
+          let me = this;
+          return {height:me.boxHeight+"px"};
         },
         centerWidthCompute:function(){
           let me = this;
@@ -164,6 +174,13 @@ Time: 09:30-->
               me.maxColumnLevel = level;
             }
           });
+          bus.$on('ms-grid-head-height',function(gridId,height){
+            if(me.msGridId == gridId){
+              if(me.maxHeadHeight < height){
+                me.maxHeadHeight = height;
+              }
+            }
+          });
           bus.$on('ms-grid-scope-width-compute',function(gridId,position,gridScopeWidth){
             if(me.msGridId == gridId){
               if(position == "left"){
@@ -193,15 +210,39 @@ Time: 09:30-->
           me.gridWidth = me.$el.clientWidth;
         });
       },
+      updated(){
+        let me = this;
+        if(me.componentReady){
+          let boxHeight  = me.$refs.ms_grid_scope_center.$el.clientHeight;
+          me.boxHeight = boxHeight;
+        }
+      },
       methods:{
         columnsSplit:function(){
           let me = this;
-          me.centerColumnsData = _.cloneDeep(me.columns);
-          me.leftColumnsData = _.cloneDeep(me.columns);
+          let leftColumns = [];
+          let centerColumns = [];
+          let rightColumns = [];
+          _.forEach(_.cloneDeep(me.columns),function(column){
+             if(column.lockable){
+                if(column.lockPosition=="right"){
+                  rightColumns.push(column);
+                }else{
+                  leftColumns.push(column);
+                }
+             }else {
+                centerColumns.push(column);
+             }
+          });
+
+          me.leftColumnsData = leftColumns;
+          me.rightColumnsData = rightColumns;
+          me.centerColumnsData = centerColumns;
+         // me.leftColumnsData = _.cloneDeep(me.columns);
           if(me.leftColumnsData && me.leftColumnsData.length>0){
             me.hasLeftData = true;
           }
-          me.rightColumnsData = _.cloneDeep(me.columns);
+          //me.rightColumnsData = _.cloneDeep(me.columns);
         },
       },
       components: {

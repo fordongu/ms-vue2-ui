@@ -6,7 +6,13 @@ Date: 2017/1/13
 Time: 09:34-->
 <template>
 <div>
-<ms-grid :tree-structure=true :data="data" :columns="columns" :height=200 :scroll-x=true :scroll-y=true />
+
+<ms-grid :tree-structure=true
+         :data="data"
+         :columns="columns"
+         :height=200
+         :scroll-x=true
+         :scroll-y=true />
 
 </div>
 </template>
@@ -19,7 +25,7 @@ Time: 09:34-->
             {
               name:'A',
               age:20,
-              sex:'男'
+              sex:'男',
             },
             {
               name:'B',
@@ -80,7 +86,9 @@ Time: 09:34-->
             {
               text:'姓名',
               dataIndex:'name',
-              flex:1
+              flex:1,
+              lockable:true,
+              lockPosition:'left'
             },
             {
               text:'测试',
