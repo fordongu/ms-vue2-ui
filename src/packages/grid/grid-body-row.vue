@@ -5,7 +5,7 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:33-->
 <template>
-  <tr v-show="show">
+  <tr v-show="show" :style="[heightStyleCompute]">
     <td v-for="(column,index) in columns"
         key="index"
         is="ms-grid-body-cell"
@@ -19,19 +19,19 @@ Time: 09:33-->
   </tr>
 </template>
 <script>
+    import Vue from "vue";
+
     import PropsMixin from "./mixins/PropsMixin";
     import MethodsMixin from "./mixins/MethodsMixin";
+    import LifecycleMixin from "./mixins/LifecycleMixin";
 
     import MsGridBodyCell from "./grid-body-cell.vue";
     import bus from "./GridEvents";
     export default {
       name:'ms-grid-body-row',
-      mixins:[PropsMixin,MethodsMixin],
+      mixins:[PropsMixin,MethodsMixin,LifecycleMixin],
       data(){
         return {}
-      },
-      mounted(){
-
       },
       computed:{
         show:function(){
@@ -40,17 +40,42 @@ Time: 09:33-->
           let show = (record._parent?(record._parent._expanded && record._parent._show):true);
           bus.$emit('show-children',me.msGridId,me.rowIndex,show);
           return show;
+        },
+        heightStyleCompute:function(){
+          let me = this;
+          if(me.componentReady && me.show){
+            let trHeight = me.$el.clientHeight;
+            if(me.record._height){
+              if(me.record._height < trHeight){
+                me.record._height = trHeight;
+              }
+            }else {
+              Vue.set(me.record,'_height',trHeight);
+            }
+            return {height:me.record._height+"px"};
+          }
         }
+      },
+      mounted(){
+        let me = this;
+
       },
       beforeUpdate(){
 
       },
-      watch:{
-
-      },
       methods:{
-        toggle:function(){
-          console.log("toggle");
+        setTrHeight:function(){
+          let me = this;
+          if(me.componentReady){
+            let trHeight = me.$el.clientHeight;
+            if(me.record._height){
+             if(me.record._height < trHeight){
+              me.record._height = trHeight;
+             }
+            }else {
+              Vue.set(me.record,'_height',trHeight);
+            }
+          }
         }
       },
       components: {
