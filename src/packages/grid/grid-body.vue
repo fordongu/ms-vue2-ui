@@ -14,6 +14,7 @@ Time: 09:32-->
       <tbody>
       <tr v-for="(record,index) in data"
           is="ms-grid-body-row"
+          :grid-container="gridContainer"
           :position="position"
           :tree-structure="treeStructure"
           :record="record"

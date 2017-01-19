@@ -8,7 +8,7 @@
 'use strict';
 export default {
     name:'ms-grid-body-cell-inner',
-    template:'<div></div>',
+    template:'<div>{{_record[_column.dataIndex]}}</div>',
     props:{
         "_column":{
             type:Object,

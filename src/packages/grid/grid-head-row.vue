@@ -67,7 +67,6 @@ Time: 16:25-->
       methods:{
         setRowHeight:function(){
            let me = this;
-           debugger
            //Vue.set(me.columnRow,'_height',me.$el.clientHeight);
 
             let columnsRowCount = me.headColumns.length;

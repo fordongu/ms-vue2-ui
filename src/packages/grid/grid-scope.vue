@@ -20,7 +20,8 @@ Time: 12:45-->
             />
         </div>
         <div>
-            <ms-grid-body :tree-structure="treeStructure"
+            <ms-grid-body :grid-container="gridContainer"
+                          :tree-structure="treeStructure"
                           :data="data"
                           :position="position"
                           :columns="leafColumnsCompute"

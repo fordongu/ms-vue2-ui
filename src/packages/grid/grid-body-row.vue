@@ -9,6 +9,7 @@ Time: 09:33-->
     <td v-for="(column,index) in columns"
         key="index"
         is="ms-grid-body-cell"
+        :grid-container="gridContainer"
         :position="position"
         :tree-structure="treeStructure"
         :row-index="rowIndex"

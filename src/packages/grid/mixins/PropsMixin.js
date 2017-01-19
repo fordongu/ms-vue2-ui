@@ -16,6 +16,9 @@ export default {
         msGridId:{
 
         },
+        gridContainer:{
+
+        },
         scrollY:{
             type:Boolean,
             default(){

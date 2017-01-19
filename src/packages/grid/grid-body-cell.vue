@@ -11,7 +11,7 @@ Time: 09:48-->
       <span v-if="!record._expanded">+</span>
       <span v-if="record._expanded">-</span>
     </button>
-    {{record[column.dataIndex]}}
+    <ms-grid-body-cell-inner :_column="column" :_record="record" />
   </td>
 </template>
 <script>
@@ -19,6 +19,8 @@ Time: 09:48-->
 
     import PropsMixin from "./mixins/PropsMixin";
     import MethodsMixin from "./mixins/MethodsMixin";
+
+    import MsGridBodyCellInner from "./grid-body-cell-inner";
 
     import bus from "./GridEvents";
     export default {
@@ -71,6 +73,7 @@ Time: 09:48-->
         }
       },
       components: {
+        MsGridBodyCellInner
       }
     }
 </script>

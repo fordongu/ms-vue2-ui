@@ -114,6 +114,11 @@ Time: 09:34-->
           ]
         }
       },
+      methods:{
+        t(){
+          alert("sss");
+        }
+      },
       components: {
         MsGrid
       }

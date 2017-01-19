@@ -8,6 +8,7 @@ Time: 09:30-->
   <div class="ms-grid">
     <div class="ms-grid-box" :style="[boxHeightCompute]">
       <ms-grid-scope v-if="hasLeftCompute"
+                     :grid-container="gridContainer"
                      :tree-structure="treeStructure"
                      position="left"
                      :data="dataData "
@@ -21,6 +22,7 @@ Time: 09:30-->
                      :scrollY="scrollY"
                      :ms-grid-id="msGridId"/>
       <ms-grid-scope ref="ms_grid_scope_center"
+                     :grid-container="gridContainer"
                      :tree-structure="treeStructure"
                      :data="dataData "
                      :origin-columns="columns"
@@ -35,6 +37,7 @@ Time: 09:30-->
                      :scrollY="scrollY"
                      :ms-grid-id="msGridId" />
       <ms-grid-scope v-if="hasRightCompute"
+                     :grid-container="gridContainer"
                      :tree-structure="treeStructure"
                      position="right"
                      :data="dataData "
@@ -105,6 +108,7 @@ Time: 09:30-->
         let me = this;
         return {
           msGridId:_.uniqueId("ms_grid_"),
+          gridContainer:me.$parent.$options,
           componentReady:false,
           maxColumnLevel:1,
           maxHeadHeight:0,
