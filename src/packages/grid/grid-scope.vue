@@ -11,7 +11,7 @@ Time: 12:45-->
                           :position="position"
                           :head-columns="headColumns"
                           :cols="leafColumnsCompute"
-                          :width="innerWidthData"
+                          :width="innerWidthCompute"
                           :max-column-level="maxColumnLevel"
                           :max-head-height="maxHeadHeight"
                           :scroll-x="scrollX"
@@ -24,8 +24,9 @@ Time: 12:45-->
                           :tree-structure="treeStructure"
                           :data="data"
                           :position="position"
+                          :bordered="bordered"
                           :columns="leafColumnsCompute"
-                          :width="innerWidthData"
+                          :width="innerWidthCompute"
                           :height="bodyHeightCompute"
                           :scrollY="scrollY"
                           :scrollX="scrollX"
@@ -89,6 +90,10 @@ Time: 12:45-->
             }
         },
         computed:{
+            innerWidthCompute:function(){
+                let me = this;
+                return me.width;
+            },
             styleCompute:function(){
                 let me = this;
                 let style = {};
@@ -151,6 +156,7 @@ Time: 12:45-->
                                 width = me.columnMinWidth;
                             }
                             unAllocatedWidthCount += width;
+                            debugger
                             Vue.set(leaf,'_width',width);
                         }
                     });
@@ -226,7 +232,7 @@ Time: 12:45-->
                         widthDistribution += column.width;
                     }
                 });
-                if(me.needScrollSpace){
+                if(me.needScrollSpaceData){
                     return width - widthDistribution-15;
                 }else {
                     return width - widthDistribution;

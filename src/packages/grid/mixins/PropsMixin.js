@@ -43,6 +43,12 @@ export default {
                 return "center";
             }
         },
+        bordered:{
+            type:Boolean,
+            default(){
+                return false;
+            }
+        },
         hasLeft:{
             type:Boolean,
             default(){

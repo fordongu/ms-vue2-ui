@@ -7,7 +7,7 @@ Time: 09:32-->
 <template>
 <div class="ms-grid-body" :style="[divStyleCompute]" ref="ms_grid_body" @scroll="scroll">
   <div ref="ms_grid_body_inner">
-    <table class="table" :style="[tableStyleCompute]" >
+    <table class="table" :class="{'table-bordered':bordered}" :style="[tableStyleCompute]" >
       <colgroup>
         <ms-grid-col v-for="(col,index) in columns" :col="col" />
       </colgroup>

@@ -31,9 +31,9 @@ Time: 10:34-->
         width:function(){
           let me = this;
           if(me.col.width){
-            return me.col.width;
+            return me.col.width+"px";
           }else {
-            return me.col._width;
+            return me.col._width+"px";
           }
         }
       },

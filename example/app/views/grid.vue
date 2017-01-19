@@ -11,6 +11,7 @@ Time: 09:34-->
          :data="data"
          :columns="columns"
          :height=200
+         :bordered=true
          :scroll-x=false
          :scroll-y=true />
 
@@ -87,8 +88,6 @@ Time: 09:34-->
               text:'姓名',
               dataIndex:'name',
               flex:1,
-              lockable:true,
-              lockPosition:'left'
             },
             {
               text:'测试',
@@ -103,6 +102,10 @@ Time: 09:34-->
                   width:100
                 }
               ]
+            },
+            {
+              text:'年龄',
+              dataIndex:'age',
             },
             {
               text:'操作',

@@ -14,6 +14,7 @@ Time: 09:30-->
                      :data="dataData "
                      :origin-columns="columns"
                      :columns="leftColumnsData"
+                     :bordered="bordered"
                      :max-column-level="maxColumnLevel"
                      :max-head-height="maxHeadHeight"
                      :height="heightCompute"
@@ -27,6 +28,7 @@ Time: 09:30-->
                      :data="dataData "
                      :origin-columns="columns"
                      :columns="centerColumnsData"
+                     :bordered="bordered"
                      :max-column-level="maxColumnLevel"
                      :max-head-height="maxHeadHeight"
                      :height="heightCompute"
@@ -43,6 +45,7 @@ Time: 09:30-->
                      :data="dataData "
                      :origin-columns="columns"
                      :columns="rightColumnsData"
+                     :bordered="bordered"
                      :max-column-level="maxColumnLevel"
                      :max-head-height="maxHeadHeight"
                      :height="heightCompute"
@@ -101,6 +104,12 @@ Time: 09:30-->
           type:Number,
           default(){
             return 100;
+          }
+        },
+        bordered:{
+          type:Boolean,
+          default(){
+            return false;
           }
         }
       },

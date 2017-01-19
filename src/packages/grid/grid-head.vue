@@ -8,9 +8,6 @@ Time: 09:31-->
   <div class="ms-grid-head"  :style="[elStyleCompute]" >
     <div :class="{'ms-scroll-space':needScrollSpace}" :style="[divInnerStyleCompute]">
       <table class="table table-bordered" :style="[tableStyleCompute]" ref="ms_grid_head_table" >
-        <colgroup>
-          <ms-grid-col v-for="(col,index) in cols" :col="col"  />
-        </colgroup>
         <thead>
         <tr v-for="(columnRow,rowIndex) in headColumns"
             is="ms-grid-head-row"
@@ -24,6 +21,16 @@ Time: 09:31-->
             :allocated-height="allocatedHeight">
         </tr>
         </thead>
+<!--        <colgroup>
+          <ms-grid-col v-for="(col,index) in cols" :col="col"  />
+        </colgroup>-->
+<!--        <colgroup>
+          <col width="241px">
+          <col span="2">
+          <col width="100px">
+          <col width="100px">
+        </colgroup>-->
+
       </table>
     </div>
   </div>
@@ -77,8 +84,7 @@ Time: 09:31-->
               }
             }else {
               if(me.needScrollSpace){
-                let elWidth = me.$el.clientWidth;
-                Object.assign(style,{width:(elWidth-15)+"px"});
+                Object.assign(style,{width:(me.width-15)+"px"});
               }
             }
             return style;
@@ -107,7 +113,7 @@ Time: 09:31-->
             if(me.scrollX){
               Object.assign(style,{width:me.width+"px"});
             }else {
-              let elWidth = me.$el.clientWidth;
+              let elWidth = me.width;
               Object.assign(style,{width:elWidth+"px"});
             }
             return style;

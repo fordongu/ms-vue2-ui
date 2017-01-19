@@ -11,7 +11,8 @@ Time: 09:48-->
       <span v-if="!record._expanded">+</span>
       <span v-if="record._expanded">-</span>
     </button>
-    <ms-grid-body-cell-inner :_column="column" :_record="record" />
+    <ms-grid-body-cell-inner v-if="renderUse" :_column="column" :_record="record" />
+    <span v-else>{{record[column.dataIndex]}}</span>
   </td>
 </template>
 <script>
@@ -37,6 +38,17 @@ Time: 09:48-->
             spaces.push(i);
           }
           return spaces;
+        },
+        renderUse:function(){
+          let me = this;
+          if(
+           me.cellIndex==0
+          && ((!me.hasLeft && me.position=="center") || me.position=="left")
+          && me.position!="right"
+          ){
+            return false;
+          }
+          return true;
         },
         spaceIconShow:function(){
           let me = this;
