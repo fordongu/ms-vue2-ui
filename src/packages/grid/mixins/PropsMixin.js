@@ -16,6 +16,9 @@ export default {
         msGridId:{
 
         },
+        msGridScopeId:{
+
+        },
         gridContainer:{
 
         },

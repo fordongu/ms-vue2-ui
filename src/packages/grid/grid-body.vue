@@ -93,7 +93,7 @@ Time: 09:32-->
       },
       created(){
         let me = this;
-        bus.$on('ms-grid-body-scroll',function(gridId,e){
+        bus.$on('ms-grid-body-scroll',function(gridId,gridScopeId,e){
            if(me.msGridId == gridId){
               if(e.target!=me.$el && me.$el ){
                 me.$el.scrollTop = e.target.scrollTop;
@@ -111,7 +111,7 @@ Time: 09:32-->
       methods:{
         scroll:function(e){
           let me = this;
-          bus.$emit('ms-grid-body-scroll',me.msGridId,e);
+          bus.$emit('ms-grid-body-scroll',me.msGridId,me.msGridScopeId,e);
         },
         checkScrollSpace:function(){
           let me = this;

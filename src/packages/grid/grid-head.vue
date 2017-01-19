@@ -21,21 +21,12 @@ Time: 09:31-->
             :allocated-height="allocatedHeight">
         </tr>
         </thead>
-<!--        <colgroup>
-          <ms-grid-col v-for="(col,index) in cols" :col="col"  />
-        </colgroup>-->
-<!--        <colgroup>
-          <col width="241px">
-          <col span="2">
-          <col width="100px">
-          <col width="100px">
-        </colgroup>-->
-
       </table>
     </div>
   </div>
 </template>
 <script>
+    import Vue from "vue";
     import PropsMixin from "./mixins/PropsMixin";
     import MethodsMixin from "./mixins/MethodsMixin";
     import LifecycleMixin from "./mixins/LifecycleMixin";
@@ -123,9 +114,11 @@ Time: 09:31-->
       created(){
         let me = this;
 
-        bus.$on('ms-grid-body-scroll',function(gridId,e){
-          if(gridId==me.msGridId && me.$el){
-            me.$el.scrollLeft = e.target.scrollLeft;
+        bus.$on('ms-grid-body-scroll',function(gridId,gridScopeId,e){
+          if(gridId==me.msGridId && gridScopeId==me.msGridScopeId && me.$el){
+            if(me.$el.scrollLeft != e.target.scrollLeft){
+                me.$el.scrollLeft = e.target.scrollLeft;
+            }
           }
         });
         bus.$on('ms-grid-head-row-ready',function(gridId,gridHeadId,isLastRow,height){
@@ -142,7 +135,15 @@ Time: 09:31-->
       },
       mounted(){
         let me = this;
-        bus.$emit('ms-grid-head-height',me.msGridId,me.$refs.ms_grid_head_table.clientHeight);
+
+      },
+      updated(){
+        let me = this;
+        if(me.componentReady){
+          Vue.nextTick(function(){
+             bus.$emit('ms-grid-head-height',me.msGridId,me.$refs.ms_grid_head_table.clientHeight);
+          });
+        }
       },
       components: {
         MsGridHeadRow,

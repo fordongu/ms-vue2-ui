@@ -187,6 +187,7 @@ Time: 09:30-->
               me.maxColumnLevel = level;
             }
           });
+
           bus.$on('ms-grid-head-height',function(gridId,height){
             if(me.msGridId == gridId){
               if(me.maxHeadHeight < height){
@@ -194,7 +195,11 @@ Time: 09:30-->
               }
             }
           });
-
+          bus.$on('ms-grid-scope-height',function(gridId,height){
+            if(me.msGridId == gridId){
+              me.boxHeight = height;
+            }
+          });
           bus.$on('ms-grid-scope-width-compute',function(gridId,position,gridScopeWidth){
             if(me.msGridId == gridId){
               if(position == "left"){
@@ -227,8 +232,8 @@ Time: 09:30-->
       updated(){
         let me = this;
         if(me.componentReady){
-          let boxHeight  = me.$refs.ms_grid_scope_center.$el.clientHeight;
-          me.boxHeight = boxHeight;
+       //   let boxHeight  = me.$refs.ms_grid_scope_center.$el.clientHeight;
+       //   me.boxHeight = boxHeight;
           me.gridWidth = me.$el.clientWidth;
         }
       },

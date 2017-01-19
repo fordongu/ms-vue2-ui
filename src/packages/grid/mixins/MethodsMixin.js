@@ -20,7 +20,7 @@ export default {
                 if(parent){
                     Vue.set(record,'_parent',parent);
                 }
-                let _level = 0;
+                let _level = 1;
                 if(level!=undefined && level!=null){
                     _level = level+1;
                 }

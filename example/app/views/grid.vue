@@ -111,6 +111,8 @@ Time: 09:34-->
             {
               text:'操作',
               width:100,
+              lockable:true,
+              lockPosition:"right",
               render:function(){
                 return '<button>删除</button>';
               }

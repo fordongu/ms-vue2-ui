@@ -17,6 +17,7 @@ Time: 12:45-->
                           :scroll-x="scrollX"
                           :need-scroll-space="needScrollSpaceData"
                           :ms-grid-id="msGridId"
+                          :ms-grid-scope-id="msGridScopeIdData"
             />
         </div>
         <div>
@@ -32,6 +33,7 @@ Time: 12:45-->
                           :scrollX="scrollX"
                           :need-scroll-space="needScrollSpaceData"
                           :ms-grid-id="msGridId"
+                          :ms-grid-scope-id="msGridScopeIdData"
                           :has-left="hasLeft" />
         </div>
     </div>
@@ -82,6 +84,7 @@ Time: 12:45-->
         },
         data(){
             return{
+                msGridScopeIdData:_.uniqueId("ms_grid_scope_"),
                 restWidthData:0,
                 flexCountData:0,
                 bodyHeightData:0,
@@ -184,6 +187,16 @@ Time: 12:45-->
             //me.restWidthData = me.getRestWidth(me.leafColumns,width);
             //me.bodyHeightData = me.getBodyHeight();
 
+        },
+        updated(){
+            let me = this;
+            if(me.componentReady){
+                if(me.position=="center"){
+                    Vue.nextTick(function(){
+                        bus.$emit('ms-grid-scope-height',me.msGridId,me.$el.clientHeight);
+                    });
+                }
+            }
         },
         methods:{
             headColumnsFormat:function (columns,parent,level) {
