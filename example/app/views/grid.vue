@@ -96,14 +96,20 @@ Time: 09:34-->
                 {
                   text:'年龄',
                   dataIndex:'age',
-                  width:700
                 },
                 {
                   text:'性别',
                   dataIndex:'sex',
-                  width:700
+                  width:100
                 }
               ]
+            },
+            {
+              text:'操作',
+              width:100,
+              render:function(){
+                return '<button>删除</button>';
+              }
             }
           ]
         }

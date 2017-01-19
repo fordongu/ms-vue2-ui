@@ -94,6 +94,11 @@ export default {
                 return 0;
             }
         },
-
+        needScrollSpace:{
+            type:Boolean,
+            default(){
+                return false;
+            }
+        }
     }
 }

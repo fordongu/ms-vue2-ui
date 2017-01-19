@@ -45,8 +45,7 @@ Time: 09:32-->
       data(){
         return {
           msGridBodyId:_.uniqueId("ms_grid_body_"),
-          bodyStyleData:{},
-          needScrollSpace:false
+          bodyStyleData:{}
         }
       },
       computed:{
@@ -116,10 +115,11 @@ Time: 09:32-->
         checkScrollSpace:function(){
           let me = this;
           if(me.componentReady && me.scrollY){
+              let result = false;
               if(me.$el.offsetWidth > me.$refs.ms_grid_body_inner.offsetWidth){
-                me.needScrollSpace = true;
-                bus.$emit('ms-grid-scroll-space',me.msGridId,me.needScrollSpace);
+                result = true;
               }
+              bus.$emit('ms-grid-scroll-space',me.msGridId,result);
           }
         }
       },

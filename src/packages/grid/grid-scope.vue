@@ -15,6 +15,7 @@ Time: 12:45-->
                           :max-column-level="maxColumnLevel"
                           :max-head-height="maxHeadHeight"
                           :scroll-x="scrollX"
+                          :need-scroll-space="needScrollSpaceData"
                           :ms-grid-id="msGridId"
             />
         </div>
@@ -27,6 +28,7 @@ Time: 12:45-->
                           :height="bodyHeightCompute"
                           :scrollY="scrollY"
                           :scrollX="scrollX"
+                          :need-scroll-space="needScrollSpaceData"
                           :ms-grid-id="msGridId"
                           :has-left="hasLeft" />
         </div>
@@ -81,7 +83,8 @@ Time: 12:45-->
                 restWidthData:0,
                 flexCountData:0,
                 bodyHeightData:0,
-                innerWidthData:0
+                innerWidthData:0,
+                needScrollSpaceData:false
             }
         },
         computed:{
@@ -158,6 +161,11 @@ Time: 12:45-->
         },
         created(){
             let me = this;
+             bus.$on('ms-grid-scroll-space',function(gridId,needSpace){
+               if(me.msGridId == gridId && me.position == "center"){
+                me.needScrollSpaceData = needSpace;
+               }
+            });
         },
         mounted(){
             let me = this;
@@ -210,13 +218,19 @@ Time: 12:45-->
                 return tmp;
             },
             getRestWidth:function(columns,width){
+                let me = this;
                 let widthDistribution = 0;
                 _.forEach(columns,function(column){
                     if(column.width){
                         widthDistribution += column.width;
                     }
                 });
-                return width - widthDistribution;
+                if(me.needScrollSpace){
+                    return width - widthDistribution-15;
+                }else {
+                    return width - widthDistribution;
+                }
+
             },
             getFlexCount:function(columns){
                 let flexCount = 0;

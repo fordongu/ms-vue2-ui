@@ -62,7 +62,6 @@ Time: 09:31-->
           msGridHeadId:_.uniqueId("ms_grid_head_"),
           allocatedHeight:0,
           headRowsHeight:0, //所有头部行的高度
-          needScrollSpace:false
         }
       },
       computed:{
@@ -117,11 +116,7 @@ Time: 09:31-->
       },
       created(){
         let me = this;
-        bus.$on('ms-grid-scroll-space',function(gridId,needSpace){
-           if(me.msGridId == gridId && me.position == "center"){
-            me.needScrollSpace = needSpace;
-           }
-        });
+
         bus.$on('ms-grid-body-scroll',function(gridId,e){
           if(gridId==me.msGridId && me.$el){
             me.$el.scrollLeft = e.target.scrollLeft;
