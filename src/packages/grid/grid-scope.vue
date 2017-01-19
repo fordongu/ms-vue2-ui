@@ -161,7 +161,6 @@ Time: 12:45-->
                                 width = me.columnMinWidth;
                             }
                             unAllocatedWidthCount += width;
-                            debugger
                             Vue.set(leaf,'_width',width);
                         }
                     });

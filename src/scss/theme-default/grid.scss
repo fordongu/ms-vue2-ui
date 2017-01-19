@@ -1,4 +1,5 @@
 .ms-grid{
+  border: 1px solid #ddd;
   .ms-grid-box{
     position: relative;
     &::before{
@@ -33,7 +34,7 @@
       };
       .ms-scroll-space{
         border:{
-          right: 1px solid #ddd;
+
         };
         table{
           border: 0px;

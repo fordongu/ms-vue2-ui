@@ -229,6 +229,7 @@ Time: 09:30-->
         if(me.componentReady){
           let boxHeight  = me.$refs.ms_grid_scope_center.$el.clientHeight;
           me.boxHeight = boxHeight;
+          me.gridWidth = me.$el.clientWidth;
         }
       },
       methods:{
