@@ -7,7 +7,7 @@ Time: 09:31-->
 <template>
   <div class="ms-grid-head"  :style="[elStyleCompute]" >
     <div :class="{'ms-scroll-space':needScrollSpace}" :style="[divInnerStyleCompute]">
-      <table class="table table-bordered" :style="[widthStyleCompute]" >
+      <table class="table table-bordered" :style="[tableStyleCompute]" ref="ms_grid_head_table" >
         <colgroup>
           <ms-grid-col v-for="(col,index) in cols" :col="col"  />
         </colgroup>
@@ -66,14 +66,21 @@ Time: 09:31-->
         }
       },
       computed:{
-        widthStyleCompute:function(){
+        tableStyleCompute:function(){
           let me = this;
-          if( me.componentReady && me.scrollX ){
+          if( me.componentReady ){
             let style = {};
-            if(me.needScrollSpace){
-              Object.assign(style,{width:(me.width-15)+"px"});
+            if(me.scrollX){
+              if(me.needScrollSpace){
+                Object.assign(style,{width:(me.width-15)+"px"});
+              }else {
+                Object.assign(style,{width:me.width+"px"});
+              }
             }else {
-              Object.assign(style,{width:me.width+"px"});
+              if(me.needScrollSpace){
+                let elWidth = me.$el.clientWidth;
+                Object.assign(style,{width:(elWidth-15)+"px"});
+              }
             }
             return style;
           }
@@ -123,9 +130,7 @@ Time: 09:31-->
         bus.$on('ms-grid-head-row-ready',function(gridId,gridHeadId,isLastRow,height){
             if(gridId==me.msGridId && gridHeadId==me.msGridHeadId){
                 me.headRowsHeight += height;
-                if(isLastRow){
-                  bus.$emit('ms-grid-head-height',gridId,me.headRowsHeight);
-                }else{
+                if(!isLastRow){
                   me.allocatedHeight += height;
                 }
             }
@@ -136,7 +141,7 @@ Time: 09:31-->
       },
       mounted(){
         let me = this;
-        //bus.$emit('ms-grid-head-height',me.msGridId,me.$el.clientHeight);
+        bus.$emit('ms-grid-head-height',me.msGridId,me.$refs.ms_grid_head_table.clientHeight);
       },
       components: {
         MsGridHeadRow,
