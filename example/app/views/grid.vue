@@ -12,7 +12,7 @@ Time: 09:34-->
          :columns="columns"
          :height=200
          :bordered=true
-         :scroll-x=false
+         :scroll-x=true
          :scroll-y=true />
 
 </div>
@@ -95,6 +95,7 @@ Time: 09:34-->
                 {
                   text:'年龄',
                   dataIndex:'age',
+                  width:800
                 },
                 {
                   text:'性别',

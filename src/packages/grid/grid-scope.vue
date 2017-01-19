@@ -85,14 +85,19 @@ Time: 12:45-->
                 restWidthData:0,
                 flexCountData:0,
                 bodyHeightData:0,
-                innerWidthData:0,
+                necessaryWidthData:0,
                 needScrollSpaceData:false
             }
         },
         computed:{
             innerWidthCompute:function(){
                 let me = this;
-                return me.width;
+                if(me.necessaryWidthData > me.width){
+                    return me.necessaryWidthData;
+                }else {
+                    return me.width;
+                }
+
             },
             styleCompute:function(){
                 let me = this;
@@ -160,8 +165,8 @@ Time: 12:45-->
                             Vue.set(leaf,'_width',width);
                         }
                     });
-                    me.innerWidthData = allocatedWidthCount + unAllocatedWidthCount;
-                    bus.$emit('ms-grid-scope-width-compute',me.msGridId,me.position,me.innerWidthData);
+                    me.necessaryWidthData = allocatedWidthCount + unAllocatedWidthCount;
+                    bus.$emit('ms-grid-scope-width-compute',me.msGridId,me.position,me.necessaryWidthData);
                 }
                 return leafs;
             }

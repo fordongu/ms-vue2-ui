@@ -43,7 +43,7 @@ Time: 14:04-->
           let style = {};
           if(me.column.width){
             Object.assign(style,{width:me.column.width+'px'});
-          }else {
+          }else if(me.column._width){
             Object.assign(style,{width:me.column._width+'px'});
           }
           if(me.componentReady){

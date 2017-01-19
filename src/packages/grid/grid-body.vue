@@ -8,9 +8,9 @@ Time: 09:32-->
 <div class="ms-grid-body" :style="[divStyleCompute]" ref="ms_grid_body" @scroll="scroll">
   <div ref="ms_grid_body_inner">
     <table class="table" :class="{'table-bordered':bordered}" :style="[tableStyleCompute]" >
-      <colgroup>
+<!--      <colgroup>
         <ms-grid-col v-for="(col,index) in columns" :col="col" />
-      </colgroup>
+      </colgroup>-->
       <tbody>
       <tr v-for="(record,index) in data"
           is="ms-grid-body-row"

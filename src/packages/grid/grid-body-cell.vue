@@ -5,7 +5,7 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:48-->
 <template>
-  <td>
+  <td :style="[tdStyleCompute]">
     <span v-if="spaceIconShow" v-for="space in record._level" class="ms-space"></span>
     <button v-if="toggleIconShow" @click="childrenExpandToggle">
       <span v-if="!record._expanded">+</span>
@@ -30,6 +30,16 @@ Time: 09:48-->
       props:{
       },
       computed:{
+        tdStyleCompute:function(){
+          let me = this;
+          let style = {};
+          if(me.column.width){
+            Object.assign(style,{width:me.column.width+"px"});
+          }else if(me.column._width){
+            Object.assign(style,{width:me.column._width+"px"});
+          }
+          return style;
+        },
         spaces:function(){
           let me = this;
           let record = me.record;
