@@ -9,17 +9,17 @@ Time: 09:31-->
     <div :class="{'ms-scroll-space':needScrollSpace}" :style="[divInnerStyleCompute]">
       <table class="table table-bordered" :style="[tableStyleCompute]" ref="ms_grid_head_table" >
         <thead>
-        <tr v-for="(columnRow,rowIndex) in headColumns"
-            is="ms-grid-head-row"
-            :head-columns="headColumns"
-            :head-row-index="rowIndex"
-            :column-row="columnRow"
-            :max-column-level="maxColumnLevel"
-            :max-head-height="maxHeadHeight"
-            :ms-grid-id="msGridId"
-            :ms-grid-head-id="msGridHeadId"
-            :allocated-height="allocatedHeight">
-        </tr>
+          <tr v-for="(columnRow,rowIndex) in headColumns"
+              is="ms-grid-head-row"
+              :head-columns="headColumns"
+              :head-row-index="rowIndex"
+              :column-row="columnRow"
+              :max-column-level="maxColumnLevel"
+              :max-head-height="maxHeadHeight"
+              :ms-grid-id="msGridId"
+              :ms-grid-head-id="msGridHeadId"
+              :allocated-height="allocatedHeight">
+          </tr>
         </thead>
       </table>
     </div>
