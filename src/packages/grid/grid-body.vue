@@ -5,12 +5,9 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:32-->
 <template>
-<div class="ms-grid-body" :style="[divStyleCompute]" ref="ms_grid_body" @scroll="scroll">
+<div class="ms-grid-body" :class="[{'ms-grid-body-bottom':showBottom}]" :style="[divStyleCompute]" ref="ms_grid_body" @scroll="scroll">
   <div ref="ms_grid_body_inner">
-    <table class="table" :class="{'table-bordered':bordered}" :style="[tableStyleCompute]" >
-<!--      <colgroup>
-        <ms-grid-col v-for="(col,index) in columns" :col="col" />
-      </colgroup>-->
+    <table ref="ms_grid_body_table" class="table" :class="{'table-bordered':bordered}" :style="[tableStyleCompute]" >
       <tbody>
       <tr v-for="(record,index) in data"
           is="ms-grid-body-row"
@@ -50,6 +47,13 @@ Time: 09:32-->
         }
       },
       computed:{
+        showBottom:function(){
+           let me = this;
+          if(me.needScrollXSpace && me.position!="center"){
+            return true;
+          }
+          return false;
+        },
         divStyleCompute:function(){
           let me = this;
           if( me.componentReady){
@@ -103,10 +107,13 @@ Time: 09:32-->
       },
       mounted(){
         let me = this;
-    //    me.getBodyHeightStyle();
-              Vue.nextTick(function(){
-                  me.checkScrollSpace();
-              });
+
+      },
+      updated(){
+        let me = this;
+        Vue.nextTick(function(){
+           me.checkScrollSpace();
+        });
       },
       methods:{
         scroll:function(e){
@@ -115,12 +122,21 @@ Time: 09:32-->
         },
         checkScrollSpace:function(){
           let me = this;
-          if(me.componentReady && me.scrollY){
-              let result = false;
-              if(me.$el.offsetWidth > me.$refs.ms_grid_body_inner.offsetWidth){
-                result = true;
+          if(me.componentReady && me.position=="center"){
+              if(me.scrollY){
+                let result = false;
+                if(me.$el.offsetWidth > me.$refs.ms_grid_body_inner.offsetWidth){
+                  result = true;
+                }
+                bus.$emit('ms-grid-scroll-space-y',me.msGridId,result);
               }
-              bus.$emit('ms-grid-scroll-space',me.msGridId,result);
+              if(me.scrollX){
+                let result = false;
+                if(me.$refs.ms_grid_body_table.offsetWidth > me.$refs.ms_grid_body_inner.offsetWidth){
+                  result = true;
+                }
+                bus.$emit('ms-grid-scroll-space-x',me.msGridId,result);
+              }
           }
         }
       },

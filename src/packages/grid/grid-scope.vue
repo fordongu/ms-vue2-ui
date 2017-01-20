@@ -5,7 +5,7 @@ User: Bane.Shi
 Date: 2017/1/15
 Time: 12:45-->
 <template>
-    <div :class="gridClass" :style="[styleCompute]">
+    <div :class="[gridClass]" :style="[styleCompute]">
         <div >
             <ms-grid-head ref="ms_grid_head"
                           :position="position"
@@ -32,6 +32,7 @@ Time: 12:45-->
                           :scrollY="scrollY"
                           :scrollX="scrollX"
                           :need-scroll-space="needScrollSpaceData"
+                          :need-scroll-x-space="needScrollXSpace"
                           :ms-grid-id="msGridId"
                           :ms-grid-scope-id="msGridScopeIdData"
                           :has-left="hasLeft" />
@@ -175,7 +176,7 @@ Time: 12:45-->
         },
         created(){
             let me = this;
-             bus.$on('ms-grid-scroll-space',function(gridId,needSpace){
+             bus.$on('ms-grid-scroll-space-y',function(gridId,needSpace){
                if(me.msGridId == gridId && me.position == "center"){
                 me.needScrollSpaceData = needSpace;
                }

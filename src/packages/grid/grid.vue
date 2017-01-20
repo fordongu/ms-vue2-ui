@@ -21,6 +21,7 @@ Time: 09:30-->
                      :width="leftWidthData"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
+                     :need-scroll-x-space="needScrollXSpaceData"
                      :ms-grid-id="msGridId"/>
       <ms-grid-scope ref="ms_grid_scope_center"
                      :grid-container="gridContainer"
@@ -37,6 +38,7 @@ Time: 09:30-->
                      :has-left="hasLeftCompute"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
+                     :need-scroll-x-space="needScrollXSpaceData"
                      :ms-grid-id="msGridId" />
       <ms-grid-scope v-if="hasRightCompute"
                      :grid-container="gridContainer"
@@ -52,6 +54,7 @@ Time: 09:30-->
                      :width="rightWidthData"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
+                     :need-scroll-x-space="needScrollXSpaceData"
                      :ms-grid-id="msGridId"/>
 
     </div>
@@ -131,7 +134,8 @@ Time: 09:30-->
           centerLeft:0,
           hasLeftData:false,
           gridWidth:0,
-          boxHeight:0
+          boxHeight:0,
+          needScrollXSpaceData:false
         }
       },
       computed:{
@@ -200,6 +204,11 @@ Time: 09:30-->
               me.boxHeight = height;
             }
           });
+          bus.$on('ms-grid-scroll-space-x',(gridId,result)=>{
+              if(me.msGridId == gridId){
+                this.needScrollXSpaceData = result;
+              }
+          });
           bus.$on('ms-grid-scope-width-compute',function(gridId,position,gridScopeWidth){
             if(me.msGridId == gridId){
               if(position == "left"){
@@ -258,11 +267,9 @@ Time: 09:30-->
           me.leftColumnsData = leftColumns;
           me.rightColumnsData = rightColumns;
           me.centerColumnsData = centerColumns;
-         // me.leftColumnsData = _.cloneDeep(me.columns);
           if(me.leftColumnsData && me.leftColumnsData.length>0){
             me.hasLeftData = true;
           }
-          //me.rightColumnsData = _.cloneDeep(me.columns);
         },
       },
       components: {

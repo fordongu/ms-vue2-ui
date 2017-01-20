@@ -111,6 +111,12 @@ export default {
             default(){
                 return false;
             }
+        },
+        needScrollXSpace:{
+            type:Boolean,
+            default(){
+                return false;
+            }
         }
     }
 }

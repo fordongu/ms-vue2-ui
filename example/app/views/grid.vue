@@ -87,6 +87,12 @@ Time: 09:34-->
             {
               text:'姓名',
               dataIndex:'name',
+              width:150,
+              lockable:true,
+            },
+            {
+              text:'姓名',
+              dataIndex:'name',
               flex:1,
             },
             {
