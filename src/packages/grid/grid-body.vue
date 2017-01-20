@@ -6,8 +6,7 @@ Date: 2017/1/13
 Time: 09:32-->
 <template>
 <div class="ms-grid-body" :class="[{'ms-grid-body-bottom':showBottom}]" :style="[divStyleCompute]" ref="ms_grid_body" @scroll="scroll" >
-  <div ref="ms_grid_body_inner">
-    <div ref="ms_grid_body_box" :style="[boxStyleCompute]">
+  <div ref="ms_grid_body_inner" :style="[boxStyleCompute]">
       <table ref="ms_grid_body_table" class="table" :class="{'table-bordered':bordered}" :style="[tableStyleCompute]" >
         <tbody>
         <tr v-for="(record,index) in data"
@@ -23,7 +22,6 @@ Time: 09:32-->
         </tr>
         </tbody>
       </table>
-    </div>
   </div>
 </div>
 </template>
@@ -83,7 +81,7 @@ Time: 09:32-->
             let style = {};
             if(me.scrollX){
               if(me.needScrollSpace){
-                Object.assign(style,{width:(me.width-15)+"px"});
+                Object.assign(style,{width:(me.width-17)+"px"});
               }else {
                 Object.assign(style,{width:me.width+"px"});
               }
@@ -97,7 +95,7 @@ Time: 09:32-->
             let style = {};
             if(me.scrollX){
               if(me.needScrollSpace){
-                Object.assign(style,{width:(me.width-15)+"px"});
+                Object.assign(style,{width:(me.width-17)+"px"});
               }else {
                 Object.assign(style,{width:me.width+"px"});
               }
@@ -167,14 +165,14 @@ Time: 09:32-->
           if(me.componentReady && me.position=="center"){
               if(me.scrollY){
                 let result = false;
-                if(me.$el.offsetWidth > me.$refs.ms_grid_body_inner.offsetWidth){
+                if(me.$el.offsetWidth > me.$el.clientWidth){
                   result = true;
                 }
                 bus.$emit('ms-grid-scroll-space-y',me.msGridId,result);
               }
               if(me.scrollX){
                 let result = false;
-                if(me.$refs.ms_grid_body_inner.offsetHeight > me.$refs.ms_grid_body_box.offsetHeight){
+                if(me.$el.offsetHeight>me.$el.clientHeight){
                   result = true;
                 }
                 bus.$emit('ms-grid-scroll-space-x',me.msGridId,result);

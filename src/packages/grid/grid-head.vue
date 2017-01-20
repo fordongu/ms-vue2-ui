@@ -69,13 +69,13 @@ Time: 09:31-->
             let style = {};
             if(me.scrollX){
               if(me.needScrollSpace){
-                Object.assign(style,{width:(me.width-15)+"px"});
+                Object.assign(style,{width:(me.width-17)+"px"});
               }else {
                 Object.assign(style,{width:me.width+"px"});
               }
             }else {
               if(me.needScrollSpace){
-                Object.assign(style,{width:(me.width-15)+"px"});
+                Object.assign(style,{width:(me.width-17)+"px"});
               }
             }
             return style;
