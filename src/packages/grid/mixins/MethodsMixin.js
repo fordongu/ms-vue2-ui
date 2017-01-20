@@ -20,7 +20,7 @@ export default {
                 if(parent){
                     Vue.set(record,'_parent',parent);
                 }
-                let _level = 0;
+                let _level = 1;
                 if(level!=undefined && level!=null){
                     _level = level+1;
                 }
@@ -33,7 +33,7 @@ export default {
             });
             return tmp;
         },
-        columnsFormat:function (columns,parent) {
+        columnsLeafs:function (columns,parent) {
             let me = this;
             let tmp = [];
             _.forEach(columns,function (column) {
@@ -41,7 +41,7 @@ export default {
                     Vue.set(column,'_parent',parent);
                 }
                 if(column.columns && column.columns.length>0 ){
-                    let children = me.columnsFormat(column.columns,column);
+                    let children = me.columnsLeafs(column.columns,column);
                     tmp = _.concat(tmp,children);
                 }else{
                     tmp.push(column);

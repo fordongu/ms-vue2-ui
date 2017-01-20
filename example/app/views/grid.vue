@@ -6,19 +6,39 @@ Date: 2017/1/13
 Time: 09:34-->
 <template>
 <div>
-<ms-grid :tree-structure=true :data="data" :columns="columns" />
+  <div><button @click="dian">dian</button></div>
+  <div>
+    <ms-grid :tree-structure=true
+             :data="data"
+             :columns="columns"
+             :height=200
+             :bordered=true
+             :scroll-x=true
+             :scroll-y=true />
+  </div>
+
 </div>
 </template>
 <script>
     import {MsGrid} from "../../../src/index";
+    import myButton from "./my-button.vue";
     export default {
+      props:{
+        p:{
+          type:String,
+          default(){
+            return "props";
+          }
+        }
+      },
       data(){
         return {
+          test:'data',
           data:[
             {
               name:'A',
               age:20,
-              sex:'男'
+              sex:'男',
             },
             {
               name:'B',
@@ -48,27 +68,87 @@ Time: 09:34-->
               name:'C',
               age:20,
               sex:'男'
+            },
+                        {
+              name:'C',
+              age:20,
+              sex:'男'
+            },
+                        {
+              name:'C',
+              age:20,
+              sex:'男'
+            },
+                        {
+              name:'C',
+              age:20,
+              sex:'男'
+            },
+                        {
+              name:'C',
+              age:20,
+              sex:'男'
+            },
+                        {
+              name:'C',
+              age:20,
+              sex:'男'
             }
           ],
           columns:[
             {
               text:'姓名',
               dataIndex:'name',
-              flex:1
+              width:150,
+              lockable:true,
+            },
+            {
+              text:'姓名',
+              dataIndex:'name',
+              flex:1,
+            },
+            {
+              text:'测试',
+              columns:[
+                {
+                  text:'年龄',
+                  dataIndex:'age',
+                  width:800
+                },
+                {
+                  text:'性别',
+                  dataIndex:'sex',
+                  width:100
+                }
+              ]
             },
             {
               text:'年龄',
-              dataIndex:'age'
+              dataIndex:'age',
             },
             {
-              text:'性别',
-              dataIndex:'sex'
+              text:'操作',
+              width:100,
+              lockable:true,
+              lockPosition:"right",
+              render:function(){
+                return '<my-button></my-button>';
+              }
             }
           ]
         }
       },
+      methods:{
+        t:function(){
+          alert(this.test);
+        },
+        dian:function(){
+          this.test = "SSS";
+        }
+      },
       components: {
-        MsGrid
+        MsGrid,
+        myButton
       }
     }
 </script>

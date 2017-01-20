@@ -1,13 +1,146 @@
 .ms-grid{
-  table{
-    tr{
-      td{
-        .ms-space{
-          display: inline-block;
-          width: 14px;
-          height: 14px;
+  border: 1px solid #ddd;
+  .ms-grid-box{
+    position: relative;
+    &::before{
+      content: " ";
+    }
+    &::after{
+      content: " ";
+    }
+    .ms-grid-left{
+      position: absolute;
+      left: 0px;
+      z-index: 1;
+      border: {
+        right:1px #0001ff solid;
+      };
+    }
+    .ms-grid-center{
+      position: absolute;
+    }
+    .ms-grid-right{
+      position: absolute;
+      right: 0px;
+      z-index: 1;
+      border: {
+        left:1px #0001ff solid;
+      };
+    }
+
+    .ms-grid-head{
+      border: {
+        top:1px solid #ddd;
+      };
+      .ms-scroll-space{
+        table{
+          border: 0px;
+          thead{
+            tr{
+              td{
+                &:last-child{
+                  border: {
+                    right: {
+                      width: 1px;
+                    }
+                  };
+                }
+              }
+            }
+          }
+          tbody{
+            tr{
+              td{
+                &:first-child{
+                  border: {
+                    left: {
+                      width: 0px;
+                    }
+                  };
+                }
+                &:last-child{
+                  border: {
+                    right: {
+                      width: 0px;
+                    }
+                  };
+                }
+              }
+            }
+          }
+        }
+      }
+      table{
+        border:0px;
+        margin: {
+          bottom: 0px;
+        };
+        thead{
+          tr{
+            td{
+              vertical-align: middle;
+              border: {
+                bottom: {
+                  width: 1px;
+                };
+              };
+              &:first-child{
+                border: {
+                  left: {
+                    width: 0px;
+                  };
+                };
+              }
+              &:last-child{
+                border: {
+                  right: {
+                    width: 0px;
+                  };
+                };
+              }
+            }
+          }
+        }
+      }
+    }
+    .ms-grid-body{
+      &.ms-grid-body-bottom{
+        border: {
+          bottom: 15px solid rgb(246, 246, 246);;
+        };
+      }
+      table{
+        border:0px;
+        margin: {
+          bottom: 0px;
+        };
+        tbody{
+          tr{
+            td{
+              .ms-space{
+                display: inline-block;
+                width: 14px;
+                height: 14px;
+              }
+              &:first-child{
+                border: {
+                  left: {
+                    width: 0px;
+                  }
+                };
+              }
+              &:last-child{
+                border: {
+                  right: {
+                    width: 0px;
+                  }
+                };
+              }
+            }
+          }
         }
       }
     }
   }
+
 }

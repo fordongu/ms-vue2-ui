@@ -43,7 +43,7 @@ Time: 11:37-->
             me.$parent.data.push(me.item);
         },
         mounted(){
-            debugger;
+
         },
         methods:{
 
