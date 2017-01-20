@@ -60,21 +60,23 @@ Time: 16:25-->
       },
       mounted(){
         let me = this;
-
         me.setRowHeight();
-       // bus.$emit('ms-grid-head-row-ready',me.msGridId,me.msGridHeadId,isLastRow,me.$el.clientHeight);
+      },
+      updated(){
+        let me = this;
+        
       },
       methods:{
         setRowHeight:function(){
-           let me = this;
-           //Vue.set(me.columnRow,'_height',me.$el.clientHeight);
-
+            let me = this;
             let columnsRowCount = me.headColumns.length;
             let isLastRow = false;
             if(me.headRowIndex == columnsRowCount-1){
               isLastRow = true;
             }
-           bus.$emit('ms-grid-head-row-ready',me.msGridId,me.msGridHeadId,isLastRow,me.$el.clientHeight);
+            Vue.nextTick(function(){
+              bus.$emit('ms-grid-head-row-ready',me.msGridId,me.msGridHeadId,isLastRow,me.$el.clientHeight);
+            });
         }
       },
       components: {
