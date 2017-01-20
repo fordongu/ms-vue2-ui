@@ -249,7 +249,7 @@ Time: 12:45-->
                     }
                 });
                 if(me.needScrollSpaceData){
-                    return width - widthDistribution-15;
+                    return width - widthDistribution-17;
                 }else {
                     return width - widthDistribution;
                 }

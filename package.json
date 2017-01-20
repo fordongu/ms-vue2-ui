@@ -38,6 +38,7 @@
   },
   "scripts": {
     "start": "babel-node start.js",
+    "html" : "webpack --progres",
     "build": "webpack --config webpack-lib.config.babel.js  --progres",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
