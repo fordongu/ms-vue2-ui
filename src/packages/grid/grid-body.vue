@@ -7,7 +7,7 @@ Time: 09:32-->
 <template>
 <div class="ms-grid-body" :class="[{'ms-grid-body-bottom':showBottom}]" :style="[divStyleCompute]" ref="ms_grid_body" @scroll="scroll" >
   <div ref="ms_grid_body_inner">
-    <div :style="[boxStyleCompute]">
+    <div ref="ms_grid_body_box" :style="[boxStyleCompute]">
       <table ref="ms_grid_body_table" class="table" :class="{'table-bordered':bordered}" :style="[tableStyleCompute]" >
         <tbody>
         <tr v-for="(record,index) in data"
@@ -107,11 +107,7 @@ Time: 09:32-->
         }
       },
       watch:{
-        'data':{
-          handler:function(){
-          },
-          deep: true
-        }
+
       },
       created(){
         let me = this;
@@ -178,7 +174,7 @@ Time: 09:32-->
               }
               if(me.scrollX){
                 let result = false;
-                if(me.$refs.ms_grid_body_table.offsetWidth > me.$refs.ms_grid_body_inner.offsetWidth){
+                if(me.$refs.ms_grid_body_inner.offsetHeight > me.$refs.ms_grid_body_box.offsetHeight){
                   result = true;
                 }
                 bus.$emit('ms-grid-scroll-space-x',me.msGridId,result);

@@ -39,7 +39,9 @@ Time: 09:33-->
         }
       },
       data(){
-        return {}
+        return {
+          gridBodyRowHeight:0
+        }
       },
       computed:{
         show:function(){
@@ -47,18 +49,28 @@ Time: 09:33-->
           let record = me.record;
           let show = (record._parent?(record._parent._expanded && record._parent._show):true);
           bus.$emit('show-children',me.msGridId,me.rowIndex,show);
+          Vue.nextTick(function(){
+            let trHeight = me.$el.clientHeight;
+            me.gridBodyRowHeight = trHeight;
+          });
           return show;
         },
         heightStyleCompute:function(){
           let me = this;
           if(me.componentReady && me.show){
-            let trHeight = me.$el.clientHeight;
+           // let trHeight = me.$el.clientHeight;
             if(me.record._height){
-              if(me.record._height < trHeight){
-                me.record._height = trHeight;
-              }
+             // if(me.record._height < trHeight){
+             //   me.record._height = trHeight;
+             // }
+             if(me.record._height < me.gridBodyRowHeight){
+              me.record._height = me.gridBodyRowHeight;
+             }
             }else {
-              Vue.set(me.record,'_height',trHeight);
+             // Vue.set(me.record,'_height',trHeight);
+              if(me.gridBodyRowHeight){
+                Vue.set(me.record,'_height',me.gridBodyRowHeight);
+              }
             }
             return {height:me.record._height+"px"};
           }
@@ -66,9 +78,13 @@ Time: 09:33-->
       },
       mounted(){
         let me = this;
-
+//me.setTrHeight();
       },
       beforeUpdate(){
+
+      },
+      updated(){
+        let me = this;
 
       },
       methods:{
@@ -76,13 +92,7 @@ Time: 09:33-->
           let me = this;
           if(me.componentReady){
             let trHeight = me.$el.clientHeight;
-            if(me.record._height){
-             if(me.record._height < trHeight){
-              me.record._height = trHeight;
-             }
-            }else {
-              Vue.set(me.record,'_height',trHeight);
-            }
+            me.gridBodyRowHeight = trHeight;
           }
         }
       },

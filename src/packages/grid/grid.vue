@@ -201,22 +201,32 @@ Time: 09:30-->
           });
           bus.$on('ms-grid-scope-height',function(gridId,height){
             if(me.msGridId == gridId){
-              me.boxHeight = height;
+              if(me.boxHeight != height){
+                me.boxHeight = height;
+              }
             }
           });
           bus.$on('ms-grid-scroll-space-x',(gridId,result)=>{
-              if(me.msGridId == gridId){
-                this.needScrollXSpaceData = result;
+              if(me.msGridId == gridId ){
+                if(this.needScrollXSpaceData != result){
+                  this.needScrollXSpaceData = result;
+                }
               }
           });
           bus.$on('ms-grid-scope-width-compute',function(gridId,position,gridScopeWidth){
             if(me.msGridId == gridId){
               if(position == "left"){
-                me.leftWidthData = gridScopeWidth;
-                me.centerLeft = gridScopeWidth;
+                if(me.leftWidthData != gridScopeWidth){
+                  me.leftWidthData = gridScopeWidth;
+                }
+                if(me.centerLeft != gridScopeWidth){
+                  me.centerLeft = gridScopeWidth;
+                }
               }
               if(position == "right"){
-                me.rightWidthData = gridScopeWidth;
+                if(me.rightWidthData != gridScopeWidth){
+                  me.rightWidthData = gridScopeWidth;
+                }
               }
             }
           });
@@ -225,7 +235,9 @@ Time: 09:30-->
             record._expanded = !record._expanded;
           });
           bus.$on('show-children',function(gridId,rowIndex,show){
-            Vue.set(me.dataData[rowIndex],'_show',show);
+            if(me.dataData[rowIndex]['_show'] != undefined || me.dataData[rowIndex]['_show']!=show){
+              Vue.set(me.dataData[rowIndex],'_show',show);
+            }
           });
       },
       mounted(){
@@ -243,7 +255,10 @@ Time: 09:30-->
         if(me.componentReady){
        //   let boxHeight  = me.$refs.ms_grid_scope_center.$el.clientHeight;
        //   me.boxHeight = boxHeight;
-          me.gridWidth = me.$el.clientWidth;
+          let gridWidth = me.$el.clientWidth;
+          if(me.gridWidth = gridWidth){
+            me.gridWidth = gridWidth;
+          }
         }
       },
       methods:{

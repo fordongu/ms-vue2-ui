@@ -178,16 +178,14 @@ Time: 12:45-->
             let me = this;
              bus.$on('ms-grid-scroll-space-y',function(gridId,needSpace){
                if(me.msGridId == gridId && me.position == "center"){
-                me.needScrollSpaceData = needSpace;
+                if(me.needScrollSpaceData != needSpace){
+                    me.needScrollSpaceData = needSpace;
+                }
                }
             });
         },
         mounted(){
             let me = this;
-           // let width = me.$el.clientWidth;
-            //me.restWidthData = me.getRestWidth(me.leafColumns,width);
-            //me.bodyHeightData = me.getBodyHeight();
-
         },
         updated(){
             let me = this;
