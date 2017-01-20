@@ -120,7 +120,7 @@ Time: 09:30-->
         let me = this;
         return {
           msGridId:_.uniqueId("ms_grid_"),
-          gridContainer:me.$parent.$options,
+          gridContainer:me.$parent,
           componentReady:false,
           maxColumnLevel:1,
           maxHeadHeight:0,

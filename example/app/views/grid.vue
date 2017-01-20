@@ -6,22 +6,34 @@ Date: 2017/1/13
 Time: 09:34-->
 <template>
 <div>
-
-<ms-grid :tree-structure=true
-         :data="data"
-         :columns="columns"
-         :height=200
-         :bordered=true
-         :scroll-x=true
-         :scroll-y=true />
+  <div><button @click="dian">dian</button></div>
+  <div>
+    <ms-grid :tree-structure=true
+             :data="data"
+             :columns="columns"
+             :height=200
+             :bordered=true
+             :scroll-x=true
+             :scroll-y=true />
+  </div>
 
 </div>
 </template>
 <script>
     import {MsGrid} from "../../../src/index";
+    import myButton from "./my-button.vue";
     export default {
+      props:{
+        p:{
+          type:String,
+          default(){
+            return "props";
+          }
+        }
+      },
       data(){
         return {
+          test:'data',
           data:[
             {
               name:'A',
@@ -120,19 +132,23 @@ Time: 09:34-->
               lockable:true,
               lockPosition:"right",
               render:function(){
-                return '<button>删除</button>';
+                return '<my-button></my-button>';
               }
             }
           ]
         }
       },
       methods:{
-        t(){
-          alert("sss");
+        t:function(){
+          alert(this.test);
+        },
+        dian:function(){
+          this.test = "SSS";
         }
       },
       components: {
-        MsGrid
+        MsGrid,
+        myButton
       }
     }
 </script>

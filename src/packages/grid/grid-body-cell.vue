@@ -11,7 +11,7 @@ Time: 09:48-->
       <span v-if="!record._expanded">+</span>
       <span v-if="record._expanded">-</span>
     </button>
-    <ms-grid-body-cell-inner v-if="renderUse" :_column="column" :_record="record" />
+    <ms-grid-body-cell-inner v-if="renderUse" :_column="column" :_record="record" :grid-container="gridContainer" />
     <span v-else>{{record[column.dataIndex]}}</span>
   </td>
 </template>
@@ -53,6 +53,7 @@ Time: 09:48-->
           let me = this;
           if(
            me.cellIndex==0
+           && me.treeStructure
           && ((!me.hasLeft && me.position=="center") || me.position=="left")
           && me.position!="right"
           ){
