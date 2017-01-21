@@ -11,6 +11,20 @@ class BrowserType {
         this.userAgent = navigator.userAgent.toLocaleLowerCase();
     }
 
+    isIE(){
+        if(this.userAgent.match(/msie/)){
+            return true;
+        }
+        return false;
+    }
+
+    isEdge(){
+        if(this.userAgent.match(/edge\/([\d.]+)/)){
+            return true;
+        }
+        return false;
+    }
+
     isFirefox(){
         if(this.userAgent.match(/firefox\/([\d.]+)/)){
             return true;

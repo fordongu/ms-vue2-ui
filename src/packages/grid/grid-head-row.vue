@@ -24,7 +24,7 @@ Time: 16:25-->
     import LifecycleMixin from "./mixins/LifecycleMixin";
 
     import MsGridHeadItem from "./grid-head-item.vue";
-
+    import BrowserType from "../../utils/BrowserType.js";
     import bus from "./GridEvents";
     export default {
       name:'ms-grid-head-row',
@@ -75,7 +75,12 @@ Time: 16:25-->
               isLastRow = true;
             }
             Vue.nextTick(function(){
-              bus.$emit('ms-grid-head-row-ready',me.msGridId,me.msGridHeadId,isLastRow,me.$el.clientHeight);
+              if(BrowserType.isIE() || BrowserType.isEdge()){
+                 bus.$emit('ms-grid-head-row-ready',me.msGridId,me.msGridHeadId,isLastRow,$(me.$el).height());
+              }else {
+                  bus.$emit('ms-grid-head-row-ready',me.msGridId,me.msGridHeadId,isLastRow,me.$el.clientHeight);
+              }
+
             });
         }
       },

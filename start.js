@@ -24,7 +24,7 @@ var config = require('./webpack.config.babel.js');
             //pathRewrite: {'^/api' : ''}
         }
     }
-})).listen(3000,'localhost',function (res) {
+})).listen(3000,function (res) {
     console.log("Start server port 3000");
 },function (res) {
 });
