@@ -11303,7 +11303,7 @@ webpackJsonp([0],[
 	
 	var _gridScope2 = _interopRequireDefault(_gridScope);
 	
-	var _GridEvents = __webpack_require__(83);
+	var _GridEvents = __webpack_require__(89);
 	
 	var _GridEvents2 = _interopRequireDefault(_GridEvents);
 	
@@ -11764,11 +11764,11 @@ webpackJsonp([0],[
 	
 	var _gridHead2 = _interopRequireDefault(_gridHead);
 	
-	var _gridBody = __webpack_require__(90);
+	var _gridBody = __webpack_require__(96);
 	
 	var _gridBody2 = _interopRequireDefault(_gridBody);
 	
-	var _GridEvents = __webpack_require__(83);
+	var _GridEvents = __webpack_require__(89);
 	
 	var _GridEvents2 = _interopRequireDefault(_GridEvents);
 	
@@ -12709,7 +12709,7 @@ webpackJsonp([0],[
 	__vue_exports__ = __webpack_require__(75)
 	
 	/* template */
-	var __vue_template__ = __webpack_require__(89)
+	var __vue_template__ = __webpack_require__(95)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -12752,7 +12752,7 @@ webpackJsonp([0],[
 /* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(_) {"use strict";
+	/* WEBPACK VAR INJECTION */(function(_, $) {"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -12782,15 +12782,47 @@ webpackJsonp([0],[
 	
 	var _gridHeadRow2 = _interopRequireDefault(_gridHeadRow);
 	
-	var _gridCol = __webpack_require__(85);
+	var _gridCol = __webpack_require__(91);
 	
 	var _gridCol2 = _interopRequireDefault(_gridCol);
 	
-	var _GridEvents = __webpack_require__(83);
+	var _BrowserType = __webpack_require__(83);
+	
+	var _BrowserType2 = _interopRequireDefault(_BrowserType);
+	
+	var _GridEvents = __webpack_require__(89);
 	
 	var _GridEvents2 = _interopRequireDefault(_GridEvents);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	
 	exports.default = {
 	  name: 'ms-grid-head',
@@ -12896,7 +12928,12 @@ webpackJsonp([0],[
 	    var me = this;
 	    if (me.componentReady) {
 	      _vue2.default.nextTick(function () {
-	        _GridEvents2.default.$emit('ms-grid-head-height', me.msGridId, me.$refs.ms_grid_head_table.clientHeight);
+	        console.log(me.$refs.ms_grid_head_table.clientHeight);
+	        if (_BrowserType2.default.isIE() || _BrowserType2.default.isEdge()) {
+	          _GridEvents2.default.$emit('ms-grid-head-height', me.msGridId, $(me.$refs.ms_grid_head_table).height());
+	        } else {
+	          _GridEvents2.default.$emit('ms-grid-head-height', me.msGridId, me.$refs.ms_grid_head_table.clientHeight);
+	        }
 	      });
 	    }
 	  },
@@ -12905,34 +12942,8 @@ webpackJsonp([0],[
 	    MsGridHeadRow: _gridHeadRow2.default,
 	    MsGridCol: _gridCol2.default
 	  }
-	}; //
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27), __webpack_require__(29)))
 
 /***/ },
 /* 76 */
@@ -12948,7 +12959,7 @@ webpackJsonp([0],[
 	__vue_exports__ = __webpack_require__(78)
 	
 	/* template */
-	var __vue_template__ = __webpack_require__(84)
+	var __vue_template__ = __webpack_require__(90)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -12991,7 +13002,7 @@ webpackJsonp([0],[
 /* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -13017,31 +13028,15 @@ webpackJsonp([0],[
 	
 	var _gridHeadItem2 = _interopRequireDefault(_gridHeadItem);
 	
-	var _GridEvents = __webpack_require__(83);
+	var _BrowserType = __webpack_require__(83);
+	
+	var _BrowserType2 = _interopRequireDefault(_BrowserType);
+	
+	var _GridEvents = __webpack_require__(89);
 	
 	var _GridEvents2 = _interopRequireDefault(_GridEvents);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 	
 	exports.default = {
 	  name: 'ms-grid-head-row',
@@ -13092,14 +13087,37 @@ webpackJsonp([0],[
 	        isLastRow = true;
 	      }
 	      _vue2.default.nextTick(function () {
-	        _GridEvents2.default.$emit('ms-grid-head-row-ready', me.msGridId, me.msGridHeadId, isLastRow, me.$el.clientHeight);
+	        if (_BrowserType2.default.isIE() || _BrowserType2.default.isEdge()) {
+	          _GridEvents2.default.$emit('ms-grid-head-row-ready', me.msGridId, me.msGridHeadId, isLastRow, $(me.$el).height());
+	        } else {
+	          _GridEvents2.default.$emit('ms-grid-head-row-ready', me.msGridId, me.msGridHeadId, isLastRow, me.$el.clientHeight);
+	        }
 	      });
 	    }
 	  },
 	  components: {
 	    MsGridHeadItem: _gridHeadItem2.default
 	  }
-	};
+	}; //
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)))
 
 /***/ },
 /* 79 */
@@ -13284,6 +13302,152 @@ webpackJsonp([0],[
 	 * Created by Bane.Shi.
 	 * Copyright MoenSun
 	 * User: Bane.Shi
+	 * Date: 2017/1/20
+	 * Time: 13:50
+	 */
+	'use strict';
+	
+	var _classCallCheck2 = __webpack_require__(84);
+	
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+	
+	var _createClass2 = __webpack_require__(85);
+	
+	var _createClass3 = _interopRequireDefault(_createClass2);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var BrowserType = function () {
+	    function BrowserType() {
+	        (0, _classCallCheck3.default)(this, BrowserType);
+	
+	        this.userAgent = navigator.userAgent.toLocaleLowerCase();
+	    }
+	
+	    (0, _createClass3.default)(BrowserType, [{
+	        key: 'isIE',
+	        value: function isIE() {
+	            if (this.userAgent.match(/msie/)) {
+	                return true;
+	            }
+	            return false;
+	        }
+	    }, {
+	        key: 'isEdge',
+	        value: function isEdge() {
+	            if (this.userAgent.match(/edge\/([\d.]+)/)) {
+	                return true;
+	            }
+	            return false;
+	        }
+	    }, {
+	        key: 'isFirefox',
+	        value: function isFirefox() {
+	            if (this.userAgent.match(/firefox\/([\d.]+)/)) {
+	                return true;
+	            }
+	            return false;
+	        }
+	    }, {
+	        key: 'isChrome',
+	        value: function isChrome() {
+	            if (this.userAgent.match(/chrome\/([\d.]+)/)) {
+	                return true;
+	            }
+	            return false;
+	        }
+	    }, {
+	        key: 'isSafari',
+	        value: function isSafari() {
+	            if (this.userAgent.match(/safari\/([\d.]+)/) && !this.userAgent.match(/chrome\/([\d.]+)/)) {
+	                return true;
+	            }
+	            return false;
+	        }
+	    }]);
+	    return BrowserType;
+	}();
+	
+	module.exports = new BrowserType();
+
+/***/ },
+/* 84 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	exports.__esModule = true;
+	
+	exports.default = function (instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
+	};
+
+/***/ },
+/* 85 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	exports.__esModule = true;
+	
+	var _defineProperty = __webpack_require__(86);
+	
+	var _defineProperty2 = _interopRequireDefault(_defineProperty);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function () {
+	  function defineProperties(target, props) {
+	    for (var i = 0; i < props.length; i++) {
+	      var descriptor = props[i];
+	      descriptor.enumerable = descriptor.enumerable || false;
+	      descriptor.configurable = true;
+	      if ("value" in descriptor) descriptor.writable = true;
+	      (0, _defineProperty2.default)(target, descriptor.key, descriptor);
+	    }
+	  }
+	
+	  return function (Constructor, protoProps, staticProps) {
+	    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	    if (staticProps) defineProperties(Constructor, staticProps);
+	    return Constructor;
+	  };
+	}();
+
+/***/ },
+/* 86 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(87), __esModule: true };
+
+/***/ },
+/* 87 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(88);
+	var $Object = __webpack_require__(39).Object;
+	module.exports = function defineProperty(it, key, desc){
+	  return $Object.defineProperty(it, key, desc);
+	};
+
+/***/ },
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var $export = __webpack_require__(37);
+	// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+	$export($export.S + $export.F * !__webpack_require__(47), 'Object', {defineProperty: __webpack_require__(43).f});
+
+/***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by Bane.Shi.
+	 * Copyright MoenSun
+	 * User: Bane.Shi
 	 * Date: 2017/1/13
 	 * Time: 15:39
 	 */
@@ -13304,7 +13468,7 @@ webpackJsonp([0],[
 	exports.default = GridEvents;
 
 /***/ },
-/* 84 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -13331,20 +13495,20 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 85 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 	
 	/* styles */
-	__webpack_require__(86)
+	__webpack_require__(92)
 	
 	/* script */
-	__vue_exports__ = __webpack_require__(87)
+	__vue_exports__ = __webpack_require__(93)
 	
 	/* template */
-	var __vue_template__ = __webpack_require__(88)
+	var __vue_template__ = __webpack_require__(94)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -13378,13 +13542,13 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 86 */
+/* 92 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 87 */
+/* 93 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -13435,7 +13599,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 88 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -13454,7 +13618,7 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 89 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -13495,17 +13659,17 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 90 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 	
 	/* styles */
-	__webpack_require__(91)
+	__webpack_require__(97)
 	
 	/* script */
-	__vue_exports__ = __webpack_require__(92)
+	__vue_exports__ = __webpack_require__(98)
 	
 	/* template */
 	var __vue_template__ = __webpack_require__(108)
@@ -13542,13 +13706,13 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 91 */
+/* 97 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 92 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_) {"use strict";
@@ -13565,7 +13729,7 @@ webpackJsonp([0],[
 	
 	var _vue2 = _interopRequireDefault(_vue);
 	
-	var _BrowserType = __webpack_require__(93);
+	var _BrowserType = __webpack_require__(83);
 	
 	var _BrowserType2 = _interopRequireDefault(_BrowserType);
 	
@@ -13585,11 +13749,11 @@ webpackJsonp([0],[
 	
 	var _gridBodyRow2 = _interopRequireDefault(_gridBodyRow);
 	
-	var _gridCol = __webpack_require__(85);
+	var _gridCol = __webpack_require__(91);
 	
 	var _gridCol2 = _interopRequireDefault(_gridCol);
 	
-	var _GridEvents = __webpack_require__(83);
+	var _GridEvents = __webpack_require__(89);
 	
 	var _GridEvents2 = _interopRequireDefault(_GridEvents);
 	
@@ -13773,136 +13937,6 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
 
 /***/ },
-/* 93 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Created by Bane.Shi.
-	 * Copyright MoenSun
-	 * User: Bane.Shi
-	 * Date: 2017/1/20
-	 * Time: 13:50
-	 */
-	'use strict';
-	
-	var _classCallCheck2 = __webpack_require__(94);
-	
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-	
-	var _createClass2 = __webpack_require__(95);
-	
-	var _createClass3 = _interopRequireDefault(_createClass2);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var BrowserType = function () {
-	    function BrowserType() {
-	        (0, _classCallCheck3.default)(this, BrowserType);
-	
-	        this.userAgent = navigator.userAgent.toLocaleLowerCase();
-	    }
-	
-	    (0, _createClass3.default)(BrowserType, [{
-	        key: 'isFirefox',
-	        value: function isFirefox() {
-	            if (this.userAgent.match(/firefox\/([\d.]+)/)) {
-	                return true;
-	            }
-	            return false;
-	        }
-	    }, {
-	        key: 'isChrome',
-	        value: function isChrome() {
-	            if (this.userAgent.match(/chrome\/([\d.]+)/)) {
-	                return true;
-	            }
-	            return false;
-	        }
-	    }, {
-	        key: 'isSafari',
-	        value: function isSafari() {
-	            if (this.userAgent.match(/safari\/([\d.]+)/) && !this.userAgent.match(/chrome\/([\d.]+)/)) {
-	                return true;
-	            }
-	            return false;
-	        }
-	    }]);
-	    return BrowserType;
-	}();
-	
-	module.exports = new BrowserType();
-
-/***/ },
-/* 94 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	exports.__esModule = true;
-	
-	exports.default = function (instance, Constructor) {
-	  if (!(instance instanceof Constructor)) {
-	    throw new TypeError("Cannot call a class as a function");
-	  }
-	};
-
-/***/ },
-/* 95 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	exports.__esModule = true;
-	
-	var _defineProperty = __webpack_require__(96);
-	
-	var _defineProperty2 = _interopRequireDefault(_defineProperty);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = function () {
-	  function defineProperties(target, props) {
-	    for (var i = 0; i < props.length; i++) {
-	      var descriptor = props[i];
-	      descriptor.enumerable = descriptor.enumerable || false;
-	      descriptor.configurable = true;
-	      if ("value" in descriptor) descriptor.writable = true;
-	      (0, _defineProperty2.default)(target, descriptor.key, descriptor);
-	    }
-	  }
-	
-	  return function (Constructor, protoProps, staticProps) {
-	    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-	    if (staticProps) defineProperties(Constructor, staticProps);
-	    return Constructor;
-	  };
-	}();
-
-/***/ },
-/* 96 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(97), __esModule: true };
-
-/***/ },
-/* 97 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(98);
-	var $Object = __webpack_require__(39).Object;
-	module.exports = function defineProperty(it, key, desc){
-	  return $Object.defineProperty(it, key, desc);
-	};
-
-/***/ },
-/* 98 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var $export = __webpack_require__(37);
-	// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-	$export($export.S + $export.F * !__webpack_require__(47), 'Object', {defineProperty: __webpack_require__(43).f});
-
-/***/ },
 /* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -13985,7 +14019,7 @@ webpackJsonp([0],[
 	
 	var _gridBodyCell2 = _interopRequireDefault(_gridBodyCell);
 	
-	var _GridEvents = __webpack_require__(83);
+	var _GridEvents = __webpack_require__(89);
 	
 	var _GridEvents2 = _interopRequireDefault(_GridEvents);
 	
@@ -14168,7 +14202,7 @@ webpackJsonp([0],[
 	
 	var _gridBodyCellInner2 = _interopRequireDefault(_gridBodyCellInner);
 	
-	var _GridEvents = __webpack_require__(83);
+	var _GridEvents = __webpack_require__(89);
 	
 	var _GridEvents2 = _interopRequireDefault(_GridEvents);
 	
