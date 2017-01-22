@@ -124,6 +124,7 @@ Time: 09:31-->
         });
         bus.$on('ms-grid-head-row-ready',function(gridId,gridHeadId,isLastRow,height){
             if(gridId==me.msGridId && gridHeadId==me.msGridHeadId){
+                height = Math.floor(height);
                 me.headRowsHeight += height;
                 if(!isLastRow){
                   me.allocatedHeight += height;
@@ -142,7 +143,8 @@ Time: 09:31-->
         let me = this;
         if(me.componentReady){
           Vue.nextTick(function(){
-            console.log(me.$refs.ms_grid_head_table.clientHeight);
+            console.log(me.msGridHeadId+"|"+me.$refs.ms_grid_head_table.clientHeight+"|"+me.$refs.ms_grid_head_table.offsetHeight+"|"+$(me.$refs.ms_grid_head_table).height());
+            debugger
             if(BrowserType.isIE() || BrowserType.isEdge()){
               bus.$emit('ms-grid-head-height',me.msGridId,$(me.$refs.ms_grid_head_table).height());
             }else {

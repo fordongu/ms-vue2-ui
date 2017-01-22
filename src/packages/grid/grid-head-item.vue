@@ -5,7 +5,10 @@ User: Bane.Shi
 Date: 2017/1/16
 Time: 14:04-->
 <template>
-  <td :colspan="colspan" :rowspan="rowspan" :style="[tdStyleCompute]">{{column.text}}</td>
+  <td :ms-grid-head-item-id="msGridHeadItemId"
+      :colspan="colspan"
+      :rowspan="rowspan"
+      :style="[tdStyleCompute]">{{column.text}}</td>
 </template>
 <script>
     import PropsMixin from "./mixins/PropsMixin";
@@ -35,6 +38,11 @@ Time: 14:04-->
             default(){
                 return 0;
             }
+        }
+      },
+      data(){
+        return {
+          msGridHeadItemId:_.uniqueId("ms_grid_head_item_")
         }
       },
       computed:{
@@ -75,6 +83,10 @@ Time: 14:04-->
             return me.maxColumnLevel - me.column._level +1;
           }
         },
+      },
+      updated(){
+        let me = this;
+        console.log(me.msGridHeadItemId+"|"+me.$el.clientHeight+"|"+me.$el.offsetHeight+"|"+$(me.$el).height());
       },
       components: {
       }

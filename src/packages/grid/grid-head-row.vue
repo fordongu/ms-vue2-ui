@@ -5,7 +5,7 @@ User: Bane.Shi
 Date: 2017/1/18
 Time: 16:25-->
 <template>
-  <tr>
+  <tr :ms-grid-head-row-id="msGridHeadRowId">
     <td v-for="(column,cellIndex) in columnRow"
         is="ms-grid-head-item"
         :column-row="columnRow"
@@ -13,7 +13,7 @@ Time: 16:25-->
         :max-column-level="maxColumnLevel"
         :max-head-height="maxHeadHeight"
         :ms-grid-head-id="msGridHeadId"
-        :allocated-height="allocatedHeight">
+        :allocated-height="allocatedHeight" >
     </td>
   </tr>
 </template>
@@ -58,6 +58,11 @@ Time: 16:25-->
             }
         }
       },
+      data(){
+        return {
+          msGridHeadRowId:_.uniqueId("ms_grid_head_row_"),
+        }
+      },
       mounted(){
         let me = this;
         me.setRowHeight();
@@ -75,6 +80,7 @@ Time: 16:25-->
               isLastRow = true;
             }
             Vue.nextTick(function(){
+              console.log(me.msGridHeadRowId+"|"+me.$el.clientHeight+"|"+me.$el.offsetHeight+"|"+$(me.$el).height());
               if(BrowserType.isIE() || BrowserType.isEdge()){
                  bus.$emit('ms-grid-head-row-ready',me.msGridId,me.msGridHeadId,isLastRow,$(me.$el).height());
               }else {

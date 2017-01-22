@@ -194,6 +194,7 @@ Time: 09:30-->
 
           bus.$on('ms-grid-head-height',function(gridId,height){
             if(me.msGridId == gridId){
+              height = Math.floor(height);
               if(me.maxHeadHeight < height){
                 me.maxHeadHeight = height;
               }
