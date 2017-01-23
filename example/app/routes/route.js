@@ -6,11 +6,13 @@
  * Time: 15:04
  */
 'use strict';
+import Layout from "../views/layout.vue";
 import Grid from "../views/grid.vue";
 import Carousel from "../views/carousel.vue";
 
 export default [
     { path:'/',component: require("../views/index.vue")},
+    { path:'/layout', component: Layout},
     { path: '/grid', component: Grid },
     { path: '/carousel', component: Carousel }
 ]
