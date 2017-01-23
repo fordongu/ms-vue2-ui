@@ -72,6 +72,13 @@ Time: 09:32-->
             }else{
               Object.assign(style,{overflowX:'hidden'});
             }
+            if(me.needScrollXSpace && me.position!="center" ){
+                let scrollWidth = 17;
+                if(BrowserType.isEdge()){
+                    scrollWidth = 13;
+                }
+                Object.assign(style,{borderBottomWidth:scrollWidth+"px"});
+            }
             return style;
           }
         },

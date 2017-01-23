@@ -12,7 +12,7 @@ class BrowserType {
     }
 
     isIE(){
-        if(this.userAgent.match(/msie/)){
+        if( !!window.ActiveXObject || "ActiveXObject" in window ){
             return true;
         }
         return false;

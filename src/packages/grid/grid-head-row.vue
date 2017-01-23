@@ -80,7 +80,7 @@ Time: 16:25-->
               isLastRow = true;
             }
             Vue.nextTick(function(){
-              console.log(me.msGridHeadRowId+"|"+me.$el.clientHeight+"|"+me.$el.offsetHeight+"|"+$(me.$el).height());
+          //    console.log(me.msGridHeadRowId+"|"+me.$el.clientHeight+"|"+me.$el.offsetHeight+"|"+$(me.$el).height());
               if(BrowserType.isIE() || BrowserType.isEdge()){
                  bus.$emit('ms-grid-head-row-ready',me.msGridId,me.msGridHeadId,isLastRow,$(me.$el).height());
               }else {

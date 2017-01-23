@@ -106,7 +106,10 @@
     .ms-grid-body{
       &.ms-grid-body-bottom{
         border: {
-          bottom: 17px solid rgb(246, 246, 246);;
+          bottom:{
+            color: rgb(246, 246, 246);
+            style: solid;
+          }
         };
       }
       table{
