@@ -10,9 +10,15 @@ import {Layout} from "./packages/layout/index";
 import {MsGrid} from "./packages/grid/index";
 import {Carousel,CarouselItem} from "./packages/carousel/index";
 
+import {Menu,SubMenu,MenuItem} from "./packages/menu/index";
+
 module.exports = {
     Layout,
     MsGrid,
     Carousel,
-    CarouselItem
+    CarouselItem,
+
+    Menu,
+    SubMenu,
+    MenuItem
 }
