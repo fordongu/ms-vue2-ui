@@ -9,9 +9,9 @@ Time: 16:38-->
   <li>
     <div class="ms-menu-item" @click="expandedToggle">
       <slot name="title"></slot>
-      <i class="ms-menu-expand-icon glyphicon" :class="{'glyphicon-menu-down':!showData,'glyphicon-menu-up':showData}"></i>
+      <i class="ms-menu-expand-icon glyphicon" :class="[iconClassCompute]"></i>
     </div>
-    <ul class="ms-sub-menu" v-show="showData">
+    <ul class="ms-sub-menu" v-show="isOpened">
       <slot></slot>
     </ul>
   </li>
@@ -21,24 +21,50 @@ Time: 16:38-->
         name:'ms-sub-menu',
         props:{
             index:{
-
+              type:String
             }
         },
         data(){
             return {
-                showData:false
+                isOpened:false,
+                msMenu:null
             };
         },
         computed:{
-            showCompute:function () {
-                return false;
+            iconClassCompute:function () {
+                let me = this;
+                if(me.msMenu.mode == "horizontal"){
+
+                }else {
+                    if(me.isOpened){
+                        return "glyphicon-menu-up";
+                    }else {
+                        return "glyphicon-menu-down";
+                    }
+                }
             }
         },
+        created(){
+            let me = this;
+            me.getMsMenu();
+        },
         methods:{
+            getMsMenu:function(){
+                let me = this;
+                let msMenu = me.$parent;
+                while (msMenu){
+                    if(msMenu.$options.name == "ms-menu"){
+                        me.msMenu = msMenu;
+                        break;
+                    }
+                    msMenu = msMenu.$parent;
+                }
+            },
             expandedToggle:function(){
               let me = this;
-              me.showData = !me.showData;
-            }
+              me.isOpened = !me.isOpened;
+            },
+
         },
         components: {
         }

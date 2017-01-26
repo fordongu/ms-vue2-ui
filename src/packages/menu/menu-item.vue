@@ -8,7 +8,9 @@ Time: 16:32-->
 <template>
   <li>
     <div class="ms-menu-item" :class="{'is-active':isActive}" @click="click">
-      <slot></slot>
+      <a :target="target">
+        <slot></slot>
+      </a>
     </div>
   </li>
 </template>
@@ -17,6 +19,9 @@ Time: 16:32-->
         name:'ms-menu-item',
         props:{
           index:{
+            type:String
+          },
+          target:{
             type:String
           }
         },

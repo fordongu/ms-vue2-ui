@@ -1,4 +1,30 @@
 .ms-menu{
+  &.ms-menu-vertical{
+    ul{
+      li{
+        .ms-menu-item{
+          a{
+            color: black;
+            &:hover{
+              text-decoration: none;
+            }
+          }
+          &.is-active{
+            a{
+              color: #20a0ff;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.ms-menu-horizontal{
+    ul{
+      li{
+        float: left;
+      }
+    }
+  }
   ul{
     margin: {
       bottom: 0px;
