@@ -7,18 +7,12 @@ Date: 2017/1/25
 Time: 16:47-->
 <template>
   <div>
-    <ms-menu>
+    <ms-menu default-active="1">
+      <ms-menu-item index="1">测试1</ms-menu-item>
       <sub-menu>
-        <ms-menu-item>第一级</ms-menu-item>
-        <ms-menu-item>第二级</ms-menu-item>
-        <sub-menu>
-          <ms-menu-item>第一级</ms-menu-item>
-          <ms-menu-item>第二级</ms-menu-item>
-        </sub-menu>
-      </sub-menu>
-      <sub-menu>
-        <ms-menu-item>第一级</ms-menu-item>
-        <ms-menu-item>第二级</ms-menu-item>
+        <template slot="title">测试2</template>
+        <ms-menu-item index="2">第一级</ms-menu-item>
+        <ms-menu-item index="3">第二级</ms-menu-item>
       </sub-menu>
     </ms-menu>
   </div>

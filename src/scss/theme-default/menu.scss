@@ -1,3 +1,48 @@
 .ms-menu{
-
+  ul{
+    margin: {
+      bottom: 0px;
+    };
+    padding: {
+      left: 0px;
+    };
+    list-style-type: none;
+    li{
+      .ms-menu-item{
+        position: relative;
+        cursor:pointer;
+        padding: {
+          top:10px;
+          bottom: 10px;
+          left: 20px;
+          right: 20px;
+        };
+        &.is-active{
+          color: #20a0ff;
+        }
+        .ms-menu-expand-icon{
+          position: absolute;
+          transition: transform .3s;
+          top: 50%;
+          margin: {
+            top: -7px;
+          };
+          right: 20px;
+        }
+      }
+      .ms-sub-menu{
+        background: {
+          color: #E4E8F1;
+        };
+        &>.ms-menu-item{
+          padding: {
+            top:7px;
+            bottom: 7px;
+            left: 20px;
+            right: 20px;
+          };
+        }
+      }
+    }
+  }
 }
