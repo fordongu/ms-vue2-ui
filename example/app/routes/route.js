@@ -10,11 +10,13 @@ import Layout from "../views/layout.vue";
 import Grid from "../views/grid.vue";
 import Carousel from "../views/carousel.vue";
 import Menu from "../views/menu.vue";
+import Form from "../views/form.vue";
 
 export default [
     { path:'/',component: require("../views/index.vue")},
     { path:'/layout', component: Layout},
     { path: '/grid', component: Grid },
     { path: '/carousel', component: Carousel },
-    { path: '/menu', component: Menu }
+    { path: '/menu', component: Menu },
+    { path: '/form', component: Form }
 ]

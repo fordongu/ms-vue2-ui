@@ -12,6 +12,8 @@ import {Carousel,CarouselItem} from "./packages/carousel/index";
 
 import {Menu,SubMenu,MenuItem} from "./packages/menu/index";
 
+import {Form,FormItem,Input} from "./packages/form/index";
+
 module.exports = {
     Layout,
     MsGrid,
@@ -20,5 +22,9 @@ module.exports = {
 
     Menu,
     SubMenu,
-    MenuItem
+    MenuItem,
+
+    MsForm:Form,
+    MsFormItem:FormItem,
+    MsInput:Input
 }
