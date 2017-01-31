@@ -14,6 +14,11 @@ Time: 15:20-->
     export default {
         name:'ms-form',
         props: {},
+        data(){
+            return {
+                formData:{}
+            };
+        },
         computed: {},
         components: {}
     }

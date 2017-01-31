@@ -6,20 +6,23 @@ Blog: http://blog.fengxiaotx.com/
 Date: 2017/1/31
 Time: 21:47-->
 <template>
-  <input :type="type" class="form-control"  :placeholder="placeholder">
+  <div>
+    <input type="text" class="form-control" v-model="value" :placeholder="placeholder" />
+  </div>
 </template>
 <script>
+    import {PropsMixin,LifecycleMixin,MethodsMixin} from "./mixins/index.js";
     export default {
       name:'ms-input',
+      mixins:[PropsMixin,LifecycleMixin,MethodsMixin],
       props:{
-        type:{
-          type:String,
-          default(){
-            return "text";
-          }
-        },
         placeholder:{
           type:String
+        }
+      },
+      data(){
+        return {
+          value:null
         }
       },
       components: {

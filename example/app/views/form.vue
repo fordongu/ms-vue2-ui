@@ -8,7 +8,7 @@ Time: 21:19-->
 <template>
 <div>
   <ms-form>
-    <ms-form-item  :labelCol={span:2} :wrapperCol={span:10}>
+    <ms-form-item label="测试" :labelCol={span:2} :wrapperCol={span:10}>
       <ms-input/>
     </ms-form-item>
   </ms-form>
@@ -17,6 +17,11 @@ Time: 21:19-->
 <script>
     import {MsForm,MsFormItem,MsInput} from "../../../src/index";
     export default {
+      data(){
+        return {
+
+        }
+      },
       components: {
         MsForm,
         MsFormItem,
