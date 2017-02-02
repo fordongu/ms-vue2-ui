@@ -22,10 +22,37 @@ Time: 15:20-->
         },
         computed: {},
         methods:{
+            getFieldsValue:function(arr){
+                let me = this;
+                if(arr){
+                    let result = {};
+                    _.forEach(arr,function(item){
+                        result[item] = me.formData[item];
+                    });
+                    return result;
+                }
+                return me.formData;
+            },
+            getFieldValue:function(field){
+                let me = this;
+                if(field){
+                    return me.formData[field];
+                }
+            },
             setFieldsValue:function (obj) {
                 let me = this;
                 me.formData = Object.assign({},me.formData,obj);
                 console.log("setFields");
+            },
+            validateFields:function(){
+
+            },
+            resetFields:function(){
+                let me = this;
+                let keys = _.keys(me.formData);
+                _.forEach(keys,function(key){
+                    me.$set(me.formData,key,null);
+                });
             }
         },
         components: {}

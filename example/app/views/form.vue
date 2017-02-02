@@ -12,7 +12,10 @@ Time: 21:19-->
       <ms-input name="email" v-model="a" :rules=[{max:10,required:true}] />
     </ms-form-item>
   </ms-form>
-  <button @click="setFields">set</button>
+  <div>
+    <button @click="setFields">set</button>
+    <button @click="resetFields">reset</button>
+  </div>
 </div>
 </template>
 <script>
@@ -26,6 +29,11 @@ Time: 21:19-->
       methods:{
           setFields:function(){
               this.$refs['form'].setFieldsValue({'email':'ss'});
+          },
+          resetFields:function(){
+            let me = this;
+            let form = me.$refs['form'];
+            form.resetFields();
           }
       },
       components: {
