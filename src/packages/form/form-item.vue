@@ -27,6 +27,11 @@ Time: 15:21-->
             type:Object
           }
         },
+        data(){
+          return {
+            msForm:null
+          }
+        },
         computed: {
           labelClass:function(){
             let me = this;
@@ -50,6 +55,18 @@ Time: 15:21-->
                 col = col+"10";
               }
               return col;
+            }
+          }
+        },
+        created(){
+          let me = this;
+          me.getForm();
+        },
+        methods:{
+          getForm:function(){
+            let me = this;
+            if(me.$parent && me.$parent.$options.name=='ms-form'){
+              me.msForm = me.$parent;
             }
           }
         },

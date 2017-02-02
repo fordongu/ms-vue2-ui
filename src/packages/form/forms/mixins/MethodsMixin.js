@@ -19,6 +19,9 @@ export default {
             handler:function (newVal,oldVal) {
                 let me = this;
                 Vue.set(me.msForm.formData,me.name,newVal);
+                if(me.change){
+                    me.change(newVal);
+                }
             }
         }
     },
@@ -26,7 +29,6 @@ export default {
         getForm:function () {
             let me = this;
             let msForm = me.$parent;
-            debugger;
             while (msForm){
                 if(msForm.$options.name == "ms-form"){
                     me.msForm = msForm;

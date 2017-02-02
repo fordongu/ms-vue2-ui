@@ -10,7 +10,6 @@
 import Vue from "vue";
 export default {
     created(){
-        debugger
         let me = this;
         me.getForm();
         if(me.msForm && me.name){

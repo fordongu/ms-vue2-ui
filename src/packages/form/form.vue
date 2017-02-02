@@ -13,7 +13,11 @@ Time: 15:20-->
 <script>
     export default {
         name:'ms-form',
-        props: {},
+        props: {
+            rules:{
+                type:Object
+            }
+        },
         data(){
             return {
                 formData:{},
@@ -45,7 +49,7 @@ Time: 15:20-->
                 console.log("setFields");
             },
             validateFields:function(){
-
+                let me = this;
             },
             resetFields:function(){
                 let me = this;
