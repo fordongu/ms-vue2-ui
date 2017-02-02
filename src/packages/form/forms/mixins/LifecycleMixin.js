@@ -17,6 +17,7 @@ export default {
             Vue.set(me.msForm.fields,me.name,me);
             Vue.set(me.msForm.formData,me.name,me.value);
             me.$watch('msForm.formData.'+me.name,function(newVal, oldVal){
+                me.fieldValue = newVal;
                 console.log(newVal);
             });
         }

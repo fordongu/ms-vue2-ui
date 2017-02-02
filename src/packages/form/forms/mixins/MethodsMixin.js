@@ -7,7 +7,21 @@
  * Time: 22:31
  */
 'use strict';
+import Vue from "vue";
 export default {
+    watch:{
+        'value':{
+            handler:function (newVal,oldVal) {
+                console.log(newVal);
+            }
+        },
+        'fieldValue':{
+            handler:function (newVal,oldVal) {
+                let me = this;
+                Vue.set(me.msForm.formData,me.name,newVal);
+            }
+        }
+    },
     methods:{
         getForm:function () {
             let me = this;

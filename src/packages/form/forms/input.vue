@@ -7,7 +7,7 @@ Date: 2017/1/31
 Time: 21:47-->
 <template>
   <div>
-    <input type="text" class="form-control" v-model="value" :placeholder="placeholder" />
+    <input type="text" class="form-control" v-model="fieldValue" :placeholder="placeholder" />
   </div>
 </template>
 <script>
