@@ -7,10 +7,18 @@
  * Time: 22:32
  */
 'use strict';
+import Vue from "vue";
 export default {
     created(){
         debugger
         let me = this;
         me.getForm();
+        if(me.msForm && me.name){
+            Vue.set(me.msForm.fields,me.name,me);
+            Vue.set(me.msForm.formData,me.name,me.value);
+            me.$watch('msForm.formData.'+me.name,function(newVal, oldVal){
+                console.log(newVal);
+            });
+        }
     }
 }

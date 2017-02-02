@@ -22,8 +22,12 @@ Time: 21:47-->
       },
       data(){
         return {
-          value:null
+
         }
+      },
+      updated(){
+          let me = this;
+          console.log(me.value);
       },
       components: {
       }

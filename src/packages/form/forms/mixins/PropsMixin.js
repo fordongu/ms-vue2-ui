@@ -11,6 +11,15 @@ export default {
     props:{
         name:{
             type:String
+        },
+        value:{
+
+        },
+        rules:{
+            type:Array
+        },
+        change:{
+            type:Function
         }
     },
     data(){

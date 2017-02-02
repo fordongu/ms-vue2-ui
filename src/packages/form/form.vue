@@ -16,10 +16,18 @@ Time: 15:20-->
         props: {},
         data(){
             return {
-                formData:{}
+                formData:{},
+                fields:{}
             };
         },
         computed: {},
+        methods:{
+            setFieldsValue:function (obj) {
+                let me = this;
+                me.formData = Object.assign({},me.formData,obj);
+                console.log("setFields");
+            }
+        },
         components: {}
     }
 </script>
