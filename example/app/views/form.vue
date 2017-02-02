@@ -8,7 +8,7 @@ Time: 21:19-->
 <template>
 <div>
   <ms-form ref="form">
-    <ms-form-item label="测试" :labelCol={span:2} :wrapperCol={span:10}>
+    <ms-form-item name="email" label="测试" :labelCol={span:2} :wrapperCol={span:10}>
       <ms-input name="email" v-model="a" :rules=[{max:10,required:true}] />
     </ms-form-item>
   </ms-form>

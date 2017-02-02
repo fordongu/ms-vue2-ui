@@ -11,7 +11,7 @@ import Vue from "vue";
 export default {
     created(){
         let me = this;
-        me.getForm();
+/*        me.getForm();
         if(me.msForm && me.name){
             Vue.set(me.msForm.fields,me.name,me);
             Vue.set(me.msForm.formData,me.name,me.value);
@@ -19,6 +19,6 @@ export default {
                 me.fieldValue = newVal;
                 console.log(newVal);
             });
-        }
+        }*/
     }
 }

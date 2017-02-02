@@ -11,6 +11,8 @@ Time: 15:20-->
     </form>
 </template>
 <script>
+    import bus from "./FormEvents.js";
+    import Vue from "vue";
     export default {
         name:'ms-form',
         props: {
@@ -24,7 +26,16 @@ Time: 15:20-->
                 fields:{}
             };
         },
-        computed: {},
+        computed: {
+
+        },
+        created(){
+            let me = this;
+            bus.$on('ms-form-set-data',function(field,value){
+               // me.$set('formData',field,value);
+               Vue.set(me.formData,field,value);
+            });
+        },
         methods:{
             getFieldsValue:function(arr){
                 let me = this;

@@ -7,15 +7,16 @@ Date: 2017/1/31
 Time: 21:47-->
 <template>
   <div>
-    <input type="text" class="form-control" v-model="fieldValue" :placeholder="placeholder" />
+    <input type="text" class="form-control" v-model="value" :placeholder="placeholder"  />
   </div>
 </template>
 <script>
     import {PropsMixin,LifecycleMixin,MethodsMixin} from "./mixins/index.js";
     export default {
       name:'ms-input',
-      mixins:[PropsMixin,LifecycleMixin,MethodsMixin],
+      //mixins:[PropsMixin,LifecycleMixin,MethodsMixin],
       props:{
+        value:{},
         placeholder:{
           type:String
         }
@@ -23,6 +24,12 @@ Time: 21:47-->
       data(){
         return {
 
+        }
+      },
+      methods:{
+        handleChange:function(value){
+          let me = this;
+          me.value = value;
         }
       },
       updated(){
