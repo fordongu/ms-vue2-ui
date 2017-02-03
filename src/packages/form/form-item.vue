@@ -6,11 +6,11 @@ Blog: http://blog.fengxiaotx.com
 Date: 2017/1/31
 Time: 15:21-->
 <template>
-  <div class="form-group">
+  <div class="ms-form-item form-group" :class="{'is-error':isError}">
     <label v-if="label"  :class="[labelClass]">{{label}}</label>
     <div :class="[wrapperClass]">
       <slot></slot>
-      <div>{{validateMessage}}</div>
+      <div class="validate-message">{{validateMessage}}</div>
     </div>
   </div>
 </template>
@@ -42,6 +42,8 @@ Time: 15:21-->
             msForm:null,
             msField:null,
             value:null,
+            isError:false,
+            validateStatus:'success',
             validateMessage:null
           }
         },
@@ -94,15 +96,6 @@ Time: 15:21-->
         },
         created(){
           let me = this;
-/*          me.getForm();
-          if(me.msForm && me.name){
-            Vue.set(me.msForm.fields,me.name,me);
-            Vue.set(me.msForm.formData,me.name,me.value);
-            me.$watch('msForm.formData.'+me.name,function(newVal, oldVal){
-                me.value = newVal;
-                console.log(newVal);
-            });
-          }*/
           if(me.form){
               bus.$emit('ms-form-item-add',me.form.msFormId,me);
               me.$watch('form.formData.'+me.name,function(newVal, oldVal){
@@ -119,11 +112,11 @@ Time: 15:21-->
           let children = me.$children;
           if( children.length >0 ){
             me.msField = children[0];
-            me.value = me.msField.fieldValue;
+            if( me.msField.fieldValue ){
+              me.value = me.msField.fieldValue;
+            }
             me.$watch('msField.fieldValue',function(newVal, oldVal){
               me.value = newVal;
-             // bus.$emit('ms-form-set-data',me.name,newVal);
-              //me.$set('msForm.formData',me.name,newVal);
             },{
               deep:true
             });
@@ -134,24 +127,14 @@ Time: 15:21-->
             handler:function(newVal,oldVal){
               let me = this;
               if(me.msField){
-                //me.msField.handleChange(newVal);
                   me.$set(me.msField,'fieldValue',newVal);
               }
-              if( oldVal != undefined ){
-                  me.validate();
-              }
+              me.validate();
               bus.$emit('ms-form-set-data',me.name,newVal);
-            },
-            immediate: true
+            }
           }
         },
         methods:{
-/*            getForm:function(){
-              let me = this;
-              if(me.$parent && me.$parent.$options.name=='ms-form'){
-                me.msForm = me.$parent;
-              }
-            },*/
             validate:function () {
                 let me = this;
                 let descriptor = {};
@@ -160,11 +143,15 @@ Time: 15:21-->
                 let val = {};
                 val[me.name] = me.value;
                 validator.validate(val, { firstFields: true }, (errors, fields) => {
-                    if(errors) {
-                      me.validateMessage = errors[0].message;
-                    }else {
-                        me.validateMessage = null;
-                    }
+                  if(errors) {
+                    me.isError = true;
+                    me.validateStatus = "error";
+                    me.validateMessage = errors[0].message;
+                  }else {
+                    me.isError = false;
+                    me.validateStatus = "success";
+                    me.validateMessage = null;
+                  }
                 });
             }
         },

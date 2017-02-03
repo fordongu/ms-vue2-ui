@@ -1,0 +1,9 @@
+.ms-form{
+  .ms-form-item{
+    &.is-error{
+      .validate-message{
+        color: red;
+      }
+    }
+  }
+}

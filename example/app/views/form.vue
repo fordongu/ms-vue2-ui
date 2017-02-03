@@ -9,7 +9,10 @@ Time: 21:19-->
 <div>
   <ms-form ref="form">
     <ms-form-item name="email" label="测试" :labelCol={span:2} :wrapperCol={span:10} :rules="rules"  >
-      <ms-input name="email" v-model="a" />
+      <ms-input name="email"  />
+    </ms-form-item>
+    <ms-form-item name="ee" label="测试" :labelCol={span:2} :wrapperCol={span:10} :rules="rules"  >
+      <ms-input name="ee" v-model="a" />
     </ms-form-item>
   </ms-form>
   <div>
@@ -23,7 +26,7 @@ Time: 21:19-->
     export default {
       data(){
         return {
-          "a":"sss",
+          "a":"",
             "rules":[
                 {required:true,message:'必须'}
             ]

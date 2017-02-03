@@ -6,9 +6,11 @@ Blog: http://blog.fengxiaotx.com
 Date: 2017/1/31
 Time: 15:20-->
 <template>
-    <form>
-        <slot></slot>
-    </form>
+    <div class="ms-form">
+        <form>
+            <slot></slot>
+        </form>
+    </div>
 </template>
 <script>
     import Vue from "vue";
