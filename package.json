@@ -4,6 +4,7 @@
   "description": "",
   "main": "lib/js/index.js",
   "dependencies": {
+    "async-validator": "^1.6.8",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
     "babel-plugin-transform-runtime": "^6.15.0",
@@ -38,7 +39,7 @@
   },
   "scripts": {
     "start": "babel-node start.js",
-    "html" : "webpack --progres",
+    "html": "webpack --progres",
     "build": "webpack --config webpack-lib.config.babel.js  --progres",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

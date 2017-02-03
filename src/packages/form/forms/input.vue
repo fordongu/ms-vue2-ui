@@ -7,14 +7,13 @@ Date: 2017/1/31
 Time: 21:47-->
 <template>
   <div>
-    <input type="text" class="form-control" v-model="value" :placeholder="placeholder"  />
+    <input type="text" class="form-control" :class="{'is-error':isError}" v-model="fieldValue" :placeholder="placeholder"  />
+    <div class="error-message">{{errorMessage}}</div>
   </div>
 </template>
 <script>
-    import {PropsMixin,LifecycleMixin,MethodsMixin} from "./mixins/index.js";
     export default {
       name:'ms-input',
-      //mixins:[PropsMixin,LifecycleMixin,MethodsMixin],
       props:{
         value:{},
         placeholder:{
@@ -23,7 +22,9 @@ Time: 21:47-->
       },
       data(){
         return {
-
+            'fieldValue':this.value,
+            'isError':false,
+            'errorMessage':null
         }
       },
       methods:{

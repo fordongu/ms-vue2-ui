@@ -11,8 +11,8 @@ Time: 15:20-->
     </form>
 </template>
 <script>
-    import bus from "./FormEvents.js";
     import Vue from "vue";
+    import bus from "./FormEvents.js";
     export default {
         name:'ms-form',
         props: {
@@ -22,7 +22,9 @@ Time: 15:20-->
         },
         data(){
             return {
+                msFormId:_.uniqueId("ms_form_"),
                 formData:{},
+                items:[],
                 fields:{}
             };
         },
@@ -35,14 +37,19 @@ Time: 15:20-->
                // me.$set('formData',field,value);
                Vue.set(me.formData,field,value);
             });
+            bus.$on('ms-form-item-add',function(formId,formItem){
+                if(me.msFormId == formId){
+                    me.items.push(formItem);
+                }
+            });
         },
         methods:{
-            getFieldsValue:function(arr){
+            getFieldsValue:function(keys){
                 let me = this;
-                if(arr){
+                if(keys){
                     let result = {};
-                    _.forEach(arr,function(item){
-                        result[item] = me.formData[item];
+                    _.forEach(keys,function(key){
+                        result[key] = me.formData[key];
                     });
                     return result;
                 }
