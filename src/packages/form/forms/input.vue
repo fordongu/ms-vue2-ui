@@ -8,7 +8,6 @@ Time: 21:47-->
 <template>
   <div>
     <input type="text" class="form-control" :class="{'is-error':isError}" v-model="fieldValue" :placeholder="placeholder"  />
-    <div class="error-message">{{errorMessage}}</div>
   </div>
 </template>
 <script>
@@ -22,9 +21,7 @@ Time: 21:47-->
       },
       data(){
         return {
-            'fieldValue':this.value,
-            'isError':false,
-            'errorMessage':null
+            'fieldValue':this.value
         }
       },
       methods:{
