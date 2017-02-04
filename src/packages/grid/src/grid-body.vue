@@ -28,7 +28,7 @@ Time: 09:32-->
 <script>
     import Vue from "vue";
 
-    import BrowserType from "../../utils/BrowserType.js";
+    import BrowserType from "../../../utils/BrowserType.js";
 
     import PropsMixin from "./mixins/PropsMixin";
     import MethodsMixin from "./mixins/MethodsMixin";

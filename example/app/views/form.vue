@@ -34,7 +34,11 @@ Time: 21:19-->
       },
       methods:{
           setFields:function(){
-              this.$refs['form'].setFieldsValue({'email':'ss'});
+              let form = this.$refs['form'];
+              form.setFieldsValue({'email':'ss'});
+              form.validateFields((error)=>{
+                  console.log(error);
+              });
           },
           resetFields:function(){
             let me = this;

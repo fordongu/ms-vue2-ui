@@ -7,7 +7,7 @@
  * Time: 23:40
  */
 'use strict';
-import Layout from "./layout.vue";
+import Layout from "./src/layout.vue";
 module.exports = {
     Layout
 }

@@ -7,10 +7,10 @@
  * Time: 15:04
  */
 'use strict';
-import Form from "./form.vue";
-import FormItem from "./form-item.vue";
+import Form from "./src/form.vue";
+import FormItem from "./src/form-item.vue";
 
-import Input from "./forms/input.vue";
+import Input from "./src/field/input.vue";
 import Textarea from "./forms/textarea.vue";
 
 module.exports = {

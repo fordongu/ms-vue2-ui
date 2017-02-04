@@ -34,7 +34,7 @@ Time: 09:31-->
     import MsGridHeadRow from "./grid-head-row.vue";
     import MsGridCol from "./grid-col.vue";
 
-    import BrowserType from "../../utils/BrowserType.js";
+    import BrowserType from "../../../utils/BrowserType.js";
     import bus from "./GridEvents";
     export default {
       name:'ms-grid-head',

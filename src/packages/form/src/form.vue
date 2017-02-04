@@ -14,6 +14,7 @@ Time: 15:20-->
 </template>
 <script>
     import Vue from "vue";
+    import schema from "async-validator";
     import bus from "./FormEvents.js";
     export default {
         name:'ms-form',
@@ -26,8 +27,8 @@ Time: 15:20-->
             return {
                 msFormId:_.uniqueId("ms_form_"),
                 formData:{},
-                items:[],
-                fields:{}
+                fields:[],
+                errors:[]
             };
         },
         computed: {
@@ -41,7 +42,7 @@ Time: 15:20-->
             });
             bus.$on('ms-form-item-add',function(formId,formItem){
                 if(me.msFormId == formId){
-                    me.items.push(formItem);
+                    me.fields.push(formItem);
                 }
             });
         },
@@ -68,8 +69,25 @@ Time: 15:20-->
                 me.formData = Object.assign({},me.formData,obj);
                 console.log("setFields");
             },
-            validateFields:function(){
+            validateFields:function(callback){
                 let me = this;
+                let descriptor =  {};
+                if(me.rules){
+                    descriptor = me.rules;
+                }else {
+                    let rules = {};
+                    _.forEach(me.fields,function(field){
+                        if(field.rules && field.rules.length>0){
+                            rules[field.name] = field.rules;
+                        }
+                    });
+                    descriptor = rules;
+                }
+                let validator = new schema(descriptor);
+                validator.validate(me.formData, (errors, fields) => {
+                    callback(errors,me.formData);
+                });
+
             },
             resetFields:function(){
                 let me = this;

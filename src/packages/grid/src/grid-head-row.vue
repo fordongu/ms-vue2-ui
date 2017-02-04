@@ -24,7 +24,7 @@ Time: 16:25-->
     import LifecycleMixin from "./mixins/LifecycleMixin";
 
     import MsGridHeadItem from "./grid-head-item.vue";
-    import BrowserType from "../../utils/BrowserType.js";
+    import BrowserType from "../../../utils/BrowserType.js";
     import bus from "./GridEvents";
     export default {
       name:'ms-grid-head-row',
