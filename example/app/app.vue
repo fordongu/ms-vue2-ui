@@ -8,6 +8,7 @@
           <li class="list-group-item"><router-link to="/grid">表格（Grid）</router-link></li>
           <li class="list-group-item"><router-link to="/menu">导航菜单（Menu）</router-link></li>
           <li class="list-group-item"><router-link to="/form">表单（Form）</router-link></li>
+          <li class="list-group-item"><router-link to="/datepicker">日期选择器（Datepicker）</router-link></li>
         </ul>
       </div>
       <div class="col-md-9">

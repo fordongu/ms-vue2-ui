@@ -14,6 +14,8 @@ import {Menu,SubMenu,MenuItem} from "./packages/menu/index";
 
 import {Form,FormItem,Input} from "./packages/form/index";
 
+import {Datepicker} from "./packages/picker/index";
+
 module.exports = {
     Layout,
     MsGrid,
@@ -26,5 +28,7 @@ module.exports = {
 
     MsForm:Form,
     MsFormItem:FormItem,
-    MsInput:Input
+    MsInput:Input,
+
+    MsDatepicker:Datepicker
 }
