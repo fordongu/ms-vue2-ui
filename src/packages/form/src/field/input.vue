@@ -6,8 +6,8 @@ Blog: http://blog.fengxiaotx.com
 Date: 2017/2/4
 Time: 10:08-->
 <template>
-<div>
-    <input  class="form-control" v-model="fieldValue" :placeholder="placeholder"  />
+<div class="ms-field-input">
+    <input type="text"  class="form-control" v-model="fieldValue" :placeholder="placeholder"  />
 </div>
 </template>
 <script>

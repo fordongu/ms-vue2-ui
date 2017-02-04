@@ -4,6 +4,13 @@
       .validate-message{
         color: red;
       }
+      .ms-field-input{
+        input{
+          border: {
+            color: red;
+          };
+        }
+      }
     }
   }
 }
