@@ -1,19 +1,59 @@
 .ms-datepicker{
   .ms-date-panel{
+    thead{
+      tr{
+        th{
+          font: {
+            size: 12px;
+          };
+          &.ms-date-panel-tools{
+            text-align: center;
+            button{
+              background: rgba(0, 0, 0, 0);
+              border: 0px;
+              outline: none;
+              &:hover{
+                color: #20a0ff;
+              }
+              &.prev-year{
+                float: left;
+              }
+              &.prev-month{
+                float: left;
+              }
+              &.next-month{
+                float: right;
+              }
+              &.next-year{
+                float: right;
+              }
+            }
+          }
+        }
+      }
+    }
     tbody{
       tr{
         td{
           text-align: center;
           vertical-align: middle;
-          padding: {
-            top:4px;
-            bottom: 4px;
-          };
+          width: 32px;
+          height: 32px;
+          cursor: pointer;
+          &.current-month{
+            &:hover{
+              background: {
+                color: #e4e8f1;
+              };
+            }
+          }
+          &.prev-month,&.next-month{
+            color: #ddd;
+          }
           span{
-            width: 20px;
-            height: 20px;
-            display: block;
-            line-height: 18px;
+            font: {
+              size: 12px;
+            };
           }
         }
       }
