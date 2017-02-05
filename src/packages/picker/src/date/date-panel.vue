@@ -6,21 +6,21 @@ Blog: http://blog.fengxiaotx.com
 Date: 2017/2/4
 Time: 17:15-->
 <template>
-    <div>
-        <table class="ms-date-panel">
+    <div class="ms-date-panel">
+        <table>
             <thead>
                 <tr>
-                    <th class="ms-date-panel-tools" colspan="7">
-                        <button class="prev-year" tabindex="-1">&lt;&lt;</button>
-                        <button class="prev-month" @click="prevMonth">&lt;</button>
-                        <button>{{currentYear}}年</button>
-                        <button>{{monthText}}月</button>
-                        <button class="next-month">&gt;</button>
-                        <button class="next-year">&gt;&gt;</button>
-                    </th>
+                    <td class="ms-date-panel-tools" colspan="7">
+                        <button type="button" class="prev-year" @click="prevYear">&lt;&lt;</button>
+                        <button type="button" class="prev-month" @click="prevMonth">&lt;</button>
+                        <button type="button">{{currentYear}}年</button>
+                        <button type="button">{{monthText}}月</button>
+                        <button type="button" class="next-year" @click="nextYear">&gt;&gt;</button>
+                        <button type="button" class="next-month" @click="nextMonth">&gt;</button>
+                    </td>
                 </tr>
                 <tr>
-                    <th v-for="(weekDay,index) in weekDays">{{weekDay}}</th>
+                    <td v-for="(weekDay,index) in weekDays">{{weekDay}}</td>
                 </tr>
             </thead>
             <tbody>
@@ -34,10 +34,14 @@ Time: 17:15-->
 <script>
     import MsDate from "./date.vue";
     import datepickerMixmin from "./mixins/datepickerMixin";
+    import bus from "./DatepickerEvents";
     export default {
         name:'ms-date-panel',
         mixins:[datepickerMixmin],
         props: {
+            "msDatepickerId":{
+                type:String
+            },
             "currentDate":{
                 default(){
                     return new Date();
@@ -70,13 +74,35 @@ Time: 17:15-->
         },
         methods:{
             prevYear:function(){
-
+                let me = this;
+                bus.$emit("ms-datepicker-year-change",me.msDatepickerId,(me.currentYear-1));
             },
             prevMonth:function(){
-
+                let me = this;
+                let month = 0;
+                if(me.currentMonth == 0){
+                    month = 11;
+                    me.prevYear();
+                }else{
+                    month = me.currentMonth-1;
+                }
+                bus.$emit("ms-datepicker-month-change",me.msDatepickerId,month);
             },
-            nextMonth:function(){},
-            nextYear:function(){}
+            nextMonth:function(){
+                let me = this;
+                let month = 0;
+                if(me.currentMonth == 11){
+                    month = 0;
+                    me.nextMonth();
+                }else{
+                    month = me.currentMonth+1;
+                }
+                bus.$emit("ms-datepicker-month-change",me.msDatepickerId,month);
+            },
+            nextYear:function(){
+                let me = this;
+                bus.$emit("ms-datepicker-year-change",me.msDatepickerId,(me.currentYear+1));
+            }
         },
         components: {
             MsDate

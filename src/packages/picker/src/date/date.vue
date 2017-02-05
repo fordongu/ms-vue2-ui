@@ -10,6 +10,7 @@ Time: 17:06-->
 </template>
 <script>
     export default {
+        name:'ms-datepicker-date',
         props: {
             date:{},
             currentMonth:{
