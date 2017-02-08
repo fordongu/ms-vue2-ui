@@ -6,13 +6,18 @@ Blog: http://blog.fengxiaotx.com
 Date: 2017/2/4
 Time: 17:06-->
 <template>
-    <td :class="[dateClass]"><span>{{dateText}}</span></td>
+    <td :class="[{'is-current-date':isCurrentDate},dateClass]"><span>{{dateText}}</span></td>
 </template>
 <script>
     export default {
         name:'ms-datepicker-date',
         props: {
             date:{},
+            currentDate:{
+                default(){
+                    return new Date();
+                }
+            },
             currentMonth:{
                 type:Number,
                 default(){
@@ -35,6 +40,13 @@ Time: 17:06-->
                 }else {
                     return "current-month";
                 }
+            },
+            isCurrentDate:function(){
+                let me = this;
+                return (me.date.getFullYear() == me.currentDate.getFullYear()
+                && me.date.getMonth() == me.currentDate.getMonth()
+                && me.date.getDate() == me.currentDate.getDate()
+                );
             }
         },
         components: {}

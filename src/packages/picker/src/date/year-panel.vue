@@ -10,13 +10,14 @@ Time: 17:49-->
         <table>
             <tbody>
                 <tr v-for="(years,rowIndex) in yearArr">
-                    <td v-for="(year,cellIndex) in years">{{year}}</td>
+                    <td v-for="(year,cellIndex) in years" is="ms-year" :year="year" :current-year="currentYear"></td>
                 </tr>
             </tbody>
         </table>
     </div>
 </template>
 <script>
+    import MsYear from "./year.vue";
     import datepickerMixmin from "./mixins/datepickerMixin";
     export default {
         name:'ms-datepicker-year-panel',
@@ -57,7 +58,9 @@ Time: 17:49-->
                 return me.split(years,5);
             }
         },
-        components: {}
+        components: {
+            MsYear
+        }
     }
 </script>
 <style>
