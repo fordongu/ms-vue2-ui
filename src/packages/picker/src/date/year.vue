@@ -6,12 +6,16 @@ Blog: http://blog.fengxiaotx.com
 Date: 2017/2/5
 Time: 17:48-->
 <template>
-  <td :class="{'is-current-year':isCurrentYear}"><span>{{year}}</span></td>
+  <td :class="{'is-current-year':isCurrentYear}" @click="setYear"><span>{{year}}</span></td>
 </template>
 <script>
+    import bus from "./DatepickerEvents";
     export default {
         name:'ms-datepicker-year',
         props: {
+          "msDatepickerId":{
+            type:String
+          },
           year:{
             type:Number
           },
@@ -23,6 +27,12 @@ Time: 17:48-->
           isCurrentYear:function(){
             let me = this;
             return me.year == me.currentYear;
+          }
+        },
+        methods:{
+          setYear:function(){
+            let me = this;
+            bus.$emit('ms-datepicker-year-change',me.msDatepickerId,me.year);
           }
         },
         components: {}
