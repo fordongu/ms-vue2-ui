@@ -7,13 +7,16 @@ Date: 2017/1/31
 Time: 21:19-->
 <template>
 <div>
-  <ms-form ref="form">
+  <ms-form ref="form" title="测试">
     <ms-form-item name="email" label="测试" :labelCol={span:2} :wrapperCol={span:10} :rules="rules"  >
       <ms-input name="email"  />
     </ms-form-item>
     <ms-form-item name="ee" label="测试" :labelCol={span:2} :wrapperCol={span:10} :rules="rules"  >
       <ms-input name="ee" v-model="a" />
     </ms-form-item>
+    <div slot="buttons">
+      <button>试试</button>
+    </div>
   </ms-form>
   <div>
     <button @click="setFields">set</button>

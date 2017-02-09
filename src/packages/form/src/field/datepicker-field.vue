@@ -25,6 +25,12 @@ Time: 10:53-->
         },
         "placeholder":{
           type:String
+        },
+        "format":{
+          type:String,
+          default(){
+            return "YYYY-MM-DD";
+          }
         }
       },
       data(){
@@ -36,7 +42,12 @@ Time: 10:53-->
       },
       computed:{
         showText:{
-          get:function(){},
+          get:function(){
+            let me = this;
+            if(me.fieldValue){
+              return moment(me.fieldValue).format(me.format);
+            }
+          },
           set:function(v){}
         }
       },

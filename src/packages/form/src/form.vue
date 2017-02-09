@@ -7,7 +7,7 @@ Date: 2017/1/31
 Time: 15:20-->
 <template>
     <div class="ms-form">
-        <form>
+        <form class="form-horizontal">
             <slot></slot>
         </form>
     </div>
@@ -19,6 +19,9 @@ Time: 15:20-->
     export default {
         name:'ms-form',
         props: {
+            title:{
+                type:String
+            },
             rules:{
                 type:Object
             }
@@ -45,6 +48,12 @@ Time: 15:20-->
                     me.fields.push(formItem);
                 }
             });
+        },
+        beforeMount(){
+            let me = this;
+        },
+        mounted(){
+            let me = this;
         },
         methods:{
             getFieldsValue:function(keys){
