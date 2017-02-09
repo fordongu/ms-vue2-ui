@@ -80,6 +80,9 @@
               background: rgba(0, 0, 0, 0);
               border: 0px;
               outline: none;
+              &:hover{
+                color: #20a0ff;
+              }
               &.prev-year{
                 float: left;
               }
@@ -123,6 +126,9 @@
               background: rgba(0, 0, 0, 0);
               border: 0px;
               outline: none;
+              &:hover{
+                color: #20a0ff;
+              }
               &.prev{
                 float: left;
               }

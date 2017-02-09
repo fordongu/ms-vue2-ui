@@ -13,8 +13,8 @@ Time: 17:15-->
                     <td class="ms-date-panel-tools" colspan="7">
                         <button type="button" class="prev-year" @click="prevYear">&lt;&lt;</button>
                         <button type="button" class="prev-month" @click="prevMonth">&lt;</button>
-                        <button type="button">{{currentYear}}年</button>
-                        <button type="button">{{monthText}}月</button>
+                        <button type="button" @click="yearView">{{currentYear}}年</button>
+                        <button type="button" @click="monthView">{{monthText}}月</button>
                         <button type="button" class="next-year" @click="nextYear">&gt;&gt;</button>
                         <button type="button" class="next-month" @click="nextMonth">&gt;</button>
                     </td>
@@ -25,7 +25,11 @@ Time: 17:15-->
             </thead>
             <tbody>
             <tr v-for="(days,dayIndex) in dayArr">
-                <td is="MsDate" v-for="(date,index) in days" :date="date" :current-month="currentMonth"></td>
+                <td is="MsDate" v-for="(date,index) in days"
+                    :ms-datepicker-id="msDatepickerId"
+                    :date="date"
+                    :current-month="currentMonth" :current-date="currentDate">
+                </td>
             </tr>
             </tbody>
         </table>
@@ -56,6 +60,9 @@ Time: 17:15-->
                 default(){
                     return (new Date()).getMonth();
                 }
+            },
+            "changeView":{
+                type:Function
             }
         },
         computed: {
@@ -102,6 +109,18 @@ Time: 17:15-->
             nextYear:function(){
                 let me = this;
                 bus.$emit("ms-datepicker-year-change",me.msDatepickerId,(me.currentYear+1));
+            },
+            yearView(){
+                let me = this;
+                if(me.changeView){
+                    me.changeView("year");
+                }
+            },
+            monthView(){
+                let me = this;
+                if(me.changeView){
+                    me.changeView("month");
+                }
             }
         },
         components: {

@@ -40,10 +40,14 @@ Time: 17:49-->
                 type:String
             },
             "currentYear":{
+                type:Number,
                 default:function () {
                     return (new Date()).getFullYear();
                 }
             },
+            "changeView":{
+                type:Function
+            }
         },
         data(){
             return {
@@ -56,13 +60,32 @@ Time: 17:49-->
         computed: {
             "yearArr":function () {
                 let me = this;
-                let remainder = me.currentYear%20;
-                if(remainder == 0){
-                    me.yearScope.start = me.currentYear-20+1;
-                    me.yearScope.end = me.currentYear;
+                if( !me.yearScope.start || !me.yearScope.end){
+                    let remainder = me.currentYear%20;
+                    if(remainder == 0){
+                        if(!me.yearScope.start){
+                            me.yearScope.start = me.currentYear-20+1;
+                        }
+                        if(!me.yearScope.end){
+                            me.yearScope.end = me.currentYear;
+                        }
+                    }else {
+                        if(!me.yearScope.start){
+                            me.yearScope.start = me.currentYear-remainder+1;
+                        }
+                        if(!me.yearScope.end){
+                            me.yearScope.end = me.currentYear+(20-remainder);
+                        }
+                    }
                 }else {
-                    me.yearScope.start = me.currentYear-remainder+1;
-                    me.yearScope.end = me.currentYear+(20-remainder);
+                    if(me.currentYear > me.yearScope.end){
+                        me.yearScope.start = me.yearScope.start+20;
+                        me.yearScope.end = me.yearScope.end+20;
+                    }
+                    if(me.currentYear < me.yearScope.start){
+                        me.yearScope.start = me.yearScope.start-20;
+                        me.yearScope.end = me.yearScope.end-20;
+                    }
                 }
                 let years = [];
                 for(var i = me.yearScope.start ; i<=me.yearScope.end;i++ ){

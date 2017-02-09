@@ -12,7 +12,7 @@ Time: 16:08-->
                 <tr>
                     <td colspan="4">
                         <button type="button" class="prev-year" @click="prevYear">&lt;&lt;</button>
-                        <button type="button">{{currentYear}}年</button>
+                        <button type="button" @click="yearView">{{currentYear}}年</button>
                         <button type="button" class="next-year" @click="nextYear">&gt;&gt;</button>
                     </td>
                 </tr>
@@ -50,6 +50,9 @@ Time: 16:08-->
                 default(){
                     return (new Date()).getMonth();
                 }
+            },
+            "changeView":{
+                type:Function
             }
         },
         computed: {
@@ -66,6 +69,12 @@ Time: 16:08-->
             nextYear:function () {
                 let me = this;
                 bus.$emit("ms-datepicker-year-change",me.msDatepickerId,(me.currentYear+1));
+            },
+            yearView(){
+                let me = this;
+                if(me.changeView){
+                    me.changeView("year");
+                }
             }
         },
         components: {

@@ -6,12 +6,18 @@ Blog: http://blog.fengxiaotx.com
 Date: 2017/2/4
 Time: 17:06-->
 <template>
-    <td :class="[{'is-current-date':isCurrentDate},dateClass]"><span>{{dateText}}</span></td>
+    <td :class="[{'is-current-date':isCurrentDate},dateClass]" @click="setDate">
+        <span>{{dateText}}</span>
+    </td>
 </template>
 <script>
+    import bus from "./DatepickerEvents";
     export default {
         name:'ms-datepicker-date',
         props: {
+            "msDatepickerId":{
+                type:String
+            },
             date:{},
             currentDate:{
                 default(){
@@ -47,6 +53,12 @@ Time: 17:06-->
                 && me.date.getMonth() == me.currentDate.getMonth()
                 && me.date.getDate() == me.currentDate.getDate()
                 );
+            }
+        },
+        methods:{
+            setDate:function(){
+                let me = this;
+                bus.$emit("ms-datepicker-date-change",me.msDatepickerId,me.date);
             }
         },
         components: {}
