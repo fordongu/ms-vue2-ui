@@ -7,20 +7,20 @@ Date: 2017/2/4
 Time: 17:05-->
 <template>
     <div class="ms-datepicker">
-        <ms-date-panel v-if="(view=='date')"
+        <ms-date-panel v-show="(view=='date')"
                        :ms-datepicker-id="msDatepickerId"
                        :current-year="currentYear"
                        :current-month="currentMonth"
                        :current-date="currentDate"
                        :change-view="changeView">
         </ms-date-panel>
-        <ms-month-panel v-if="(view=='month')"
+        <ms-month-panel v-show="(view=='month')"
                         :ms-datepicker-id="msDatepickerId"
                         :current-year="currentYear"
                         :current-month="currentMonth"
                         :change-view="changeView">
         </ms-month-panel>
-        <ms-year-panel v-if="(view=='year')"
+        <ms-year-panel v-show="(view=='year')"
                        :ms-datepicker-id="msDatepickerId"
                        :current-year="currentYear" >
         </ms-year-panel>
