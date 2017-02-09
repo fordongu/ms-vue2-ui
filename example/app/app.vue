@@ -4,6 +4,7 @@
       <div class="col-md-3">
         <ul class="list-group">
           <li class="list-group-item"><router-link to="/layout">布局（Layout）</router-link></li>
+          <li class="list-group-item"><router-link to="/panel">面板（Panel）</router-link></li>
           <li class="list-group-item"><router-link to="/carousel">走马灯（Carousel）</router-link></li>
           <li class="list-group-item"><router-link to="/grid">表格（Grid）</router-link></li>
           <li class="list-group-item"><router-link to="/menu">导航菜单（Menu）</router-link></li>

@@ -7,6 +7,7 @@
  */
 'use strict';
 import {Layout} from "./packages/layout/index";
+import {Panel} from "./packages/panel/index";
 import {MsGrid} from "./packages/grid/index";
 import {Carousel,CarouselItem} from "./packages/carousel/index";
 
@@ -18,6 +19,9 @@ import {Datepicker} from "./packages/picker/index";
 
 module.exports = {
     Layout,
+
+    MsPanel:Panel,
+
     MsGrid,
     Carousel,
     CarouselItem,

@@ -7,6 +7,7 @@
  */
 'use strict';
 import Layout from "../views/layout.vue";
+import Panel from "../views/panel.vue";
 import Grid from "../views/grid.vue";
 import Carousel from "../views/carousel.vue";
 import Menu from "../views/menu.vue";
@@ -17,6 +18,7 @@ import DatepickerField from "../views/datepicker-field.vue";
 export default [
     { path:'/',component: require("../views/index.vue")},
     { path:'/layout', component: Layout},
+    { path:'/panel', component: Panel},
     { path: '/grid', component: Grid },
     { path: '/carousel', component: Carousel },
     { path: '/menu', component: Menu },
