@@ -12,7 +12,7 @@ import {Carousel,CarouselItem} from "./packages/carousel/index";
 
 import {Menu,SubMenu,MenuItem} from "./packages/menu/index";
 
-import {Form,FormItem,Input} from "./packages/form/index";
+import {Form,FormItem,Input,DatepickerField} from "./packages/form/index";
 
 import {Datepicker} from "./packages/picker/index";
 
@@ -29,6 +29,7 @@ module.exports = {
     MsForm:Form,
     MsFormItem:FormItem,
     MsInput:Input,
+    MsDatepickerField:DatepickerField,
 
     MsDatepicker:Datepicker
 }

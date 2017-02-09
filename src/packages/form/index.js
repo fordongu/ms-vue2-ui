@@ -13,9 +13,12 @@ import FormItem from "./src/form-item.vue";
 import Input from "./src/field/input.vue";
 import Textarea from "./forms/textarea.vue";
 
+import DatepickerField from "./src/field/datepicker-field.vue";
+
 module.exports = {
     Form,
     FormItem,
     Input,
-    Textarea
+    Textarea,
+    DatepickerField
 }

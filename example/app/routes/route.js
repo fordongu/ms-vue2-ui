@@ -12,6 +12,7 @@ import Carousel from "../views/carousel.vue";
 import Menu from "../views/menu.vue";
 import Form from "../views/form.vue";
 import Datepicker from "../views/datepicker.vue";
+import DatepickerField from "../views/datepicker-field.vue";
 
 export default [
     { path:'/',component: require("../views/index.vue")},
@@ -20,5 +21,6 @@ export default [
     { path: '/carousel', component: Carousel },
     { path: '/menu', component: Menu },
     { path: '/form', component: Form },
-    { path: '/datepicker', component: Datepicker }
+    { path: '/datepicker', component: Datepicker },
+    { path: '/datepicker-field', component: DatepickerField }
 ]
