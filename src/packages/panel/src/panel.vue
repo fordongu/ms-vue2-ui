@@ -17,6 +17,9 @@ Time: 21:46-->
 <script>
     export default {
       name:'ms-panel',
+      mounted(){
+        let me = this;
+      },
       components: {
       }
     }

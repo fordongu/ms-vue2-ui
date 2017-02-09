@@ -7,22 +7,21 @@ Date: 2017/1/23
 Time: 23:48-->
 <template>
   <div class="ms-layout" :style="[layoutStyle]">
-    <div ref="ms_layout_north" class="ms-north" >
-      <div></div>
+    <div v-if="north" ref="ms_layout_north" class="ms-north" >
       <slot name="north"></slot>
     </div>
     <div class="ms-middle" :style="[middleStyleCompute]">
-      <div ref="ms_layout_east" class="ms-east" :style="[eastStyleCompute]">
+      <div v-if="east" ref="ms_layout_east" class="ms-east" :style="[eastStyleCompute]">
         <slot name="east"></slot>
       </div>
       <div class="ms-center" :style="[centerStyleCompute]">
         <slot></slot>
       </div>
-      <div ref="ms_layout_west" class="ms-west" :style="[westStyleCompute]">
+      <div v-if="west" ref="ms_layout_west" class="ms-west" :style="[westStyleCompute]">
         <slot name="west"></slot>
       </div>
     </div>
-    <div ref="ms_layout_south" class="ms-south">
+    <div v-if="south" ref="ms_layout_south" class="ms-south">
       <slot name="south"></slot>
     </div>
   </div>
@@ -32,7 +31,13 @@ Time: 23:48-->
         name:'ms-layout',
         data(){
             return {
-              componentReady:false
+              componentReady:false,
+              north:false,
+              south:false,
+              east:false,
+              west:false,
+              windowHeight:($(window).height()),
+              centerWidth:0
             }
         },
         computed:{
@@ -40,15 +45,15 @@ Time: 23:48-->
                 let me = this;
                 if(me.componentReady){
                     let style = {};
-                    let windowHeight = $(window).height();
-                    Object.assign(style,{height:windowHeight+"px"});
+                    //let windowHeight = $(window).height();
+                    Object.assign(style,{height:me.windowHeight+"px"});
                     return style;
                 }
             },
             middleHeightCompute:function () {
                 let me = this;
                 if(me.componentReady){
-                    let middleHeight =  $(window).height();
+                    let middleHeight =  me.windowHeight;
                     if(me.$refs["ms_layout_north"]){
                         middleHeight = middleHeight - me.$refs["ms_layout_north"].offsetHeight;
                     }
@@ -62,7 +67,7 @@ Time: 23:48-->
             centerWidthCompute:function () {
               let me = this;
               if(me.componentReady){
-                let centerWidth = $(me.$el).width();
+                let centerWidth = me.centerWidth?me.centerWidth:$(me.$el).width();
                 if(me.$refs["ms_layout_east"]){
                     centerWidth = centerWidth - me.$refs["ms_layout_east"].offsetWidth;
                 }
@@ -110,9 +115,29 @@ Time: 23:48-->
                 }
             }
         },
+        beforeMount(){
+          let me = this;
+          if(this.$slots.north){
+            me.north = true;
+          }
+          if(this.$slots.south){
+            me.south = true;
+          }
+          if(this.$slots.east){
+            me.east = true;
+          }
+          if(this.$slots.west){
+            me.west = true;
+          }
+        },
         mounted(){
           let me = this;
           me.componentReady = true;
+
+          $(window).resize(function(){
+            me.windowHeight = $(window).height();
+            me.centerWidth = $(me.$el).width();
+          });
         },
         updated(){
           let me = this;
