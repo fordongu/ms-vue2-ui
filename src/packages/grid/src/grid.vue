@@ -65,6 +65,8 @@ Time: 09:30-->
     import MethodsMixin from "./mixins/MethodsMixin";
 
     import MsGridScope from "./grid-scope.vue";
+
+    import globalEvents from "../../global/GlobalEvents.js";
     import bus from "./GridEvents";
     export default {
       name:'ms-grid',
@@ -137,6 +139,7 @@ Time: 09:30-->
           centerLeft:0,
           hasLeftData:false,
           gridWidth:0,
+          gridHeight:0,
           boxHeight:0,
           needScrollXSpaceData:false
         }
@@ -146,6 +149,9 @@ Time: 09:30-->
           let me = this;
           if(me.componentReady){
             let style = {};
+            if(me.layout == "fit"){
+              Object.assign(style,{height:me.gridHeight+'px'});
+            }
             return style;
           }
         },
@@ -159,6 +165,11 @@ Time: 09:30-->
         heightCompute:function(){
           let me = this;
           if(me.scrollY){
+            if(me.layout =="fit"){
+              if(me.componentReady){
+                return me.gridHeight;
+              }
+            }
             return me.height;
           }
         },
@@ -202,7 +213,7 @@ Time: 09:30-->
             }
           });
 
-          bus.$on('ms-grid-head-height',function(gridId,height){
+          bus.$on('ms-grid-head-table-height',function(gridId,height){
             if(me.msGridId == gridId){
               height = Math.floor(height);
               if(me.maxHeadHeight < height){
@@ -250,6 +261,10 @@ Time: 09:30-->
               Vue.set(me.dataData[rowIndex],'_show',show);
             }
           });
+
+          globalEvents.$on("ms-resize",function(){
+            me.gridHeight = $(me.$el.parentElement).height();
+          });
       },
       mounted(){
         let me = this;
@@ -259,6 +274,9 @@ Time: 09:30-->
         }
         $(window).resize(function(){
           me.gridWidth = me.$el.clientWidth;
+          if(me.layout == "fit"){
+            me.gridHeight = $(me.$el.parentElement).height();
+          }
         });
       },
       updated(){

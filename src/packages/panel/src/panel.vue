@@ -13,7 +13,7 @@ Time: 21:46-->
     <div v-if="tools" class="panel-body">
       <slot name="tools"></slot>
     </div>
-    <div ref="ms_panel_main" class="panel-body" :style="[mainHeightStyle]">
+    <div ref="ms_panel_main"  :style="[mainHeightStyle]">
       <slot></slot>
     </div>
     <div v-if="footer" class="panel-footer">
@@ -22,6 +22,7 @@ Time: 21:46-->
   </div>
 </template>
 <script>
+    import globalEvents from "../../global/GlobalEvents.js";
     export default {
       name:'ms-panel',
       props:{
@@ -124,6 +125,9 @@ Time: 21:46-->
               console.log(item.clientHeight+"|"+$(item).height()+"|"+item.offsetHeight);
             });
             me.mainHeightStyle = {height:height+'px'};
+            me.$nextTick(function(){
+              globalEvents.$emit("ms-resize");
+            });
           }
         }
       },
