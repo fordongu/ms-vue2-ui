@@ -13,7 +13,7 @@
           <li class="list-group-item"><router-link to="/datepicker-field">日期选择器(表单)（DatepickerField）</router-link></li>
         </ul>
       </div>
-      <div class="col-md-9" style="min-height:500px;">
+      <div class="col-md-9" style="min-height:300px;">
         <router-view></router-view>
       </div>
     </div>

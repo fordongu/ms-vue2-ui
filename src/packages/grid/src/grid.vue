@@ -5,7 +5,7 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:30-->
 <template>
-  <div class="ms-grid">
+  <div class="ms-grid" :style="[gridStyleCompute]">
     <div class="ms-grid-box" :style="[boxHeightCompute]">
       <ms-grid-scope v-if="hasLeftCompute"
                      :grid-container="gridContainer"
@@ -70,6 +70,9 @@ Time: 09:30-->
       name:'ms-grid',
       mixins:[MethodsMixin],
       props:{
+        layout:{
+          type:String
+        },
         treeStructure:{
             type:Boolean,
             default:function() {
@@ -139,6 +142,13 @@ Time: 09:30-->
         }
       },
       computed:{
+        gridStyleCompute:function(){
+          let me = this;
+          if(me.componentReady){
+            let style = {};
+            return style;
+          }
+        },
         dataCompute:function() {
           let me = this;
           if(me.treeStructure){
