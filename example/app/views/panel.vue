@@ -6,9 +6,10 @@ Blog: http://blog.fengxiaotx.com/
 Date: 2017/2/9
 Time: 21:51-->
 <template>
-  <ms-panel layout="fit">
-    <div slot="heading">panel</div>
-    <ms-grid layout="fit" :tree-structure=true
+  <ms-panel layout="fit" :resize="bodyResize">
+    <div slot="heading" >panel</div>
+    <ms-grid :tree-structure=true
+             :height="bodyHeight"
              :data="data"
              :columns="columns"
              :bordered=true
@@ -21,6 +22,7 @@ Time: 21:51-->
     export default {
     data(){
       return {
+        bodyHeight:0,
                   data:[
             {
               name:'A',
@@ -120,6 +122,13 @@ Time: 21:51-->
               lockPosition:"right"
             }
           ]
+      }
+    },
+    methods:{
+      bodyResize:function(width,height){
+        let me = this;
+        debugger
+        me.bodyHeight = height;
       }
     },
       components: {

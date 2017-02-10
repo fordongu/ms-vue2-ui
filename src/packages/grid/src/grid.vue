@@ -17,6 +17,7 @@ Time: 09:30-->
                      :bordered="bordered"
                      :max-column-level="maxColumnLevel"
                      :max-head-height="maxHeadHeight"
+                     :max-head-offset-height="maxHeadOffsetHeight"
                      :height="heightCompute"
                      :width="leftWidthData"
                      :scrollX="scrollX"
@@ -32,6 +33,7 @@ Time: 09:30-->
                      :bordered="bordered"
                      :max-column-level="maxColumnLevel"
                      :max-head-height="maxHeadHeight"
+                     :max-head-offset-height="maxHeadOffsetHeight"
                      :height="heightCompute"
                      :width="centerWidthCompute"
                      :left="centerLeft"
@@ -50,6 +52,7 @@ Time: 09:30-->
                      :bordered="bordered"
                      :max-column-level="maxColumnLevel"
                      :max-head-height="maxHeadHeight"
+                     :max-head-offset-height="maxHeadOffsetHeight"
                      :height="heightCompute"
                      :width="rightWidthData"
                      :scrollX="scrollX"
@@ -129,6 +132,7 @@ Time: 09:30-->
           componentReady:false,
           maxColumnLevel:1,
           maxHeadHeight:0,
+          maxHeadOffsetHeight:0,
           dataData:[],
           leftColumnsData:[],
           centerColumnsData:[],
@@ -213,11 +217,15 @@ Time: 09:30-->
             }
           });
 
-          bus.$on('ms-grid-head-table-height',function(gridId,height){
+          bus.$on('ms-grid-head-table-height',function(gridId,height,offsetHeight){
             if(me.msGridId == gridId){
               height = Math.floor(height);
               if(me.maxHeadHeight < height){
                 me.maxHeadHeight = height;
+              }
+              offsetHeight = Math.floor(offsetHeight);
+              if(me.maxHeadOffsetHeight < offsetHeight){
+                me.maxHeadOffsetHeight = offsetHeight;
               }
             }
           });

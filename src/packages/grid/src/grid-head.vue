@@ -145,9 +145,9 @@ Time: 09:31-->
           Vue.nextTick(function(){
             console.log(me.msGridHeadId+"|"+me.$refs.ms_grid_head_table.clientHeight+"|"+me.$refs.ms_grid_head_table.offsetHeight+"|"+$(me.$refs.ms_grid_head_table).height());
             if(BrowserType.isIE() || BrowserType.isEdge()){
-              bus.$emit('ms-grid-head-table-height',me.msGridId,($(me.$refs.ms_grid_head_table).height()-1));
+              bus.$emit('ms-grid-head-table-height',me.msGridId,($(me.$refs.ms_grid_head_table).height()-1),me.$el.offsetHeight);
             }else {
-              bus.$emit('ms-grid-head-table-height',me.msGridId,me.$refs.ms_grid_head_table.clientHeight);
+              bus.$emit('ms-grid-head-table-height',me.msGridId,me.$refs.ms_grid_head_table.clientHeight,me.$el.offsetHeight);
             }
           });
         }

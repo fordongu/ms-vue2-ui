@@ -70,6 +70,12 @@ Time: 12:45-->
                     return 0;
                 }
             },
+             maxHeadOffsetHeight:{
+                type:Number,
+                default(){
+                    return 0;
+                }
+            },
             columnMinWidth:{
               type:Number,
               default(){
@@ -115,9 +121,9 @@ Time: 12:45-->
             bodyHeightCompute:function(){
                 let me = this;
                 if(me.componentReady && me.scrollY){
-                    let headHeight = me.$refs["ms_grid_scope_head"].offsetHeight;
-                    //return me.height-me.maxHeadHeight;
-                    return me.height - headHeight;
+                    //let headHeight = me.$refs["ms_grid_scope_head"].offsetHeight;
+                    return me.height-me.maxHeadOffsetHeight;
+                    //return me.height - headHeight;
                 }
             },
             gridClass:function(){
