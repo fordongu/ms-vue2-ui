@@ -3,12 +3,11 @@
  * Copyright MoenSun
  * User: Bane.Shi
  * Blog: http://blog.fengxiaotx.com
- * Date: 2017/1/11
- * Time: 16:19
+ * Date: 2017/1/23
+ * Time: 23:40
  */
 'use strict';
-import MsGrid from "./src/grid.vue";
-
+import Layout from "./src/layout.vue";
 module.exports = {
-    MsGrid
+    Layout
 }

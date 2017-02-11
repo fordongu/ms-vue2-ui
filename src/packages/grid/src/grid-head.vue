@@ -34,7 +34,7 @@ Time: 09:31-->
     import MsGridHeadRow from "./grid-head-row.vue";
     import MsGridCol from "./grid-col.vue";
 
-    import BrowserType from "../../utils/BrowserType.js";
+    import BrowserType from "../../../utils/BrowserType.js";
     import bus from "./GridEvents";
     export default {
       name:'ms-grid-head',
@@ -145,11 +145,10 @@ Time: 09:31-->
           Vue.nextTick(function(){
             console.log(me.msGridHeadId+"|"+me.$refs.ms_grid_head_table.clientHeight+"|"+me.$refs.ms_grid_head_table.offsetHeight+"|"+$(me.$refs.ms_grid_head_table).height());
             if(BrowserType.isIE() || BrowserType.isEdge()){
-              bus.$emit('ms-grid-head-height',me.msGridId,($(me.$refs.ms_grid_head_table).height()-1));
+              bus.$emit('ms-grid-head-table-height',me.msGridId,($(me.$refs.ms_grid_head_table).height()-1),me.$el.offsetHeight);
             }else {
-              bus.$emit('ms-grid-head-height',me.msGridId,me.$refs.ms_grid_head_table.clientHeight);
+              bus.$emit('ms-grid-head-table-height',me.msGridId,me.$refs.ms_grid_head_table.clientHeight,me.$el.offsetHeight);
             }
-
           });
         }
       },

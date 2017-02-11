@@ -1,0 +1,161 @@
+.ms-datepicker{
+  .ms-date-panel{
+    table{
+      font: {
+        size: 12px;
+      };
+      thead{
+        tr{
+          td{
+            &.ms-date-panel-tools{
+              text-align: center;
+              button{
+                background: rgba(0, 0, 0, 0);
+                border: 0px;
+                outline: none;
+                &:hover{
+                  color: #20a0ff;
+                }
+                &.prev-year{
+                  float: left;
+                }
+                &.prev-month{
+                  float: left;
+                }
+                &.next-month{
+                  float: right;
+                }
+                &.next-year{
+                  float: right;
+                }
+              }
+            }
+          }
+        }
+      }
+      tbody{
+        tr{
+          td{
+            text-align: center;
+            vertical-align: middle;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            &.is-current-date{
+              background: {
+                color: #20a0ff!important;
+              };
+            }
+            &.current-month{
+              &:hover{
+                background: {
+                  color: #e4e8f1;
+                };
+              }
+            }
+            &.prev-month,&.next-month{
+              color: #ddd;
+            }
+            span{
+              font: {
+                size: 12px;
+              };
+            }
+          }
+        }
+      }
+    }
+  }
+  .ms-month-panel{
+    table{
+      font: {
+        size: 12px;
+      };
+      text-align: center;
+      vertical-align: middle;
+      thead{
+        tr{
+          td{
+            button{
+              background: rgba(0, 0, 0, 0);
+              border: 0px;
+              outline: none;
+              &:hover{
+                color: #20a0ff;
+              }
+              &.prev-year{
+                float: left;
+              }
+              &.next-year{
+                float: right;
+              }
+            }
+          }
+        }
+      }
+      tbody{
+        tr{
+          td{
+            width: 70px;
+            padding: {
+              top: 10px;
+              bottom: 10px;
+            };
+            cursor: pointer;
+            &.is-current-month{
+              background: {
+                 color: #20a0ff!important;
+              };
+            }
+          }
+        }
+      }
+    }
+  }
+  .ms-year-panel{
+    table{
+      font: {
+        size: 12px;
+      };
+      text-align: center;
+      vertical-align: middle;
+      thead{
+        tr{
+          td{
+            button{
+              background: rgba(0, 0, 0, 0);
+              border: 0px;
+              outline: none;
+              &:hover{
+                color: #20a0ff;
+              }
+              &.prev{
+                float: left;
+              }
+              &.next{
+                float: right;
+              }
+            }
+          }
+        }
+      }
+      tbody{
+        tr{
+          td{
+            width: 45px;
+            cursor: pointer;
+            padding: {
+              top: 10px;
+              bottom: 10px;
+            };
+            &.is-current-year{
+              background: {
+                color: #20a0ff!important;
+              };
+            }
+          }
+        }
+      }
+    }
+  }
+}
