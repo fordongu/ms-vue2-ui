@@ -6,8 +6,8 @@
  * Time: 23:54
  */
 'use strict';
-import Carousel from "./carousel.vue";
-import CarouselItem from "./carousel-item.vue";
+import Carousel from "./src/carousel.vue";
+import CarouselItem from "./src/carousel-item.vue";
 module.exports = {
     Carousel,
     CarouselItem

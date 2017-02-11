@@ -6,7 +6,7 @@ Date: 2017/1/15
 Time: 12:45-->
 <template>
     <div :class="[gridClass]" :style="[styleCompute]">
-        <div >
+        <div ref="ms_grid_scope_head">
             <ms-grid-head ref="ms_grid_head"
                           :position="position"
                           :head-columns="headColumns"
@@ -29,6 +29,7 @@ Time: 12:45-->
                           :columns="leafColumnsCompute"
                           :width="innerWidthCompute"
                           :height="bodyHeightCompute"
+                          :scrollWidth="scrollWidth"
                           :scrollY="scrollY"
                           :scrollX="scrollX"
                           :need-scroll-space="needScrollSpaceData"
@@ -65,6 +66,12 @@ Time: 12:45-->
                 }
             },
             maxHeadHeight:{
+                type:Number,
+                default(){
+                    return 0;
+                }
+            },
+             maxHeadOffsetHeight:{
                 type:Number,
                 default(){
                     return 0;
@@ -115,8 +122,9 @@ Time: 12:45-->
             bodyHeightCompute:function(){
                 let me = this;
                 if(me.componentReady && me.scrollY){
-                   // let headHeight = me.$refs.ms_grid_head.$el.clientHeight;
-                    return me.height-me.maxHeadHeight;
+                    //let headHeight = me.$refs["ms_grid_scope_head"].offsetHeight;
+                    return me.height-me.maxHeadOffsetHeight;
+                    //return me.height - headHeight;
                 }
             },
             gridClass:function(){
@@ -192,7 +200,7 @@ Time: 12:45-->
             if(me.componentReady){
                 if(me.position=="center"){
                     Vue.nextTick(function(){
-                        bus.$emit('ms-grid-scope-height',me.msGridId,me.$el.clientHeight);
+                        bus.$emit('ms-grid-scope-height',me.msGridId,me.$el.offsetHeight);
                     });
                 }
             }
@@ -249,7 +257,7 @@ Time: 12:45-->
                     }
                 });
                 if(me.needScrollSpaceData){
-                    return width - widthDistribution-17;
+                    return width - widthDistribution-me.scrollWidth;
                 }else {
                     return width - widthDistribution;
                 }

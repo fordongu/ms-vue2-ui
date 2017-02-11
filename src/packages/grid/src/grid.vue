@@ -5,7 +5,7 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:30-->
 <template>
-  <div class="ms-grid">
+  <div class="ms-grid" :style="[gridStyleCompute]">
     <div class="ms-grid-box" :style="[boxHeightCompute]">
       <ms-grid-scope v-if="hasLeftCompute"
                      :grid-container="gridContainer"
@@ -17,8 +17,10 @@ Time: 09:30-->
                      :bordered="bordered"
                      :max-column-level="maxColumnLevel"
                      :max-head-height="maxHeadHeight"
+                     :max-head-offset-height="maxHeadOffsetHeight"
                      :height="heightCompute"
                      :width="leftWidthData"
+                     :scrollWidth="scrollWidth"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
                      :need-scroll-x-space="needScrollXSpaceData"
@@ -32,10 +34,12 @@ Time: 09:30-->
                      :bordered="bordered"
                      :max-column-level="maxColumnLevel"
                      :max-head-height="maxHeadHeight"
+                     :max-head-offset-height="maxHeadOffsetHeight"
                      :height="heightCompute"
                      :width="centerWidthCompute"
                      :left="centerLeft"
                      :has-left="hasLeftCompute"
+                     :scrollWidth="scrollWidth"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
                      :need-scroll-x-space="needScrollXSpaceData"
@@ -50,8 +54,10 @@ Time: 09:30-->
                      :bordered="bordered"
                      :max-column-level="maxColumnLevel"
                      :max-head-height="maxHeadHeight"
+                     :max-head-offset-height="maxHeadOffsetHeight"
                      :height="heightCompute"
                      :width="rightWidthData"
+                     :scrollWidth="scrollWidth"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
                      :need-scroll-x-space="needScrollXSpaceData"
@@ -65,11 +71,16 @@ Time: 09:30-->
     import MethodsMixin from "./mixins/MethodsMixin";
 
     import MsGridScope from "./grid-scope.vue";
+
+    import globalEvents from "../../global/GlobalEvents.js";
     import bus from "./GridEvents";
     export default {
       name:'ms-grid',
       mixins:[MethodsMixin],
       props:{
+        layout:{
+          type:String
+        },
         treeStructure:{
             type:Boolean,
             default:function() {
@@ -87,6 +98,9 @@ Time: 09:30-->
           default:function() {
             return [];
           }
+        },
+        width:{
+          type:Number
         },
         height:{
           type:Number
@@ -124,6 +138,7 @@ Time: 09:30-->
           componentReady:false,
           maxColumnLevel:1,
           maxHeadHeight:0,
+          maxHeadOffsetHeight:0,
           dataData:[],
           leftColumnsData:[],
           centerColumnsData:[],
@@ -134,11 +149,23 @@ Time: 09:30-->
           centerLeft:0,
           hasLeftData:false,
           gridWidth:0,
+          gridHeight:0,
           boxHeight:0,
-          needScrollXSpaceData:false
+          needScrollXSpaceData:false,
+          scrollWidth:0
         }
       },
       computed:{
+        gridStyleCompute:function(){
+          let me = this;
+          if(me.componentReady){
+            let style = {};
+            if(me.layout == "fit"){
+              Object.assign(style,{height:me.gridHeight+'px'});
+            }
+            return style;
+          }
+        },
         dataCompute:function() {
           let me = this;
           if(me.treeStructure){
@@ -149,6 +176,11 @@ Time: 09:30-->
         heightCompute:function(){
           let me = this;
           if(me.scrollY){
+            if(me.componentReady){
+              if(me.layout == "fit"){
+                return me.gridHeight;
+              }
+            }
             return me.height;
           }
         },
@@ -192,10 +224,15 @@ Time: 09:30-->
             }
           });
 
-          bus.$on('ms-grid-head-height',function(gridId,height){
+          bus.$on('ms-grid-head-table-height',function(gridId,height,offsetHeight){
             if(me.msGridId == gridId){
+              height = Math.floor(height);
               if(me.maxHeadHeight < height){
                 me.maxHeadHeight = height;
+              }
+              offsetHeight = Math.floor(offsetHeight);
+              if(me.maxHeadOffsetHeight < offsetHeight){
+                me.maxHeadOffsetHeight = offsetHeight;
               }
             }
           });
@@ -239,15 +276,18 @@ Time: 09:30-->
               Vue.set(me.dataData[rowIndex],'_show',show);
             }
           });
+          bus.$on('ms-grid-scroll-width',function(id,width){
+            me.scrollWidth = width;
+          });
       },
       mounted(){
         let me = this;
-        me.gridWidth = me.$el.clientWidth;
         if(me.componentReady != undefined){
             me.componentReady = true;
         }
+        me.$nextTick(me.initSize());
         $(window).resize(function(){
-          me.gridWidth = me.$el.clientWidth;
+          me.resize();
         });
       },
       updated(){
@@ -262,6 +302,31 @@ Time: 09:30-->
         }
       },
       methods:{
+        initSize(){ //初始化grid的原始大小
+          let me = this;
+          if(me.layout == "fit"){
+             me.gridWidth = $(me.$el.parentElement).width();
+             me.gridHeight = $(me.$el.parentElement).height();
+          }else{
+            if(me.width){
+              me.gridWidth = me.width;
+            }else {
+              me.gridWidth = me.$el.clientWidth;
+            }
+            if(me.height){
+              me.gridHeight = me.height;
+            }
+          }
+        },
+        resize(){
+          let me = this;
+          if(me.layout == "fit"){
+            me.gridHeight = $(me.$el.parentElement).height();
+            me.gridWidth = $(me.$el.parentElement).width();
+          }else {
+            me.gridWidth = me.$el.clientWidth;
+          }
+        },
         columnsSplit:function(){
           let me = this;
           let leftColumns = [];
