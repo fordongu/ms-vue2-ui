@@ -6755,62 +6755,2224 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
-.ms-grid {
-  border: 1px solid #ddd; }
-  .ms-grid .ms-grid-box {
-    position: relative; }
-    .ms-grid .ms-grid-box::before {
-      content: " "; }
-    .ms-grid .ms-grid-box::after {
-      content: " "; }
-    .ms-grid .ms-grid-box .ms-grid-left {
+.ms-layout .ms-north {
+  display: inline-block;
+  width: 100%; }
+
+.ms-layout .ms-south {
+  display: inline-block;
+  width: 100%; }
+
+.ms-layout .ms-middle {
+  position: relative; }
+  .ms-layout .ms-middle .ms-east {
+    position: absolute;
+    left: 0px; }
+  .ms-layout .ms-middle .ms-center {
+    position: absolute; }
+  .ms-layout .ms-middle .ms-west {
+    position: absolute;
+    right: 0px; }
+
+.ms-panel {
+  margin-bottom: 0px; }
+
+.ms-menu.ms-menu-vertical ul li .ms-menu-item a {
+  color: black; }
+  .ms-menu.ms-menu-vertical ul li .ms-menu-item a:hover {
+    text-decoration: none; }
+
+.ms-menu.ms-menu-vertical ul li .ms-menu-item.is-active a {
+  color: #20a0ff; }
+
+.ms-menu.ms-menu-horizontal ul li {
+  float: left; }
+
+.ms-menu ul {
+  margin-bottom: 0px;
+  padding-left: 0px;
+  list-style-type: none; }
+  .ms-menu ul li .ms-menu-item {
+    position: relative;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px; }
+    .ms-menu ul li .ms-menu-item.is-active {
+      color: #20a0ff; }
+    .ms-menu ul li .ms-menu-item .ms-menu-expand-icon {
       position: absolute;
-      left: 0px;
-      z-index: 1;
-      border-right: 1px #0001ff solid; }
-    .ms-grid .ms-grid-box .ms-grid-center {
-      position: absolute; }
-    .ms-grid .ms-grid-box .ms-grid-right {
-      position: absolute;
-      right: 0px;
-      z-index: 1;
-      border-left: 1px #0001ff solid; }
-    .ms-grid .ms-grid-box .ms-grid-head {
-      border-top: 1px solid #ddd; }
-      .ms-grid .ms-grid-box .ms-grid-head .ms-scroll-space table {
-        border: 0px; }
-        .ms-grid .ms-grid-box .ms-grid-head .ms-scroll-space table thead tr td:last-child {
-          border-right-width: 1px; }
-        .ms-grid .ms-grid-box .ms-grid-head .ms-scroll-space table tbody tr td:first-child {
-          border-left-width: 0px; }
-        .ms-grid .ms-grid-box .ms-grid-head .ms-scroll-space table tbody tr td:last-child {
-          border-right-width: 0px; }
-      .ms-grid .ms-grid-box .ms-grid-head table {
-        border: 0px;
-        margin-bottom: 0px; }
-        .ms-grid .ms-grid-box .ms-grid-head table thead tr td {
-          vertical-align: middle;
-          border-bottom-width: 1px; }
-          .ms-grid .ms-grid-box .ms-grid-head table thead tr td:first-child {
-            border-left-width: 0px; }
-          .ms-grid .ms-grid-box .ms-grid-head table thead tr td:last-child {
-            border-right-width: 0px; }
-    .ms-grid .ms-grid-box .ms-grid-body.ms-grid-body-bottom {
-      border-bottom: 17px solid #f6f6f6; }
-    .ms-grid .ms-grid-box .ms-grid-body table {
+      transition: transform .3s;
+      top: 50%;
+      margin-top: -7px;
+      right: 20px; }
+  .ms-menu ul li .ms-sub-menu {
+    background-color: #E4E8F1; }
+    .ms-menu ul li .ms-sub-menu > .ms-menu-item {
+      padding-top: 7px;
+      padding-bottom: 7px;
+      padding-left: 20px;
+      padding-right: 20px; }
+
+.ms-grid .ms-grid-box {
+  position: relative; }
+  .ms-grid .ms-grid-box::before {
+    content: " "; }
+  .ms-grid .ms-grid-box::after {
+    content: " "; }
+  .ms-grid .ms-grid-box .ms-grid-left {
+    position: absolute;
+    left: 0px;
+    z-index: 1;
+    border-right: 1px #0001ff solid; }
+  .ms-grid .ms-grid-box .ms-grid-center {
+    position: absolute; }
+  .ms-grid .ms-grid-box .ms-grid-right {
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+    border-left: 1px #0001ff solid; }
+  .ms-grid .ms-grid-box .ms-grid-head {
+    border-top: 1px solid #ddd; }
+    .ms-grid .ms-grid-box .ms-grid-head .ms-scroll-space table {
+      border: 0px; }
+      .ms-grid .ms-grid-box .ms-grid-head .ms-scroll-space table thead tr td:last-child {
+        border-right-width: 1px; }
+      .ms-grid .ms-grid-box .ms-grid-head .ms-scroll-space table tbody tr td:first-child {
+        border-left-width: 0px; }
+      .ms-grid .ms-grid-box .ms-grid-head .ms-scroll-space table tbody tr td:last-child {
+        border-right-width: 0px; }
+    .ms-grid .ms-grid-box .ms-grid-head table {
       border: 0px;
       margin-bottom: 0px; }
-      .ms-grid .ms-grid-box .ms-grid-body table tbody tr td .ms-space {
-        display: inline-block;
-        width: 14px;
-        height: 14px; }
-      .ms-grid .ms-grid-box .ms-grid-body table tbody tr td:first-child {
-        border-left-width: 0px; }
-      .ms-grid .ms-grid-box .ms-grid-body table tbody tr td:last-child {
-        border-right-width: 0px; }
+      .ms-grid .ms-grid-box .ms-grid-head table thead tr td {
+        vertical-align: middle;
+        border-bottom-width: 1px; }
+        .ms-grid .ms-grid-box .ms-grid-head table thead tr td:first-child {
+          border-left-width: 0px; }
+        .ms-grid .ms-grid-box .ms-grid-head table thead tr td:last-child {
+          border-right-width: 0px; }
+  .ms-grid .ms-grid-box .ms-grid-body.ms-grid-body-bottom {
+    border-bottom-color: #f6f6f6;
+    border-bottom-style: solid; }
+  .ms-grid .ms-grid-box .ms-grid-body table {
+    border: 0px;
+    margin-bottom: 0px; }
+    .ms-grid .ms-grid-box .ms-grid-body table tbody tr td .ms-space {
+      display: inline-block;
+      width: 14px;
+      height: 14px; }
+    .ms-grid .ms-grid-box .ms-grid-body table tbody tr td:first-child {
+      border-left-width: 0px; }
+    .ms-grid .ms-grid-box .ms-grid-body table tbody tr td:last-child {
+      border-right-width: 0px; }
 
 .ms-carousel {
   position: relative; }
+
+.ms-form-datepicker-field {
+  position: relative; }
+  .ms-form-datepicker-field input {
+    padding-right: 34px; }
+  .ms-form-datepicker-field i {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px; }
+  .ms-form-datepicker-field .ms-picker-box {
+    position: absolute;
+    display: inline-block;
+    padding: 10px;
+    border: 1px #ccc solid; }
+
+.ms-form .ms-form-item.is-error .validate-message {
+  color: red; }
+
+.ms-form .ms-form-item.is-error .ms-field-input input {
+  border-color: red; }
+
+.ms-datepicker .ms-date-panel table {
+  font-size: 12px; }
+  .ms-datepicker .ms-date-panel table thead tr td.ms-date-panel-tools {
+    text-align: center; }
+    .ms-datepicker .ms-date-panel table thead tr td.ms-date-panel-tools button {
+      background: transparent;
+      border: 0px;
+      outline: none; }
+      .ms-datepicker .ms-date-panel table thead tr td.ms-date-panel-tools button:hover {
+        color: #20a0ff; }
+      .ms-datepicker .ms-date-panel table thead tr td.ms-date-panel-tools button.prev-year {
+        float: left; }
+      .ms-datepicker .ms-date-panel table thead tr td.ms-date-panel-tools button.prev-month {
+        float: left; }
+      .ms-datepicker .ms-date-panel table thead tr td.ms-date-panel-tools button.next-month {
+        float: right; }
+      .ms-datepicker .ms-date-panel table thead tr td.ms-date-panel-tools button.next-year {
+        float: right; }
+  .ms-datepicker .ms-date-panel table tbody tr td {
+    text-align: center;
+    vertical-align: middle;
+    width: 32px;
+    height: 32px;
+    cursor: pointer; }
+    .ms-datepicker .ms-date-panel table tbody tr td.is-current-date {
+      background-color: #20a0ff !important; }
+    .ms-datepicker .ms-date-panel table tbody tr td.current-month:hover {
+      background-color: #e4e8f1; }
+    .ms-datepicker .ms-date-panel table tbody tr td.prev-month, .ms-datepicker .ms-date-panel table tbody tr td.next-month {
+      color: #ddd; }
+    .ms-datepicker .ms-date-panel table tbody tr td span {
+      font-size: 12px; }
+
+.ms-datepicker .ms-month-panel table {
+  font-size: 12px;
+  text-align: center;
+  vertical-align: middle; }
+  .ms-datepicker .ms-month-panel table thead tr td button {
+    background: transparent;
+    border: 0px;
+    outline: none; }
+    .ms-datepicker .ms-month-panel table thead tr td button:hover {
+      color: #20a0ff; }
+    .ms-datepicker .ms-month-panel table thead tr td button.prev-year {
+      float: left; }
+    .ms-datepicker .ms-month-panel table thead tr td button.next-year {
+      float: right; }
+  .ms-datepicker .ms-month-panel table tbody tr td {
+    width: 70px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer; }
+    .ms-datepicker .ms-month-panel table tbody tr td.is-current-month {
+      background-color: #20a0ff !important; }
+
+.ms-datepicker .ms-year-panel table {
+  font-size: 12px;
+  text-align: center;
+  vertical-align: middle; }
+  .ms-datepicker .ms-year-panel table thead tr td button {
+    background: transparent;
+    border: 0px;
+    outline: none; }
+    .ms-datepicker .ms-year-panel table thead tr td button:hover {
+      color: #20a0ff; }
+    .ms-datepicker .ms-year-panel table thead tr td button.prev {
+      float: left; }
+    .ms-datepicker .ms-year-panel table thead tr td button.next {
+      float: right; }
+  .ms-datepicker .ms-year-panel table tbody tr td {
+    width: 45px;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px; }
+    .ms-datepicker .ms-year-panel table tbody tr td.is-current-year {
+      background-color: #20a0ff !important; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
