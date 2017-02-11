@@ -20,6 +20,7 @@ Time: 09:30-->
                      :max-head-offset-height="maxHeadOffsetHeight"
                      :height="heightCompute"
                      :width="leftWidthData"
+                     :scrollWidth="scrollWidth"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
                      :need-scroll-x-space="needScrollXSpaceData"
@@ -38,6 +39,7 @@ Time: 09:30-->
                      :width="centerWidthCompute"
                      :left="centerLeft"
                      :has-left="hasLeftCompute"
+                     :scrollWidth="scrollWidth"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
                      :need-scroll-x-space="needScrollXSpaceData"
@@ -55,6 +57,7 @@ Time: 09:30-->
                      :max-head-offset-height="maxHeadOffsetHeight"
                      :height="heightCompute"
                      :width="rightWidthData"
+                     :scrollWidth="scrollWidth"
                      :scrollX="scrollX"
                      :scrollY="scrollY"
                      :need-scroll-x-space="needScrollXSpaceData"
@@ -95,6 +98,9 @@ Time: 09:30-->
           default:function() {
             return [];
           }
+        },
+        width:{
+          type:Number
         },
         height:{
           type:Number
@@ -145,7 +151,8 @@ Time: 09:30-->
           gridWidth:0,
           gridHeight:0,
           boxHeight:0,
-          needScrollXSpaceData:false
+          needScrollXSpaceData:false,
+          scrollWidth:0
         }
       },
       computed:{
@@ -169,8 +176,8 @@ Time: 09:30-->
         heightCompute:function(){
           let me = this;
           if(me.scrollY){
-            if(me.layout =="fit"){
-              if(me.componentReady){
+            if(me.componentReady){
+              if(me.layout == "fit"){
                 return me.gridHeight;
               }
             }
@@ -269,22 +276,18 @@ Time: 09:30-->
               Vue.set(me.dataData[rowIndex],'_show',show);
             }
           });
-
-          globalEvents.$on("ms-resize",function(){
-            me.gridHeight = $(me.$el.parentElement).height();
+          bus.$on('ms-grid-scroll-width',function(id,width){
+            me.scrollWidth = width;
           });
       },
       mounted(){
         let me = this;
-        me.gridWidth = me.$el.clientWidth;
         if(me.componentReady != undefined){
             me.componentReady = true;
         }
+        me.$nextTick(me.initSize());
         $(window).resize(function(){
-          me.gridWidth = me.$el.clientWidth;
-          if(me.layout == "fit"){
-            me.gridHeight = $(me.$el.parentElement).height();
-          }
+          me.resize();
         });
       },
       updated(){
@@ -299,6 +302,31 @@ Time: 09:30-->
         }
       },
       methods:{
+        initSize(){ //初始化grid的原始大小
+          let me = this;
+          if(me.layout == "fit"){
+             me.gridWidth = $(me.$el.parentElement).width();
+             me.gridHeight = $(me.$el.parentElement).height();
+          }else{
+            if(me.width){
+              me.gridWidth = me.width;
+            }else {
+              me.gridWidth = me.$el.clientWidth;
+            }
+            if(me.height){
+              me.gridHeight = me.height;
+            }
+          }
+        },
+        resize(){
+          let me = this;
+          if(me.layout == "fit"){
+            me.gridHeight = $(me.$el.parentElement).height();
+            me.gridWidth = $(me.$el.parentElement).width();
+          }else {
+            me.gridWidth = me.$el.clientWidth;
+          }
+        },
         columnsSplit:function(){
           let me = this;
           let leftColumns = [];

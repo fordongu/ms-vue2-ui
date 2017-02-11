@@ -73,11 +73,7 @@ Time: 09:32-->
               Object.assign(style,{overflowX:'hidden'});
             }
             if(me.needScrollXSpace && me.position!="center" ){
-                let scrollWidth = 17;
-                if(BrowserType.isEdge()){
-                    scrollWidth = 13;
-                }
-                Object.assign(style,{borderBottomWidth:scrollWidth+"px"});
+                Object.assign(style,{borderBottomWidth:me.scrollWidth+"px"});
             }
             return style;
           }
@@ -88,7 +84,7 @@ Time: 09:32-->
             let style = {};
             if(me.scrollX){
               if(me.needScrollSpace){
-                Object.assign(style,{width:(me.width-17)+"px"});
+                Object.assign(style,{width:(me.width-me.scrollWidth)+"px"});
               }else {
                 Object.assign(style,{width:me.width+"px"});
               }
@@ -102,7 +98,7 @@ Time: 09:32-->
             let style = {};
             if(me.scrollX){
               if(me.needScrollSpace){
-                Object.assign(style,{width:(me.width-17)+"px"});
+                Object.assign(style,{width:(me.width-me.scrollWidth)+"px"});
               }else {
                 Object.assign(style,{width:me.width+"px"});
               }
@@ -173,14 +169,16 @@ Time: 09:32-->
               if(me.scrollY){
                 let result = false;
                 if(me.$el.offsetWidth > me.$el.clientWidth){
-                  result = true;
+                    bus.$emit('ms-grid-scroll-width',me.msGridId,(me.$el.offsetHeight-me.$el.clientHeight));
+                    result = true;
                 }
                 bus.$emit('ms-grid-scroll-space-y',me.msGridId,result);
               }
               if(me.scrollX){
                 let result = false;
                 if(me.$el.offsetHeight>me.$el.clientHeight){
-                  result = true;
+                    bus.$emit('ms-grid-scroll-width',me.msGridId,(me.$el.offsetHeight-me.$el.clientHeight));
+                    result = true;
                 }
                 bus.$emit('ms-grid-scroll-space-x',me.msGridId,result);
               }

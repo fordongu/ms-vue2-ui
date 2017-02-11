@@ -22,6 +22,9 @@ export default {
         gridContainer:{
 
         },
+        scrollWidth:{
+            type:Number
+        },
         scrollY:{
             type:Boolean,
             default(){

@@ -5,13 +5,11 @@ User: Bane.Shi
 Date: 2017/1/13
 Time: 09:34-->
 <template>
-<div>
-  <div><button @click="dian">dian</button></div>
-  <div>
-    <ms-grid :tree-structure=true
+<div style="height:500px;">
+  <div style="height:500px;">
+    <ms-grid layout="fit" :tree-structure=true
              :data="data"
              :columns="columns"
-             :height=200
              :bordered=true
              :scroll-x=true
              :scroll-y=true />

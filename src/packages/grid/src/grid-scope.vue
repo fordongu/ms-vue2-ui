@@ -29,6 +29,7 @@ Time: 12:45-->
                           :columns="leafColumnsCompute"
                           :width="innerWidthCompute"
                           :height="bodyHeightCompute"
+                          :scrollWidth="scrollWidth"
                           :scrollY="scrollY"
                           :scrollX="scrollX"
                           :need-scroll-space="needScrollSpaceData"
@@ -256,7 +257,7 @@ Time: 12:45-->
                     }
                 });
                 if(me.needScrollSpaceData){
-                    return width - widthDistribution-17;
+                    return width - widthDistribution-me.scrollWidth;
                 }else {
                     return width - widthDistribution;
                 }
