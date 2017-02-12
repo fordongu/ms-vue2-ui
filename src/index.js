@@ -8,7 +8,7 @@
 'use strict';
 import {Layout} from "./packages/layout/index";
 import {Panel} from "./packages/panel/index";
-import {MsGrid} from "./packages/grid/index";
+import {Grid} from "./packages/grid/index";
 import {Carousel,CarouselItem} from "./packages/carousel/index";
 
 import {Menu,SubMenu,MenuItem} from "./packages/menu/index";
@@ -18,17 +18,17 @@ import {Form,FormItem,Input,DatepickerField} from "./packages/form/index";
 import {Datepicker} from "./packages/picker/index";
 
 module.exports = {
-    Layout,
+    MsLayout:Layout,
 
     MsPanel:Panel,
 
-    MsGrid,
-    Carousel,
-    CarouselItem,
+    MsGrid:Grid,
+    MsCarousel:Carousel,
+    MsCarouselItem:CarouselItem,
 
-    Menu,
-    SubMenu,
-    MenuItem,
+    MsMenu:Menu,
+    MsSubMenu:SubMenu,
+    MsMenuItem:MenuItem,
 
     MsForm:Form,
     MsFormItem:FormItem,

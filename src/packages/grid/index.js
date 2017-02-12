@@ -7,8 +7,8 @@
  * Time: 16:19
  */
 'use strict';
-import MsGrid from "./src/grid.vue";
+import Grid from "./src/grid.vue";
 
 module.exports = {
-    MsGrid
+    Grid
 }
