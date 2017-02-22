@@ -67,7 +67,7 @@ Time: 09:30-->
   </div>
 </template>
 <script>
-    import "jquery.resize";
+    import "ms-jquery-resize";
     import Vue from "vue";
     import MethodsMixin from "./mixins/MethodsMixin";
 

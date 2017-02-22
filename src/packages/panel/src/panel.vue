@@ -25,7 +25,7 @@ Time: 21:46-->
   </div>
 </template>
 <script>
-    import "jquery.resize";
+    import "ms-jquery-resize";
     export default {
       name:'ms-panel',
       props:{
