@@ -67,12 +67,12 @@ Time: 09:30-->
   </div>
 </template>
 <script>
+    import "jquery.resize";
     import Vue from "vue";
     import MethodsMixin from "./mixins/MethodsMixin";
 
     import MsGridScope from "./grid-scope.vue";
 
-    import globalEvents from "../../global/GlobalEvents.js";
     import bus from "./GridEvents";
     export default {
       name:'ms-grid',
@@ -148,8 +148,8 @@ Time: 09:30-->
           rightWidthData:0,
           centerLeft:0,
           hasLeftData:false,
-          gridWidth:0,
-          gridHeight:0,
+          gridWidth:me.width,
+          gridHeight:me.height,
           boxHeight:0,
           needScrollXSpaceData:false,
           scrollWidth:0
@@ -160,9 +160,12 @@ Time: 09:30-->
           let me = this;
           if(me.componentReady){
             let style = {};
-            if(me.layout == "fit"){
+           // if(me.layout == "fit"){
+           //   Object.assign(style,{height:me.gridHeight+'px'});
+           // }
+             if(me.gridHeight){
               Object.assign(style,{height:me.gridHeight+'px'});
-            }
+             }
             return style;
           }
         },
@@ -176,12 +179,12 @@ Time: 09:30-->
         heightCompute:function(){
           let me = this;
           if(me.scrollY){
-            if(me.componentReady){
-              if(me.layout == "fit"){
-                return me.gridHeight;
-              }
-            }
-            return me.height;
+         //   if(me.componentReady){
+          //    if(me.layout == "fit"){
+          //      return me.gridHeight;
+          //    }
+          //  }
+            return me.gridHeight;
           }
         },
         boxHeightCompute:function(){
@@ -285,21 +288,31 @@ Time: 09:30-->
         if(me.componentReady != undefined){
             me.componentReady = true;
         }
-        me.$nextTick(me.initSize());
-        $(window).resize(function(){
-          me.resize();
-        });
+      //  me.$nextTick(me.initSize());
+       // $(window).resize(function(){
+        //  me.resize();
+       // });
+        if(me.layout == "fit"){
+          if(me.$el.parentElement){
+             me.gridWidth = $(me.$el.parentElement).width();
+             me.gridHeight = $(me.$el.parentElement).height();
+             $(me.$el.parentElement).resize(function(){
+                me.gridWidth = $(me.$el.parentElement).width();
+                me.gridHeight = $(me.$el.parentElement).height();
+             });
+          }
+        }
       },
       updated(){
         let me = this;
-        if(me.componentReady){
+       // if(me.componentReady){
        //   let boxHeight  = me.$refs.ms_grid_scope_center.$el.clientHeight;
        //   me.boxHeight = boxHeight;
-          let gridWidth = me.$el.clientWidth;
-          if(me.gridWidth = gridWidth){
-            me.gridWidth = gridWidth;
-          }
-        }
+        //  let gridWidth = me.$el.clientWidth;
+        //  if(me.gridWidth = gridWidth){
+         //   me.gridWidth = gridWidth;
+        //  }
+       // }
       },
       methods:{
         initSize(){ //初始化grid的原始大小

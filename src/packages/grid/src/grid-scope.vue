@@ -14,6 +14,7 @@ Time: 12:45-->
                           :width="innerWidthCompute"
                           :max-column-level="maxColumnLevel"
                           :max-head-height="maxHeadHeight"
+                          :scrollWidth="scrollWidth"
                           :scroll-x="scrollX"
                           :need-scroll-space="needScrollSpaceData"
                           :ms-grid-id="msGridId"

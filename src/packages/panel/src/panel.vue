@@ -25,7 +25,7 @@ Time: 21:46-->
   </div>
 </template>
 <script>
-    import "jquery-resize";
+    import "jquery.resize";
     export default {
       name:'ms-panel',
       props:{
@@ -58,8 +58,11 @@ Time: 21:46-->
           let me = this;
           if(me.componentReady){
             let style = {};
-            if(me.layout == "fit"){
-              Object.assign(style,{height:me.panelHeight+'px',width:me.panelWidth+'px'});
+            if(me.panelHeight){
+              Object.assign(style,{height:me.panelHeight+'px'});
+            }
+            if(me.panelWidth){
+              Object.assign(style,{width:me.panelWidth+'px'});
             }
             return style;
           }
@@ -68,10 +71,8 @@ Time: 21:46-->
           let me = this;
           if(me.componentReady){
             let style = {};
-            if(me.layout == "fit"){
-              if(me.bodyHeight){
-                Object.assign(style,{height:me.bodyHeight+'px'});
-              }
+            if(me.bodyHeight){
+              Object.assign(style,{height:me.bodyHeight+'px'});
             }
             return style;
           }
@@ -82,12 +83,10 @@ Time: 21:46-->
           handler:function(newVal,oldVal){
             let me = this;
             if(newVal){
-              if(me.componentReady){
                 me.$nextTick(function(){
                   me.bodyWidth = $(me.$refs["ms_panel_body"]).width();
                   me.panelResize();
                 });
-              }
             }
           },
           immediate: true
@@ -123,28 +122,19 @@ Time: 21:46-->
       mounted(){
         let me = this;
         me.componentReady = true;
-        me.initSize();
-        $(window).resize(function(){
-          if(me.layout == "fit"){
-              me.setPanelSize($(me.$el.parentElement).width(),$(me.$el.parentElement).height());
+        if(me.layout == "fit"){
+          if(me.$el.parentElement){
+            me.panelWidth = $(me.$el.parentElement).width();
+            me.panelHeight = $(me.$el.parentElement).height();
           }
-        });
+          $(me.$el.parentElement).resize(function(){
+            me.panelWidth = $(me.$el.parentElement).width();
+            me.panelHeight = $(me.$el.parentElement).height();
+          });
+        }
       },
       methods:{
-        initSize(){
-          let me = this;
-          if(me.layout == "fit"){
-              me.setPanelSize($(me.$el.parentElement).width(),$(me.$el.parentElement).height());
-          }
-        },
-        setPanelSize(width,height){
-          let me = this;
-          if(width){
-            me.panelWidth = width;
-          }if(height){
-            me.panelHeight = height;
-          }
-        },
+
         getBodyHeight(){ //获取panel中，除去其他部分之后留给body的高度
           let me = this;
           if(me.componentReady){
@@ -152,27 +142,16 @@ Time: 21:46-->
             let siblings = $(me.$refs['ms_panel_body']).siblings();
             _.forEach(siblings,function(item){
               height = height-item.offsetHeight;
-              console.log(item.clientHeight+"|"+$(item).height()+"|"+item.offsetHeight);
+              //console.log(item.clientHeight+"|"+$(item).height()+"|"+item.offsetHeight);
             });
             return height;
           }
         },
-        setMainHeightStyle(){
-          let me = this;
-          if(me.componentReady){
-            let height = $(me.$el).height();
-            let siblings = $(me.$refs['ms_panel_body']).siblings();
-            _.forEach(siblings,function(item){
-              height = height-item.offsetHeight;
-              console.log(item.clientHeight+"|"+$(item).height()+"|"+item.offsetHeight);
-            });
-            me.bodyHeight = height;
-            me.mainHeightStyle = {height:height+'px'};
-          }
-        },
         panelResize(){
           let me = this;
+          debugger;
           if(me.resize){
+
             me.resize(me.bodyWidth,me.bodyHeight);
           }
         }
