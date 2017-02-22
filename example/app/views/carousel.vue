@@ -6,15 +6,15 @@ Date: 2017/1/14
 Time: 23:53-->
 <template>
   <div class="" style="padding-top:50px;">
-    <carousel>
-      <carousel-item v-for="(item,index) in data" :item="item">
+    <ms-carousel>
+      <ms-carousel-item v-for="(item,index) in data" :item="item">
         <img :src="item.pic">
-      </carousel-item>
-    </carousel>
+      </ms-carousel-item>
+    </ms-carousel>
 </div>
 </template>
 <script>
-    import {Carousel,CarouselItem} from "../../../src/index";
+    import {MsCarousel,MsCarouselItem} from "../../../src/index";
   //  let CarouselItem = Carousel.CarouselItem
     export default {
         data(){
@@ -30,8 +30,8 @@ Time: 23:53-->
             }
         },
       components: {
-        Carousel,
-        CarouselItem
+        MsCarousel,
+        MsCarouselItem
       }
     }
 </script>
