@@ -302,6 +302,9 @@ Time: 09:30-->
              });
           }
         }
+        if(!me.gridWidth){
+          me.gridWidth = me.$el.clientWidth;
+        }
       },
       updated(){
         let me = this;
