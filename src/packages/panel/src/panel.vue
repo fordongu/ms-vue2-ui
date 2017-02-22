@@ -25,7 +25,7 @@ Time: 21:46-->
   </div>
 </template>
 <script>
-    import globalEvents from "../../global/GlobalEvents.js";
+    import "jquery-resize";
     export default {
       name:'ms-panel',
       props:{
@@ -168,14 +168,10 @@ Time: 21:46-->
             });
             me.bodyHeight = height;
             me.mainHeightStyle = {height:height+'px'};
-            me.$nextTick(function(){
-              globalEvents.$emit("ms-resize");
-            });
           }
         },
         panelResize(){
           let me = this;
-          debugger
           if(me.resize){
             me.resize(me.bodyWidth,me.bodyHeight);
           }

@@ -20,7 +20,8 @@ const ENV = args.env || development;
 let config = {
     resolve:{
         alias:{
-            'vue': 'vue/dist/vue.js'
+            'vue': 'vue/dist/vue.js',
+            'jquery-resize':'./src/vendor/jquery.ba-resize.js'
         },
         root: path.join(__dirname, 'src'),
         extensions: ['', '.js','vue'],
