@@ -1,0 +1,32 @@
+body{
+  margin: {
+    top: 0px;
+    bottom: 0px;
+    left:0px;
+    right: 0px;
+  };
+}
+.ms-layout{
+  .ms-north{
+    display: inline-block;
+    width: 100%;
+  }
+  .ms-south{
+    display: inline-block;
+    width: 100%;
+  }
+  .ms-middle{
+    position: relative;
+    .ms-east{
+      position: absolute;
+      left: 0px;
+    }
+    .ms-center{
+      position: absolute;
+    }
+    .ms-west{
+      position: absolute;
+      right: 0px;
+    }
+  }
+}

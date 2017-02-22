@@ -3,12 +3,11 @@
  * Copyright MoenSun
  * User: Bane.Shi
  * Blog: http://blog.fengxiaotx.com
- * Date: 2017/1/11
- * Time: 16:19
+ * Date: 2017/2/9
+ * Time: 21:43
  */
 'use strict';
-import Grid from "./src/grid.vue";
-
+import Panel from "./src/panel.vue";
 module.exports = {
-    Grid
+    Panel
 }

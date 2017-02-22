@@ -3,12 +3,12 @@
  * Copyright MoenSun
  * User: Bane.Shi
  * Blog: http://blog.fengxiaotx.com
- * Date: 2017/1/11
- * Time: 16:19
+ * Date: 2017/2/10
+ * Time: 14:36
  */
 'use strict';
-import Grid from "./src/grid.vue";
+import Vue from "vue";
 
-module.exports = {
-    Grid
-}
+let GloBalEvents = new Vue();
+
+export default GloBalEvents;

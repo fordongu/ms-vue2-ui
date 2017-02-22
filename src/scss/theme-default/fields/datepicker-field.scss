@@ -1,0 +1,25 @@
+.ms-form-datepicker-field{
+  position: relative;
+  input{
+    padding: {
+      right: 34px;
+    };
+  }
+  i{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: {
+      top: 10px;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+    };
+  }
+  .ms-picker-box{
+    position: absolute;
+    display: inline-block;
+    padding: 10px;
+    border: 1px #ccc solid;
+  }
+}

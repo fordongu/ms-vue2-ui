@@ -6,11 +6,34 @@
  * Time: 12:40
  */
 'use strict';
-import {MsGrid} from "./packages/grid/index";
+import {Layout} from "./packages/layout/index";
+import {Panel} from "./packages/panel/index";
+import {Grid} from "./packages/grid/index";
 import {Carousel,CarouselItem} from "./packages/carousel/index";
 
+import {Menu,SubMenu,MenuItem} from "./packages/menu/index";
+
+import {Form,FormItem,Input,DatepickerField} from "./packages/form/index";
+
+import {Datepicker} from "./packages/picker/index";
+
 module.exports = {
-    MsGrid,
-    Carousel,
-    CarouselItem
+    MsLayout:Layout,
+
+    MsPanel:Panel,
+
+    MsGrid:Grid,
+    MsCarousel:Carousel,
+    MsCarouselItem:CarouselItem,
+
+    MsMenu:Menu,
+    MsSubMenu:SubMenu,
+    MsMenuItem:MenuItem,
+
+    MsForm:Form,
+    MsFormItem:FormItem,
+    MsInput:Input,
+    MsDatepickerField:DatepickerField,
+
+    MsDatepicker:Datepicker
 }

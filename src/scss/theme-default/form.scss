@@ -1,0 +1,17 @@
+@import "fields/datepicker-field";
+.ms-form{
+  .ms-form-item{
+    &.is-error{
+      .validate-message{
+        color: red;
+      }
+      .ms-field-input{
+        input{
+          border: {
+            color: red;
+          };
+        }
+      }
+    }
+  }
+}

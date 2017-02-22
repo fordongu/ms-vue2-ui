@@ -2,37 +2,28 @@
 Created by Bane.Shi.
 Copyright MoenSun
 User: Bane.Shi
-Date: 2017/1/13
-Time: 09:34-->
+Blog: http://blog.fengxiaotx.com/
+Date: 2017/2/9
+Time: 21:51-->
 <template>
-<div style="height:500px;">
-  <div style="height:500px;">
-    <ms-grid layout="fit" :tree-structure=true
+  <ms-panel layout="fit" :resize="bodyResize">
+    <div slot="heading" >panel</div>
+    <ms-grid :tree-structure=true
+             :height="bodyHeight"
              :data="data"
              :columns="columns"
              :bordered=true
              :scroll-x=true
              :scroll-y=true />
-  </div>
-
-</div>
+  </ms-panel>
 </template>
 <script>
-    import {MsGrid} from "../../../src/index";
-    import myButton from "./my-button.vue";
+    import {MsPanel,MsGrid} from "../../../src/index";
     export default {
-      props:{
-        p:{
-          type:String,
-          default(){
-            return "props";
-          }
-        }
-      },
-      data(){
-        return {
-          test:'data',
-          data:[
+    data(){
+      return {
+        bodyHeight:0,
+                  data:[
             {
               name:'A',
               age:20,
@@ -128,25 +119,21 @@ Time: 09:34-->
               text:'操作',
               width:100,
               lockable:true,
-              lockPosition:"right",
-              render:function(){
-                return '<my-button></my-button>';
-              }
+              lockPosition:"right"
             }
           ]
-        }
-      },
-      methods:{
-        t:function(){
-          alert(this.test);
-        },
-        dian:function(){
-          this.test = "SSS";
-        }
-      },
+      }
+    },
+    methods:{
+      bodyResize:function(width,height){
+        let me = this;
+        debugger
+        me.bodyHeight = height;
+      }
+    },
       components: {
-        MsGrid,
-        myButton
+        MsPanel,
+        MsGrid
       }
     }
 </script>
