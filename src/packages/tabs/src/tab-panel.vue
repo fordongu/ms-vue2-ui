@@ -6,22 +6,34 @@ Blog: http://blog.fengxiaotx.com/
 Date: 2017/2/23
 Time: 14:26-->
 <template>
-  <div>
-
+  <div v-show="isActive">
+    <div>{{content}}</div>
+    <slot></slot>
   </div>
 </template>
 <script>
     export default {
         name:'ms-table-panel',
-        props:{},
+        props:{
+            title:{},
+            tabIndex:{},
+            content:{}
+        },
         data(){
             return {
+                isActive:false,
                 tabs:null
             }
+        },
+        computed:{
+
         },
         created(){
             let me = this;
             me.getTabs();
+            if(me.tabs){
+                me.tabs.addItem(me);
+            }
         },
         methods:{
             getTabs(){

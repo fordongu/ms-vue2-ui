@@ -1,0 +1,36 @@
+.ms-tabs{
+  position: relative;
+  .ms-tab-head{
+    ul{
+      -webkit-padding-start:0px;
+      list-style-type: none;
+      margin: {
+        bottom: 0px;
+      };
+      &:before{
+        content: " ";
+        display: table;
+      }
+      &:after{
+        content: " ";
+        clear: both;
+        display: table;
+      }
+    }
+    .ms-tab-title{
+      a{
+        cursor: pointer;
+      }
+    }
+    &.ms-head-top{
+      ul{
+        li{
+          float: left;
+        }
+      }
+    }
+    &.ms-head-left{
+      border-left: 1px solid #ddd;
+    }
+  }
+}
