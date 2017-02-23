@@ -6,7 +6,7 @@ Blog: http://blog.fengxiaotx.com/
 Date: 2017/2/9
 Time: 21:51-->
 <template>
-<div style="height:500px;">
+<div style="height:300px;">
 <!--  <div >
     <ms-panel layout="fit" :resize="bodyResize">
       <div slot="heading" >panel</div>

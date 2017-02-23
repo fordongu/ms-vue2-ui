@@ -149,7 +149,7 @@ Time: 09:30-->
           centerLeft:0,
           hasLeftData:false,
           gridWidth:me.width,
-          gridHeight:me.height,
+          gridHeight:this.height,
           boxHeight:0,
           needScrollXSpaceData:false,
           scrollWidth:0
@@ -160,9 +160,6 @@ Time: 09:30-->
           let me = this;
           if(me.componentReady){
             let style = {};
-           // if(me.layout == "fit"){
-           //   Object.assign(style,{height:me.gridHeight+'px'});
-           // }
              if(me.gridHeight){
               Object.assign(style,{height:me.gridHeight+'px'});
              }
@@ -179,11 +176,6 @@ Time: 09:30-->
         heightCompute:function(){
           let me = this;
           if(me.scrollY){
-         //   if(me.componentReady){
-          //    if(me.layout == "fit"){
-          //      return me.gridHeight;
-          //    }
-          //  }
             return me.gridHeight;
           }
         },
@@ -194,7 +186,6 @@ Time: 09:30-->
         centerWidthCompute:function(){
           let me = this;
           if(me.componentReady){
-              //let gridWidth = me.$el.clientWidth;
               return me.gridWidth-me.leftWidthData-me.rightWidthData;
           }
         },
@@ -211,6 +202,26 @@ Time: 09:30-->
             return true;
           }
           return false;
+        }
+      },
+      watch:{
+        width:{
+          handler:function(newVal,oldVal){
+            let me = this;
+            if(newVal!=undefined && newVal!=oldVal && me.layout!="fit"){
+              me.gridWidth = newVal;
+            }
+          },
+          immediate: true
+        },
+        height:{
+          handler:function(newVal,oldVal){
+            let me = this;
+            if(newVal!=undefined && newVal!=oldVal && me.layout!="fit"){
+              me.gridHeight = newVal;
+            }
+          },
+          immediate: true
         }
       },
       beforeCreate(){
@@ -288,59 +299,29 @@ Time: 09:30-->
         if(me.componentReady != undefined){
             me.componentReady = true;
         }
-      //  me.$nextTick(me.initSize());
-       // $(window).resize(function(){
-        //  me.resize();
-       // });
-        if(me.layout == "fit"){
-          if(me.$el.parentElement){
-             me.gridWidth = $(me.$el.parentElement).width();
-             me.gridHeight = $(me.$el.parentElement).height();
-             $(me.$el.parentElement).resize(function(){
-                me.gridWidth = $(me.$el.parentElement).width();
-                me.gridHeight = $(me.$el.parentElement).height();
-             });
-          }
-        }
-        if(!me.gridWidth){
-          me.gridWidth = me.$el.clientWidth;
-        }
+        me.$nextTick(me.initSize());
       },
       updated(){
         let me = this;
-       // if(me.componentReady){
-       //   let boxHeight  = me.$refs.ms_grid_scope_center.$el.clientHeight;
-       //   me.boxHeight = boxHeight;
-        //  let gridWidth = me.$el.clientWidth;
-        //  if(me.gridWidth = gridWidth){
-         //   me.gridWidth = gridWidth;
-        //  }
-       // }
       },
       methods:{
-        initSize(){ //初始化grid的原始大小
+        initSize(){
           let me = this;
           if(me.layout == "fit"){
-             me.gridWidth = $(me.$el.parentElement).width();
-             me.gridHeight = $(me.$el.parentElement).height();
-          }else{
-            if(me.width){
-              me.gridWidth = me.width;
-            }else {
-              me.gridWidth = me.$el.clientWidth;
-            }
-            if(me.height){
-              me.gridHeight = me.height;
+            if(me.$el.parentElement){
+               me.gridWidth = $(me.$el.parentElement).width();
+               me.gridHeight = $(me.$el.parentElement).height();
+               $(me.$el.parentElement).resize(function(){
+                  me.gridWidth = $(me.$el.parentElement).width();
+                  me.gridHeight = $(me.$el.parentElement).height();
+               });
             }
           }
-        },
-        resize(){
-          let me = this;
-          if(me.layout == "fit"){
-            me.gridHeight = $(me.$el.parentElement).height();
-            me.gridWidth = $(me.$el.parentElement).width();
-          }else {
-            me.gridWidth = me.$el.clientWidth;
+          if(!me.gridWidth){
+            me.gridWidth = $(me.$el).width();
+            $(me.$el).resize(()=>{
+              me.gridWidth = $(me.$el).width();
+            });
           }
         },
         columnsSplit:function(){

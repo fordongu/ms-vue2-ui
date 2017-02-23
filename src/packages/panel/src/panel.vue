@@ -149,7 +149,6 @@ Time: 21:46-->
         },
         panelResize(){
           let me = this;
-          debugger;
           if(me.resize){
 
             me.resize(me.bodyWidth,me.bodyHeight);
