@@ -6,7 +6,9 @@ Blog: http://blog.fengxiaotx.com/
 Date: 2017/2/23
 Time: 14:58-->
 <template>
-  <li role="presentation" class="ms-tab-title" :class="[{'active':isActive}]" @click="tabClick"><a><span>{{tab.title}}</span><i class=""></i></a></li>
+  <li role="presentation" class="ms-tab-title" :class="[{'active':isActive}]" @click="tabClick">
+    <div><span>{{tab.title}}</span><span class="tab-close" v-if="tab.closable" @click="tabClose"></span></div>
+  </li>
 </template>
 <script>
     export default {
@@ -16,6 +18,9 @@ Time: 14:58-->
             index:{},
             activeIndex:{},
             onTabClick:{
+                type:Function
+            },
+            onTabClose:{
                 type:Function
             }
         },
@@ -54,6 +59,12 @@ Time: 14:58-->
             if(me.onTabClick){
                 me.onTabClick(me.tab);
             }
+          },
+          tabClose() {
+              let me = this;
+              if(me.onTabClose){
+                  me.onTabClose(me.tab);
+              }
           }
         },
         components: {}

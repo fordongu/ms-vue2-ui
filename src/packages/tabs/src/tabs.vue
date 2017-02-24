@@ -13,7 +13,7 @@ Time: 11:14-->
                     :index="index"
                     :tab="tab"
                     :activeIndex="tabActiveIndex"
-                    :onTabClick="tabClick" />
+                    :onTabClick="tabClick" :onTabClose="tabClose" />
     </ul>
   </div>
   <div class="ms-tab-body">
@@ -69,6 +69,13 @@ Time: 11:14-->
           tabClick(tab){
               let me = this;
               me.tabActiveIndex = tab.tabIndex;
+          },
+          tabClose(tab){
+              let me = this;
+              tab.closed = true;
+              let itemIndex  = _.indexOf(me.items,tab);
+              me.items.splice(itemIndex,1);
+
           }
       },
       components: {

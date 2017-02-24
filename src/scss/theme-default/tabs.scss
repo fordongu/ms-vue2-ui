@@ -18,19 +18,61 @@
       }
     }
     .ms-tab-title{
-      a{
-        cursor: pointer;
+      .tab-close{
+        &:before{
+          content: "×";
+        }
+        &:hover{
+          color: #fff;
+          background: {
+            color: #97a8be;
+          };
+        }
       }
     }
     &.ms-head-top{
       ul{
+        border-bottom: 1px solid #ddd;
         li{
           float: left;
+          margin: {
+            bottom: -1px;
+          };
+          &.active{
+            color: #20a0ff;
+            border:{
+              bottom: {
+                width: 2px;
+                color: #20a0ff;
+                style: solid;
+              };
+            }
+          }
+          div{
+            line-height: 42px;
+            padding: {
+              left: 15px;
+              right: 15px;
+            };
+            .tab-close{
+              width: 14px;
+              height: 14px;
+              display: inline-block;
+            }
+          }
         }
       }
     }
     &.ms-head-left{
       border-left: 1px solid #ddd;
+    }
+    li{
+      color: #8391a5;
+      font-size: 14px;
+      cursor: pointer;
+      &:hover{
+        color: black;
+      }
     }
   }
 }

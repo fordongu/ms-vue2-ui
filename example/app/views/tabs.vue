@@ -8,8 +8,10 @@ Time: 13:43-->
 <template>
   <div>
     <ms-tabs tabPosition="left">
-      <ms-tab-panel title="Tab1" tabIndex="1" content="121211"></ms-tab-panel>
-      <ms-tab-panel title="Tab2测试" tabIndex="2" content="121211ddddddd"></ms-tab-panel>
+      <ms-tab-panel title="Tab1" tabIndex="1" :closable=true content="1"></ms-tab-panel>
+      <ms-tab-panel title="Tab2测试" tabIndex="2" :closable=true content="2"></ms-tab-panel>
+      <ms-tab-panel title="Tab3测试" tabIndex="3" :closable=true content="3"></ms-tab-panel>
+      <ms-tab-panel title="Tab4测试" tabIndex="4" :closable=true content="4"></ms-tab-panel>
     </ms-tabs>
   </div>
 </template>

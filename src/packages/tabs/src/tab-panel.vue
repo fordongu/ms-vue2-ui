@@ -6,7 +6,7 @@ Blog: http://blog.fengxiaotx.com/
 Date: 2017/2/23
 Time: 14:26-->
 <template>
-  <div v-show="isActive">
+  <div v-show="isActive" v-if="!closed">
     <div>{{content}}</div>
     <slot></slot>
   </div>
@@ -17,11 +17,18 @@ Time: 14:26-->
         props:{
             title:{},
             tabIndex:{},
-            content:{}
+            content:{},
+            closable:{
+                type:Boolean,
+                default(){
+                    return false;
+                }
+            },
         },
         data(){
             return {
                 isActive:false,
+                closed:false,
                 tabs:null
             }
         },
