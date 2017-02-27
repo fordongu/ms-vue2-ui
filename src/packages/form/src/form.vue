@@ -6,11 +6,9 @@ Blog: http://blog.fengxiaotx.com
 Date: 2017/1/31
 Time: 15:20-->
 <template>
-    <div class="ms-form">
-        <form class="form-horizontal">
-            <slot></slot>
-        </form>
-    </div>
+    <form class="form-horizontal ms-form">
+        <slot></slot>
+    </form>
 </template>
 <script>
     import Vue from "vue";
