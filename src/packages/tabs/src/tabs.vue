@@ -26,6 +26,9 @@ Time: 11:14-->
     export default {
       name:'ms-tabs',
       props:{
+          layout:{
+              type:String
+          },
           width:{
               type:Number
           },
@@ -74,6 +77,12 @@ Time: 11:14-->
               let me = this;
               tab.closed = true;
               let itemIndex  = _.indexOf(me.items,tab);
+              if(itemIndex>=0
+                  && me.items.length>1
+                  && me.tabActiveIndex==tab.tabIndex
+                  && itemIndex == me.items.length-1 ){
+                  me.tabActiveIndex = me.items[itemIndex-1].tabIndex;
+              }
               me.items.splice(itemIndex,1);
 
           }

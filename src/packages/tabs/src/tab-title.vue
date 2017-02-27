@@ -7,7 +7,7 @@ Date: 2017/2/23
 Time: 14:58-->
 <template>
   <li role="presentation" class="ms-tab-title" :class="[{'active':isActive}]" @click="tabClick">
-    <div><span>{{tab.title}}</span><span class="tab-close" v-if="tab.closable" @click="tabClose"></span></div>
+    <div><span>{{tab.title}}</span><span class="tab-close" v-if="tab.closable" @click.stop="tabClose"></span></div>
   </li>
 </template>
 <script>

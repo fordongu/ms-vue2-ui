@@ -19,6 +19,14 @@
     }
     .ms-tab-title{
       .tab-close{
+        display: inline-block;
+        line-height: 12px;
+        width: 14px;
+        height: 14px;
+        position: relative;
+        text-align: center;
+        vertical-align: middle;
+        overflow: hidden;
         &:before{
           content: "×";
         }
@@ -26,6 +34,9 @@
           color: #fff;
           background: {
             color: #97a8be;
+          };
+          border: {
+            radius: 50px;
           };
         }
       }
@@ -55,9 +66,9 @@
               right: 15px;
             };
             .tab-close{
-              width: 14px;
-              height: 14px;
-              display: inline-block;
+              margin: {
+                left: 5px;
+              };
             }
           }
         }
