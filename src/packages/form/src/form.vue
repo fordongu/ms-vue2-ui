@@ -17,6 +17,9 @@ Time: 15:20-->
     export default {
         name:'ms-form',
         props: {
+            layout:{
+                type:String
+            },
             title:{
                 type:String
             },
