@@ -6,17 +6,18 @@ Blog: http://blog.fengxiaotx.com/
 Date: 2017/2/23
 Time: 11:14-->
 <template>
-<div class="ms-tabs">
-  <div class="ms-tab-head ms-head-top">
+<div class="ms-tabs" :style="[outStyle]">
+  <div class="ms-tab-head ms-head-top" ref="ms_tabs_head">
     <ul>
       <ms-tab-title v-for="(tab,index) in items"
                     :index="index"
                     :tab="tab"
                     :activeIndex="tabActiveIndex"
-                    :onTabClick="tabClick" :onTabClose="tabClose" />
+                    :onTabClick="tabClick"
+                    :onTabClose="tabClose" />
     </ul>
   </div>
-  <div class="ms-tab-body">
+  <div class="ms-tab-body" :style="[innerStyle]">
     <slot></slot>
   </div>
 </div>
@@ -49,8 +50,41 @@ Time: 11:14-->
       },
       data(){
           return {
+              "componentReady":false,
               items:[],
-              tabActiveIndex:null
+              tabActiveIndex:null,
+              outWidth:this.width,
+              outHeight:this.height,
+              innerWidth:null,
+              innerHeight:null
+          }
+      },
+      computed:{
+          outStyle:function () {
+              let me = this;
+              if(me.componentReady){
+                  let style = {};
+                  if(me.outWidth){
+                      Object.assign(style,{width:me.outWidth+'px'});
+                  }
+                  if(me.outHeight){
+                      Object.assign(style,{height:me.outHeight+'px'});
+                  }
+                  return style;
+              }
+          },
+          innerStyle:function () {
+              let me = this;
+              if(me.componentReady){
+                  let style = {};
+                  if(me.tabPosition=="top" || me.tabPosition=="bottom"){
+                      if(me.outHeight){
+                          let headHeight = $(me.$refs["ms_tabs_head"]).height();
+                          Object.assign(style,{height:(me.outHeight-headHeight)+'px'});
+                      }
+                  }
+                  return style;
+              }
           }
       },
       watch:{
@@ -58,7 +92,25 @@ Time: 11:14-->
 
           }
       },
+      mounted(){
+          let me = this;
+          me.componentReady = true;
+          me.initSize();
+      },
       methods:{
+          initSize(){
+              let me = this;
+              if(me.layout == "fit"){
+                  if(me.$el.parentElement){
+                      me.outWidth = $(me.$el.parentElement).width();
+                      me.outHeight = $(me.$el.parentElement).height();
+                  }
+                  $(me.$el.parentElement).resize(function(){
+                      me.outWidth = $(me.$el.parentElement).width();
+                      me.outHeight = $(me.$el.parentElement).height();
+                  });
+              }
+          },
           addItem(item){
             let me = this;
             me.items.push(item);
@@ -84,7 +136,6 @@ Time: 11:14-->
                   me.tabActiveIndex = me.items[itemIndex-1].tabIndex;
               }
               me.items.splice(itemIndex,1);
-
           }
       },
       components: {
