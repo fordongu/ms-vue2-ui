@@ -12,6 +12,7 @@
           <li class="list-group-item"><router-link to="/datepicker">日期选择器（Datepicker）</router-link></li>
           <li class="list-group-item"><router-link to="/datepicker-field">日期选择器(表单)（DatepickerField）</router-link></li>
           <li class="list-group-item"><router-link to="/tabs">标签页（Tabs）</router-link></li>
+          <li class="list-group-item"><router-link to="/tree-view">树形视图（TreeView）</router-link></li>
         </ul>
       </div>
       <div class="col-md-9" style="min-height:300px;">

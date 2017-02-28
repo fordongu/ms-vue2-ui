@@ -15,6 +15,7 @@ import Form from "../views/form.vue";
 import Datepicker from "../views/datepicker.vue";
 import DatepickerField from "../views/datepicker-field.vue";
 import Tabs from "../views/tabs.vue";
+import TreeView from "../views/tree-view.vue";
 
 export default [
     { path:'/',component: require("../views/index.vue")},
@@ -26,5 +27,6 @@ export default [
     { path: '/form', component: Form },
     { path: '/datepicker', component: Datepicker },
     { path: '/datepicker-field', component: DatepickerField },
-    { path: '/tabs',component: Tabs}
+    { path: '/tabs',component: Tabs},
+    { path: '/tree-view',component: TreeView}
 ]

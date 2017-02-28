@@ -18,6 +18,8 @@ import {Form,FormItem,Input,DatepickerField} from "./packages/form/index";
 
 import {Datepicker} from "./packages/picker/index";
 
+import {TreeView} from "./packages/tree/index";
+
 module.exports = {
     MsLayout:Layout,
 
@@ -38,5 +40,7 @@ module.exports = {
     MsInput:Input,
     MsDatepickerField:DatepickerField,
 
-    MsDatepicker:Datepicker
+    MsDatepicker:Datepicker,
+
+    MsTreeView : TreeView
 }
