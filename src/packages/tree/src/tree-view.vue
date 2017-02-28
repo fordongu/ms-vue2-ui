@@ -13,6 +13,7 @@ Time: 14:57-->
             :record="record"
             :index="index"
             :textIndex="textIndex"
+            :checkbox="checkbox"
             :onShowChildren="showChildren"
             :onSelectChange="selectChange"
             :onExpandToggle="expandToggle"/>
@@ -27,6 +28,9 @@ Time: 14:57-->
         props:{
             data:{
                 type:[Array,Object]
+            },
+            checkbox:{
+                type:Boolean
             },
             textIndex:{
                 type:String,

@@ -12,7 +12,7 @@ Time: 15:18-->
         @click.stop="toggle"></span>
   <span v-if="!isLeaf" v-show="record._expanded" class="glyphicon glyphicon-minus" @click.stop="toggle"></span>
   <span v-if="isLeaf"  class="glyphicon glyphicon-space"></span>
-  <label @click.stop><input type="checkbox" @change="checkedChange"></label>
+  <label v-if="checkbox" @click.stop><input type="checkbox" @change="checkedChange"></label>
   {{record[textIndex]}}
 </div>
 </template>
@@ -22,6 +22,9 @@ Time: 15:18-->
         props:{
             msTreeViewId:{
                 type:String
+            },
+            checkbox:{
+                type:Boolean
             },
             record:{
                 type:Object
