@@ -6,11 +6,12 @@ Blog: http://blog.fengxiaotx.com
 Date: 2017/1/31
 Time: 15:20-->
 <template>
-    <form class="form-horizontal ms-form">
+    <form class="form-horizontal ms-form" :style="[outStyle]">
         <slot></slot>
     </form>
 </template>
 <script>
+    import "ms-jquery-resize";
     import Vue from "vue";
     import schema from "async-validator";
     import bus from "./FormEvents.js";
@@ -30,13 +31,18 @@ Time: 15:20-->
         data(){
             return {
                 msFormId:_.uniqueId("ms_form_"),
+                "componentReady":false,
+                outWidth:null,
+                outHeight:null,
                 formData:{},
                 fields:[],
                 errors:[]
             };
         },
         computed: {
-
+            outStyle:function () {
+                let me = this;
+            }
         },
         created(){
             let me = this;
@@ -55,8 +61,22 @@ Time: 15:20-->
         },
         mounted(){
             let me = this;
+            me.componentReady = true;
         },
         methods:{
+            initSize(){
+                let me = this;
+                if(me.layout == "fit"){
+                    if(me.$el.parentElement){
+                        me.outWidth = $(me.$el.parentElement).width();
+                        me.outHeight = $(me.$el.parentElement).height();
+                    }
+                    $(me.$el.parentElement).resize(function(){
+                        me.outWidth = $(me.$el.parentElement).width();
+                        me.outHeight = $(me.$el.parentElement).height();
+                    });
+                }
+            },
             getFieldsValue:function(keys){
                 let me = this;
                 if(keys){
