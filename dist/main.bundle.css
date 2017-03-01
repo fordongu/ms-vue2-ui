@@ -6755,6 +6755,13 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+@charset "UTF-8";
+body {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px; }
+
 .ms-layout .ms-north {
   display: inline-block;
   width: 100%; }
@@ -6776,6 +6783,60 @@ button.close {
 
 .ms-panel {
   margin-bottom: 0px; }
+
+.ms-tabs {
+  position: relative; }
+  .ms-tabs .ms-tab-head ul {
+    -webkit-padding-start: 0px;
+    list-style-type: none;
+    margin-bottom: 0px; }
+    .ms-tabs .ms-tab-head ul:before {
+      content: " ";
+      display: table; }
+    .ms-tabs .ms-tab-head ul:after {
+      content: " ";
+      clear: both;
+      display: table; }
+  .ms-tabs .ms-tab-head .ms-tab-title .tab-close {
+    display: inline-block;
+    line-height: 12px;
+    width: 14px;
+    height: 14px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden; }
+    .ms-tabs .ms-tab-head .ms-tab-title .tab-close:before {
+      content: "\D7"; }
+    .ms-tabs .ms-tab-head .ms-tab-title .tab-close:hover {
+      color: #fff;
+      background-color: #97a8be;
+      border-radius: 50px; }
+  .ms-tabs .ms-tab-head.ms-head-top ul {
+    height: 44px;
+    border-bottom: 1px solid #ddd; }
+    .ms-tabs .ms-tab-head.ms-head-top ul li {
+      float: left;
+      margin-bottom: -1px; }
+      .ms-tabs .ms-tab-head.ms-head-top ul li.active {
+        color: #20a0ff;
+        border-bottom-width: 2px;
+        border-bottom-color: #20a0ff;
+        border-bottom-style: solid; }
+      .ms-tabs .ms-tab-head.ms-head-top ul li div {
+        line-height: 42px;
+        padding-left: 15px;
+        padding-right: 15px; }
+        .ms-tabs .ms-tab-head.ms-head-top ul li div .tab-close {
+          margin-left: 5px; }
+  .ms-tabs .ms-tab-head.ms-head-left {
+    border-left: 1px solid #ddd; }
+  .ms-tabs .ms-tab-head li {
+    color: #8391a5;
+    font-size: 14px;
+    cursor: pointer; }
+    .ms-tabs .ms-tab-head li:hover {
+      color: black; }
 
 .ms-menu.ms-menu-vertical ul li .ms-menu-item a {
   color: black; }
@@ -6971,6 +7032,673 @@ button.close {
     padding-bottom: 10px; }
     .ms-datepicker .ms-year-panel table tbody tr td.is-current-year {
       background-color: #20a0ff !important; }
+
+.ms-tree-view .ms-tree-view-item {
+  cursor: pointer; }
+
+.ms-tree-view .glyphicon {
+  cursor: pointer; }
+  .ms-tree-view .glyphicon.glyphicon-space {
+    cursor: default; }
+    .ms-tree-view .glyphicon.glyphicon-space:before {
+      content: " ";
+      width: 14px;
+      height: 14px;
+      display: inline-block; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
