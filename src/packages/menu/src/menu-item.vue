@@ -23,6 +23,12 @@ Time: 16:32-->
           },
           target:{
             type:String
+          },
+          router:{
+              type:[Object,String]
+          },
+          href:{
+              type:String
           }
         },
         data(){
