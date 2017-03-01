@@ -13,6 +13,7 @@ Time: 15:20-->
 <script>
     import "ms-jquery-resize";
     import Vue from "vue";
+    import _ from "lodash";
     import schema from "async-validator";
     import bus from "./FormEvents.js";
     export default {
