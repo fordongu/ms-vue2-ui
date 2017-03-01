@@ -6,6 +6,13 @@ Blog: http://blog.fengxiaotx.com/
 Date: 2017/2/9
 Time: 21:51-->
 <template>
+<div style="height:300px;">
+<!--  <div >
+    <ms-panel layout="fit" :resize="bodyResize">
+      <div slot="heading" >panel</div>
+      <div>ddd</div>
+    </ms-panel>
+  </div>-->
   <ms-panel layout="fit" :resize="bodyResize">
     <div slot="heading" >panel</div>
     <ms-grid :tree-structure=true
@@ -16,6 +23,7 @@ Time: 21:51-->
              :scroll-x=true
              :scroll-y=true />
   </ms-panel>
+</div>
 </template>
 <script>
     import {MsPanel,MsGrid} from "../../../src/index";
@@ -127,7 +135,6 @@ Time: 21:51-->
     methods:{
       bodyResize:function(width,height){
         let me = this;
-        debugger
         me.bodyHeight = height;
       }
     },

@@ -6,19 +6,22 @@ Blog: http://blog.fengxiaotx.com
 Date: 2017/1/31
 Time: 15:20-->
 <template>
-    <div class="ms-form">
-        <form class="form-horizontal">
-            <slot></slot>
-        </form>
-    </div>
+    <form class="form-horizontal ms-form" :style="[outStyle]">
+        <slot></slot>
+    </form>
 </template>
 <script>
+    import "ms-jquery-resize";
     import Vue from "vue";
+    import _ from "lodash";
     import schema from "async-validator";
     import bus from "./FormEvents.js";
     export default {
         name:'ms-form',
         props: {
+            layout:{
+                type:String
+            },
             title:{
                 type:String
             },
@@ -29,13 +32,28 @@ Time: 15:20-->
         data(){
             return {
                 msFormId:_.uniqueId("ms_form_"),
+                "componentReady":false,
+                outerWidth:null,
+                outerHeight:null,
                 formData:{},
                 fields:[],
                 errors:[]
             };
         },
         computed: {
-
+            outStyle:function () {
+                let me = this;
+                if(me.componentReady){
+                    let style = {};
+                    if(me.outerWidth){
+                        Object.assign(style,{width:me.outerWidth+'px'});
+                    }
+                    if(me.outerHeight){
+                        Object.assign(style,{height:me.outerHeight+'px'});
+                    }
+                    return style;
+                }
+            }
         },
         created(){
             let me = this;
@@ -54,8 +72,24 @@ Time: 15:20-->
         },
         mounted(){
             let me = this;
+            me.componentReady = true;
         },
         methods:{
+            initSize(){
+                let me = this;
+                if(me.componentReady){
+                    if(me.layout == "fit"){
+                        if(me.$el.parentElement){
+                            me.outerWidth = $(me.$el.parentElement).width();
+                            me.outerHeight = $(me.$el.parentElement).height();
+                        }
+                        $(me.$el.parentElement).resize(function(){
+                            me.outerWidth = $(me.$el.parentElement).width();
+                            me.outerHeight = $(me.$el.parentElement).height();
+                        });
+                    }
+                }
+            },
             getFieldsValue:function(keys){
                 let me = this;
                 if(keys){

@@ -59,7 +59,10 @@ Time: 09:32-->
         divStyleCompute:function(){
           let me = this;
           if( me.componentReady){
-            let style = {height:me.height+"px"};
+            let style = {};
+            if(me.height){
+              Object.assign(style,{height:me.height+"px"});
+            }
             if(me.scrollY){
               if(me.position == "center"){
                 Object.assign(style,{overflowY:'auto'});
