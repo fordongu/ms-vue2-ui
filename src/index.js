@@ -9,6 +9,7 @@
 import {Layout} from "./packages/layout/index";
 import {Panel} from "./packages/panel/index";
 import {Grid} from "./packages/grid/index";
+import {Tabs,TabPanel} from "./packages/tabs/index";
 import {Carousel,CarouselItem} from "./packages/carousel/index";
 
 import {Menu,SubMenu,MenuItem} from "./packages/menu/index";
@@ -17,12 +18,16 @@ import {Form,FormItem,Input,DatepickerField} from "./packages/form/index";
 
 import {Datepicker} from "./packages/picker/index";
 
+import {TreeView} from "./packages/tree/index";
+
 module.exports = {
     MsLayout:Layout,
 
     MsPanel:Panel,
 
     MsGrid:Grid,
+    MsTabs:Tabs,
+    MsTabPanel:TabPanel,
     MsCarousel:Carousel,
     MsCarouselItem:CarouselItem,
 
@@ -35,5 +40,7 @@ module.exports = {
     MsInput:Input,
     MsDatepickerField:DatepickerField,
 
-    MsDatepicker:Datepicker
+    MsDatepicker:Datepicker,
+
+    MsTreeView : TreeView
 }

@@ -1,0 +1,90 @@
+.ms-tabs{
+  position: relative;
+  .ms-tab-head{
+    ul{
+      -webkit-padding-start:0px;
+      list-style-type: none;
+      margin: {
+        bottom: 0px;
+      };
+      &:before{
+        content: " ";
+        display: table;
+      }
+      &:after{
+        content: " ";
+        clear: both;
+        display: table;
+      }
+    }
+    .ms-tab-title{
+      .tab-close{
+        display: inline-block;
+        line-height: 12px;
+        width: 14px;
+        height: 14px;
+        position: relative;
+        text-align: center;
+        vertical-align: middle;
+        overflow: hidden;
+        &:before{
+          content: "×";
+        }
+        &:hover{
+          color: #fff;
+          background: {
+            color: #97a8be;
+          };
+          border: {
+            radius: 50px;
+          };
+        }
+      }
+    }
+    &.ms-head-top{
+      ul{
+        height: 44px;
+        border-bottom: 1px solid #ddd;
+        li{
+          float: left;
+          margin: {
+            bottom: -1px;
+          };
+          &.active{
+            color: #20a0ff;
+            border:{
+              bottom: {
+                width: 2px;
+                color: #20a0ff;
+                style: solid;
+              };
+            }
+          }
+          div{
+            line-height: 42px;
+            padding: {
+              left: 15px;
+              right: 15px;
+            };
+            .tab-close{
+              margin: {
+                left: 5px;
+              };
+            }
+          }
+        }
+      }
+    }
+    &.ms-head-left{
+      border-left: 1px solid #ddd;
+    }
+    li{
+      color: #8391a5;
+      font-size: 14px;
+      cursor: pointer;
+      &:hover{
+        color: black;
+      }
+    }
+  }
+}

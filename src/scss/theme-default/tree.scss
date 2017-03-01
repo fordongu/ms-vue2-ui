@@ -1,0 +1,17 @@
+.ms-tree-view{
+  .ms-tree-view-item{
+    cursor: pointer;
+  }
+  .glyphicon{
+    cursor: pointer;
+    &.glyphicon-space{
+      cursor: default;
+      &:before{
+        content: " ";
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+      }
+    }
+  }
+}
