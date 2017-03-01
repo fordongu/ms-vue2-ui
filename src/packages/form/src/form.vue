@@ -32,8 +32,8 @@ Time: 15:20-->
             return {
                 msFormId:_.uniqueId("ms_form_"),
                 "componentReady":false,
-                outWidth:null,
-                outHeight:null,
+                outerWidth:null,
+                outerHeight:null,
                 formData:{},
                 fields:[],
                 errors:[]
@@ -42,6 +42,16 @@ Time: 15:20-->
         computed: {
             outStyle:function () {
                 let me = this;
+                if(me.componentReady){
+                    let style = {};
+                    if(me.outerWidth){
+                        Object.assign(style,{width:me.outerWidth+'px'});
+                    }
+                    if(me.outerHeight){
+                        Object.assign(style,{height:me.outerHeight+'px'});
+                    }
+                    return style;
+                }
             }
         },
         created(){
@@ -66,15 +76,17 @@ Time: 15:20-->
         methods:{
             initSize(){
                 let me = this;
-                if(me.layout == "fit"){
-                    if(me.$el.parentElement){
-                        me.outWidth = $(me.$el.parentElement).width();
-                        me.outHeight = $(me.$el.parentElement).height();
+                if(me.componentReady){
+                    if(me.layout == "fit"){
+                        if(me.$el.parentElement){
+                            me.outerWidth = $(me.$el.parentElement).width();
+                            me.outerHeight = $(me.$el.parentElement).height();
+                        }
+                        $(me.$el.parentElement).resize(function(){
+                            me.outerWidth = $(me.$el.parentElement).width();
+                            me.outerHeight = $(me.$el.parentElement).height();
+                        });
                     }
-                    $(me.$el.parentElement).resize(function(){
-                        me.outWidth = $(me.$el.parentElement).width();
-                        me.outHeight = $(me.$el.parentElement).height();
-                    });
                 }
             },
             getFieldsValue:function(keys){
